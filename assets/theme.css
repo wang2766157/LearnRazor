@@ -12103,7 +12103,7 @@ a.text-white:focus, a.text-white:hover {
 
     .navbar-vertical .navbar-nav .nav-link[data-toggle=collapse]:after {
         display: block;
-        content: "\e92e";
+        /*content: "\e92e";*/
         font-family: Feather;
         margin-left: auto;
         transition: transform .2s
@@ -13069,24 +13069,24 @@ a:focus, button:focus {
 
 @font-face {
     font-family: Cerebri Sans;
-    src: url(../fonts/cerebrisans/cerebrisans-regular.eot);
-    src: url(../fonts/cerebrisans/cerebrisans-regular.eot?#iefix) format("embedded-opentype"),url(../fonts/cerebrisans/cerebrisans-regular.woff) format("woff"),url(../fonts/cerebrisans/cerebrisans-regular.ttf) format("truetype");
+    src: url(./fonts/cerebrisans/cerebrisans-regular.eot);
+    src: url(./fonts/cerebrisans/cerebrisans-regular.eot?#iefix) format("embedded-opentype"),url(./fonts/cerebrisans/cerebrisans-regular.woff) format("woff"),url(./fonts/cerebrisans/cerebrisans-regular.ttf) format("truetype");
     font-weight: 400;
     font-style: normal
 }
 
 @font-face {
     font-family: Cerebri Sans;
-    src: url(../fonts/cerebrisans/cerebrisans-medium.eot);
-    src: url(../fonts/cerebrisans/cerebrisans-medium.eot?#iefix) format("embedded-opentype"),url(../fonts/cerebrisans/cerebrisans-medium.woff) format("woff"),url(../fonts/cerebrisans/cerebrisans-medium.ttf) format("truetype");
+    src: url(./fonts/cerebrisans/cerebrisans-medium.eot);
+    src: url(./fonts/cerebrisans/cerebrisans-medium.eot?#iefix) format("embedded-opentype"),url(./fonts/cerebrisans/cerebrisans-medium.woff) format("woff"),url(./fonts/cerebrisans/cerebrisans-medium.ttf) format("truetype");
     font-weight: 500;
     font-style: normal
 }
 
 @font-face {
     font-family: Cerebri Sans;
-    src: url(../fonts/cerebrisans/cerebrisans-semibold.eot);
-    src: url(../fonts/cerebrisans/cerebrisans-semibold.eot?#iefix) format("embedded-opentype"),url(../fonts/cerebrisans/cerebrisans-semibold.woff) format("woff"),url(../fonts/cerebrisans/cerebrisans-semibold.ttf) format("truetype");
+    src: url(./fonts/cerebrisans/cerebrisans-semibold.eot);
+    src: url(./fonts/cerebrisans/cerebrisans-semibold.eot?#iefix) format("embedded-opentype"),url(./fonts/cerebrisans/cerebrisans-semibold.woff) format("woff"),url(./fonts/cerebrisans/cerebrisans-semibold.ttf) format("truetype");
     font-weight: 600;
     font-style: normal
 }
