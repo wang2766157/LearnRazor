@@ -1,15 +1,15 @@
 ## 这里是一个欢迎的测试页面
 
-You can use the [editor on GitHub](https://github.com/wang2766157/LearnRazor/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+您可以使用[editor on GitHub](https://github.com/wang2766157/LearnRazor/edit/master/index.md)的编辑器来维护和预览Markdown文件中网站的内容。
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+每当您提交到该存储库时，GitHub Pages都会运行[Jekyll](https://jekyllrb.com/)从Markdown文件中的内容重建站点中的页面。
 
 ### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Markdown是一种轻巧且易于使用的语法，可用于样式化您的文字。 它包括以下约定
 
 ```markdown
-Syntax highlighted code block
+语法突出显示的代码块
 
 # Header 1
 ## Header 2
