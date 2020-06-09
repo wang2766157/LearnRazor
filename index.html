@@ -4,248 +4,150 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ASP.NET Core Razor页面简介 | 了解 Razor Pages</title>
-    <link href="assets/libs/bootstrap-4.4.1-dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="./assets/libs/bootstrap-4.4.1-dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="./assets/theme.css" rel="stylesheet" />
+    <script>
+        window.onload = function () {
+            $("body").addClass("bg-light");
+        }
+    </script>
 </head>
-<body id="page-top">
-    <div class="navbar navbar-default navbar-static-top">
-        <div>
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">切换导航</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <div class="navbar-brand">
-                    <i class="fas fa-graduation-cap"></i> <a href="./index.html">了解 Razor Pages</a>
-                    <br />
-                    <span class="byline">使用ASP.NET Core Razor页面的指南</span>
-                </div>  
-            </div>
-        </div>
-    </div>
-    <div class="navbar-default sidebar" role="navigation">
-        <div class="sidebar-nav navbar-collapse">
-            <nav class="main-nav">
-                <ul class="nav nav-level-one" id="side-menu">
-                    <li>
-                        <a href="/index.html">主页</a>
-                        <ul class="nav-level-two">
-                            <li><a href="/first-look">初看</a></li>
-                        </ul>
-                    </li>
-                    <li><a itemprop="url" href="/asp-net-core">ASP.NET Core</a></li>
-                    <li>
-                        <a itemprop="url" href="/razor-pages/tutorial/bakery">讲解</a>
-                        <ul class="nav-level-two">
-                            <li><a itemprop="url" href="/razor-pages/tutorial/bakery">面包店</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a itemprop="url" href="/razor-pages">Razor Page 文件</a>
-                        <ul class="nav-level-two">
-                            <li><a itemprop="url" href="/razor-pages/files/">Razor 文件</a></li>
-                            <li><a itemprop="url" href="/razor-pages/partial-pages">部分页(Partial Pages)</a></li>
-                            <li><a itemprop="url" href="/razor-pages/files/layout">布局文件</a></li>
-                            <li><a itemprop="url" href="/razor-pages/files/viewimports">ViewImports 文件</a></li>
-                            <li><a itemprop="url" href="/razor-pages/files/viewstart">ViewStart 文件</a></li>
-                        </ul>
-                    </li>
-                    <li><a itemprop="url" href="/razor-syntax">Razor 语法</a></li>
-                    <li>
-                        <a itemprop="url" href="/razor-pages/pagemodel">Page Models</a>
-                        <ul class="nav-level-two">
-                            <li><a itemprop="url" href="/razor-pages/handler-methods">Handler 方法</a></li>
-                            <li><a itemprop="url" href="/razor-pages/viewdata">ViewData</a></li>
-                            <li><a itemprop="url" href="/razor-pages/action-results">Action Results</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a itemprop="url" href="/razor-pages/tag-helpers/">标签助手</a>
-                        <ul class="nav-level-two">
-                            <li><a itemprop="url" href="/razor-pages/tag-helpers/anchor-tag-helper">Anchor 标签助手</a></li>
-                            <li><a itemprop="url" href="/razor-pages/tag-helpers/cache-tag-helper">Cache 标签助手</a></li>
-                            <li><a itemprop="url" href="/razor-pages/tag-helpers/distributed-cache-tag-helper">Distributed Cache 标签助手</a></li>
-                            <li><a itemprop="url" href="/razor-pages/tag-helpers/environment-tag-helper">Environment 标签助手</a></li>
-                            <li><a itemprop="url" href="/razor-pages/tag-helpers/form-action-tag-helper">Form Action 标签助手</a></li>
-                            <li><a itemprop="url" href="/razor-pages/tag-helpers/form-tag-helper">Form 标签助手</a></li>
-                            <li><a itemprop="url" href="/razor-pages/tag-helpers/image-tag-helper">Image 标签助手</a></li>
-                            <li><a itemprop="url" href="/razor-pages/tag-helpers/input-tag-helper">Input 标签助手</a></li>
-                            <li><a itemprop="url" href="/razor-pages/tag-helpers/label-tag-helper">Label 标签助手</a></li>
-                            <li><a itemprop="url" href="/razor-pages/tag-helpers/link-tag-helper">Link 标签助手</a></li>
-                            <li><a itemprop="url" href="/razor-pages/tag-helpers/option-tag-helper">Option 标签助手</a></li>
-                            <li><a itemprop="url" href="/razor-pages/tag-helpers/partial-tag-helper">Partial 标签助手</a></li>
-                            <li><a itemprop="url" href="/razor-pages/tag-helpers/script-tag-helper">Script 标签助手</a></li>
-                            <li><a itemprop="url" href="/razor-pages/tag-helpers/select-tag-helper">Select 标签助手</a></li>
-                            <li><a itemprop="url" href="/razor-pages/tag-helpers/textarea-tag-helper">TextArea 标签助手</a></li>
-                            <li><a itemprop="url" href="/razor-pages/tag-helpers/validation-message-tag-helper">Validation 标签助手</a></li>
-                            <li><a itemprop="url" href="/razor-pages/tag-helpers/validation-summary-tag-helper">Validation Summary 标签助手</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a itemprop="url" href="/razor-pages/view-components">查看组件</a>
-                    </li>
-                    <li>
-                        <a itemprop="url" href="/razor-pages/routing">路由和URL</a>
-                        <ul class="nav-level-two">
-                            <li><a href="/advanced/custom-route-conventions">自定义路由</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a itemprop="url" href="/startup">Startup</a>
-                    </li>
-                    <li>
-                        <a itemprop="url" href="/configuration">Configuration</a>
-                        <ul class="nav-level-two">
-                            <li><a itemprop="url" href="/configuration/global-error-handling">全局错误处理和日志记录</a></li>
-                            <li><a itemprop="url" href="/configuration/custom-errors">自定义错误页面</a></li>
-                            <li><a itemprop="url" href="/configuration/https">配置HTTPS</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a itemprop="url" href="/middleware">中间件</a>
-                    </li>
-                    <li>
-                        <a itemprop="url" href="/advanced/dependency-injection">依赖注入</a>
-                    </li>
-                    <li>
-                        <a itemprop="url" href="/razor-pages/forms">使用Forms表单</a>
-                        <ul class="nav-level-two">
-                            <li><a itemprop="url" href="/razor-pages/forms/file-upload">Uploading Files in Razor Pages</a></li>
-                            <li><a itemprop="url" href="/razor-pages/forms/checkboxes">Working With Checkboxes</a></li>
-                            <li><a itemprop="url" href="/razor-pages/forms/select-lists">Select Lists in a Razor Pages Form</a></li>
-                            <li><a itemprop="url" href="/razor-pages/forms/radios">Working With Radio Buttons</a></li>
-                            <li><a itemprop="url" href="/security/request-verification">Request Verification</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a itemprop="url" href="/razor-pages/validation">Validation</a>
-                        <ul class="nav-level-two">
-                            <li><a itemprop="url" href="/razor-pages/validation/remote-validation">Remote Validation</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a itemprop="url" href="/razor-pages/model-binding">Model Binding</a>
-                    </li>
-                    <li>
-                        <a itemprop="url" href="/razor-pages/state-management">State Management</a>
-                    </li>
-                    <li>
-                        <a itemprop="url" href="/razor-pages/caching">Caching</a>
-                    </li>
-                    <li>
-                        <a itemprop="url" href="/identity">Managing Security With ASP.NET Identity</a>
-                        <ul class="nav-level-two">
-                            <li><a itemprop="url" href="/identity/customising-identity">Customising Identity</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a itemprop="url" href="/razor-pages/ajax">Using AJAX</a>
-                        <ul class="nav-level-two">
-                            <li><a itemprop="url" href="/razor-pages/ajax/form-post">Posting Forms</a></li>
-                            <li><a itemprop="url" href="/razor-pages/ajax/partial-update">Partial Page Updates</a></li>
-                            <li><a itemprop="url" href="/razor-pages/ajax/cascading-dropdowns">Cascading Dropdowns</a></li>
-                            <li><a itemprop="url" href="/razor-pages/ajax/upload-files">Uploading Files</a></li>
-                            <li><a itemprop="url" href="/razor-pages/ajax/unobtrusive-ajax">Unobtrusive AJAX</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a itemprop="url" href="/web-api">Working with JSON</a>
-                    </li>
-                    <li>
-                        <a itemprop="url" href="/miscellaneous/scaffolding">Scaffolding</a>
-                    </li>
-                    <li>
-                        <a itemprop="url" href="/publishing/publish-to-iis">Publishing To IIS</a>
-                    </li>
-                    <li>
-                        <a itemprop="url" href="/advanced">Advanced</a>
-                        <ul class="nav-level-two">
-                            <li><a itemprop="url" href="/advanced/areas">Areas</a></li>
-                            <li><a itemprop="url" href="/advanced/custom-tag-helpers">Custom Tag Helpers</a></li>
-                            <li><a itemprop="url" href="/advanced/custom-route-conventions">Customising Route Conventions</a></li>
-                            <li><a itemprop="url" href="/advanced/custom-constraints">Custom Route Constraints</a></li>
-                            <li><a itemprop="url" href="/advanced/route-parameter-transformers">Parameter Transformers For Routes</a></li>
-                            <li><a itemprop="url" href="/advanced/dependency-injection">Dependency Injection</a></li>
-                            <li><a itemprop="url" href="/razor-pages/filters">Filters</a></li>
-                            <li><a itemprop="url" href="/advanced/razor-class-library">Razor Class Libraries</a></li>
-                            <li><a itemprop="url" href="/advanced/render-partial-to-string">Rendering A Partial View To A String</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a itemprop="url" href="/table-of-contents">Table Of Contents</a>
+<body id="top">
+    <!-- 标准菜单 -->
+    <nav class="navbar navbar-vertical fixed-left navbar-expand-md " id="sidebar">
+        <div class="container-fluid">
+            <!-- Brand -->
+            <a class="navbar-brand" href="./Index"><i class="fe fe-home"></i></a><span class=" text-center ml-2">了解 Razor Pages</span>
+            <!-- Collapse -->
+            <div class="collapse navbar-collapse" id="sidebarCollapse">
+                <!-- Divider -->
+                <hr class="navbar-divider my-3">
+                <!-- Navigation -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="">
+                            <i class="fe @m.Ico"></i> @m.Title
+                        </a>
+                        <div class="collapse show" id="">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="">@sm.Title</a>
+                                    <div class="collapse " id="">
+                                        <ul class="nav nav-sm flex-column">
+                                            <li class="nav-item"><a href="" class="nav-link "><i class="fe @ssm.Ico"></i>@ssm.Title</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
                 </ul>
-            </nav>
-
-            <footer>
-                <p>&copy; 2020 - 了解 Razor Pages.<br />版权所有。</p>
-            </footer>
+                <!-- Push content down -->
+                <div class="mt-auto"></div>
+            </div>
+            <!-- /Navbar-collapse -->
         </div>
-        <!-- /.sidebar-collapse -->
-    </div>
-    <div id="page-wrapper">
-        <div class="body-content">
-            <div class="row">
-                <div class="col-md-9">
-
-                    <div id="article">
-                        <h1 itemprop="headline" id="welcome-to-learn-razor-pages">欢迎学习 Razor Pages</h1>
-                        <div itemprop="articleBody">
-                            <p>该站点专用于帮助希望使用ASP.NET Core Razor Pages Web开发框架来构建Web应用程序的开发人员。</p>
-                            <h2 id="what-is-razor-pages">什么是 Razor Pages？</h2>
-                            <p>ASP.NET Core Razor Pages 是一个以页面为中心的框架，用于构建动态的，数据驱动的网站，并清晰地关注各个方面。 Razor Pages 基于 Microsoft 的最新版本的 ASP.NET- <a href="/asp-net-core">ASP.NET Core</a>，支持跨平台开发，可以部署到 Windows，Unix 和 Mac 操作系统。</p>
-                            <p>Razor Pages 框架轻巧且非常灵活。 它为开发人员提供了对渲染 HTML 的完全控制。 该框架基于 ASP.NET Core MVC 构建，并且在 .NET Core 应用程序中启用 MVC 时默认情况下启用。 Razor Pages 是 .NET Core 上跨平台服务器端 HTML 生成的推荐框架。 您无需具有任何 MVC 知识或了解即可使用 Razor Pages。</p>
-                            <p>Razor Pages 利用流行的 C＃ 编程语言进行服务器端编程，并使用易于学习的 <a href="/razor-syntax">Razor 模板语法</a> 将 C＃嵌入 HTML 标记中，从而为浏览器动态生成内容。</p>
-                            <h2 id="who-should-use-razor-pages">谁应该使用 Razor Pages?</h2>
-                            <p>Razor Pages 适用于从初学者到企业级的各种开发人员。 它基于以页面为中心的开发模型，使 Web 开发人员熟悉其他以页面为中心的框架，例如 PHP，Classic ASP，Java Server Pages，ASP.NET Web Pages 和 ASP.NET Web Forms。 对于初学者来说，它也相对容易学习，它包含 ASP.NET Core 的所有高级功能，使其同样适用于大型，可伸缩的基于团队的项目。</p>
-                            <h2 id="how-to-get-razor-pages">How to get Razor Pages</h2>
-                            <p>Razor Pages is included within .NET Core from version 2.0 onwards, which is <a href="https://www.microsoft.com/net/download/core">available as a free download</a> as either an SDK (Software Development Kit) or a Runtime. The SDK includes the runtime and command line tools for creating .NET Core applications. The SDK is installed for you when you install Visual Studio 2017 Update 3 or later. The runtime is used to run .NET Core applications. The Runtime-only installation is intended for use on machines where no development takes place.</p>
-                            <h2 id="why-should-you-use-razor-pages">Why should you use Razor Pages?</h2>
-                            <p>If you want a dynamic web site, that is one where the content is regularly being added to, you have a number of options available to you. You can use a Content Management System (CMS), of which there are many to choose from including WordPress, Joomla!, Drupal, Orchard CMS and so on. Or you can hire someone to build a suitable site for you. Or you can build your own if you have an interest in, and an aptitude for programming.</p>
-                            <p>If you choose to build your own, you can choose from a wide range of programming languages and frameworks. If you are a beginner, you will probably want to start with a framework and language that is easy to learn, well supported and robust. If you are considering making a career as a programmer, you probably want to know that the skills you acquire while learning your new framework will enhance your value to potential employers. In both cases, learning C# as a language and ASP.NET Core as a framework will tick those boxes. If you are a seasoned developer, the Razor Pages framework is likely to add to your skillset with the minimum amount of effort.</p>
-                        </div>
+    </nav>
+    <nav class="navbar navbar-vertical navbar-vertical-sm fixed-left navbar-expand-md " id="sidebarSmall"></nav>
+    <div class="main-content">
+        <nav class="navbar navbar-expand-md navbar-light d-none d-md-flex" id="topbar">
+            <div class="container-fluid">
+                <!-- Title -->
+                <div class="input-group input-group-flush input-group-merge">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fe fe-bookmark"></i></div><a id="tn">ASP.NET Core Razor页面的指南</a>
                     </div>
-                </div>
-                <div class="col-md-3 right-col">
-                    <div id="doc-outline" class="doc-outline well">
-                        <h3 class="doc-outline">On this page</h3>
-                        <nav class="doc-outline">
-                            <ul>
-                                <li><a itemprop="url" href="#welcome-to-learn-razor-pages" class="page-scroll">Welcome To Learn Razor Pages</a></li>
-                                <li><a itemprop="url" href="#what-is-razor-pages" class="page-scroll">What Is Razor Pages?</a></li>
-                                <li><a itemprop="url" href="#who-should-use-razor-pages" class="page-scroll">Who should use Razor Pages?</a></li>
-                                <li><a itemprop="url" href="#how-to-get-razor-pages" class="page-scroll">How to get Razor Pages</a></li>
-                                <li><a itemprop="url" href="#why-should-you-use-razor-pages" class="page-scroll">Why should you use Razor Pages?</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <div class="doc-outline well">
-                        <h3 class="doc-outline">Latest Updates</h3>
-                        <nav class="doc-outline">
-                            <ul>
-                                <li><a itemprop="url" href="https://www.learnrazorpages.com/razor-pages/validation">User Input Validation in Razor Pages</a></li>
-                                <li><a itemprop="url" href="https://www.learnrazorpages.com/security/request-verification">Request Verification in Razor Pages</a></li>
-                                <li><a itemprop="url" href="https://www.learnrazorpages.com/advanced/dependency-injection">Dependency Injection in Razor Pages</a></li>
-                                <li><a itemprop="url" href="https://www.learnrazorpages.com/razor-pages/routing">Routing in Razor Pages</a></li>
-                                <li><a itemprop="url" href="https://www.learnrazorpages.com/advanced/render-partial-to-string">Rendering a Partial View to a String in Razor Pages</a></li>
-                                <li><a itemprop="url" href="https://www.learnrazorpages.com/advanced/razor-class-library">Razor Class Libraries in ASP.NET Core</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <footer>
-                        <p>&copy; 2020 - Learn Razor Pages.<br />All rights reserved.</p>
-                    </footer>
                 </div>
             </div>
+        </nav>
+        <div class="header bg-light pb-5">
+            <div class="container-fluid">
+                <!-- List -->
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-12 col-xl-12">
+                        <!-- Header -->
+                        <div class="header header-sm mt-md-0">
+                            <div class="header-body header-body-sm">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <!-- Pretitle -->
+                                        <h6 class="header-pretitle"></h6>
+                                        <!-- Title -->
+                                        <h4 class="header-title"><strong>了解 Razor Pages</strong></h4>
+                                    </div>
+                                </div>
+                                <!-- /Row -->
+                            </div>
+                        </div>
+                        <!-- /Header -->
+                        <!-- ListContent -->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <div id="article">
+                                            <h1 id="welcome-to-learn-razor-pages">欢迎学习 Razor Pages</h1>
+                                            <div>
+                                                <p>该站点专用于帮助希望使用ASP.NET Core Razor Pages Web开发框架来构建Web应用程序的开发人员。</p>
+                                                <h2 id="what-is-razor-pages">什么是 Razor Pages？</h2>
+                                                <p>ASP.NET Core Razor Pages 是一个以页面为中心的框架，用于构建动态的，数据驱动的网站，并清晰地关注各个方面。 Razor Pages 基于 Microsoft 的最新版本的 ASP.NET- <a href="/asp-net-core">ASP.NET Core</a>，支持跨平台开发，可以部署到 Windows，Unix 和 Mac 操作系统。</p>
+                                                <p>Razor Pages 框架轻巧且非常灵活。 它为开发人员提供了对渲染 HTML 的完全控制。 该框架基于 ASP.NET Core MVC 构建，并且在 .NET Core 应用程序中启用 MVC 时默认情况下启用。 Razor Pages 是 .NET Core 上跨平台服务器端 HTML 生成的推荐框架。 您无需具有任何 MVC 知识或了解即可使用 Razor Pages。</p>
+                                                <p>Razor Pages 利用流行的 C＃ 编程语言进行服务器端编程，并使用易于学习的 <a href="/razor-syntax">Razor 模板语法</a> 将 C＃嵌入 HTML 标记中，从而为浏览器动态生成内容。</p>
+                                                <h2 id="who-should-use-razor-pages">谁应该使用 Razor Pages?</h2>
+                                                <p>Razor Pages 适用于从初学者到企业级的各种开发人员。 它基于以页面为中心的开发模型，使 Web 开发人员熟悉其他以页面为中心的框架，例如 PHP，Classic ASP，Java Server Pages，ASP.NET Web Pages 和 ASP.NET Web Forms。 对于初学者来说，它也相对容易学习，它包含 ASP.NET Core 的所有高级功能，使其同样适用于大型，可伸缩的基于团队的项目。</p>
+                                                <h2 id="how-to-get-razor-pages">How to get Razor Pages</h2>
+                                                <p>Razor Pages is included within .NET Core from version 2.0 onwards, which is <a href="https://www.microsoft.com/net/download/core">available as a free download</a> as either an SDK (Software Development Kit) or a Runtime. The SDK includes the runtime and command line tools for creating .NET Core applications. The SDK is installed for you when you install Visual Studio 2017 Update 3 or later. The runtime is used to run .NET Core applications. The Runtime-only installation is intended for use on machines where no development takes place.</p>
+                                                <h2 id="why-should-you-use-razor-pages">Why should you use Razor Pages?</h2>
+                                                <p>If you want a dynamic web site, that is one where the content is regularly being added to, you have a number of options available to you. You can use a Content Management System (CMS), of which there are many to choose from including WordPress, Joomla!, Drupal, Orchard CMS and so on. Or you can hire someone to build a suitable site for you. Or you can build your own if you have an interest in, and an aptitude for programming.</p>
+                                                <p>If you choose to build your own, you can choose from a wide range of programming languages and frameworks. If you are a beginner, you will probably want to start with a framework and language that is easy to learn, well supported and robust. If you are considering making a career as a programmer, you probably want to know that the skills you acquire while learning your new framework will enhance your value to potential employers. In both cases, learning C# as a language and ASP.NET Core as a framework will tick those boxes. If you are a seasoned developer, the Razor Pages framework is likely to add to your skillset with the minimum amount of effort.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 right-col">
+                                        <div id="doc-outline" class="doc-outline well">
+                                            <h3 class="doc-outline">On this page</h3>
+                                            <nav class="doc-outline">
+                                                <ul>
+                                                    <li><a itemprop="url" href="#welcome-to-learn-razor-pages" class="page-scroll">Welcome To Learn Razor Pages</a></li>
+                                                    <li><a itemprop="url" href="#what-is-razor-pages" class="page-scroll">What Is Razor Pages?</a></li>
+                                                    <li><a itemprop="url" href="#who-should-use-razor-pages" class="page-scroll">Who should use Razor Pages?</a></li>
+                                                    <li><a itemprop="url" href="#how-to-get-razor-pages" class="page-scroll">How to get Razor Pages</a></li>
+                                                    <li><a itemprop="url" href="#why-should-you-use-razor-pages" class="page-scroll">Why should you use Razor Pages?</a></li>
+                                                </ul>
+                                            </nav>
+                                        </div>
+                                        <div class="doc-outline well">
+                                            <h3 class="doc-outline">Latest Updates</h3>
+                                            <nav class="doc-outline">
+                                                <ul>
+                                                    <li><a itemprop="url" href="https://www.learnrazorpages.com/razor-pages/validation">User Input Validation in Razor Pages</a></li>
+                                                    <li><a itemprop="url" href="https://www.learnrazorpages.com/security/request-verification">Request Verification in Razor Pages</a></li>
+                                                    <li><a itemprop="url" href="https://www.learnrazorpages.com/advanced/dependency-injection">Dependency Injection in Razor Pages</a></li>
+                                                    <li><a itemprop="url" href="https://www.learnrazorpages.com/razor-pages/routing">Routing in Razor Pages</a></li>
+                                                    <li><a itemprop="url" href="https://www.learnrazorpages.com/advanced/render-partial-to-string">Rendering a Partial View to a String in Razor Pages</a></li>
+                                                    <li><a itemprop="url" href="https://www.learnrazorpages.com/advanced/razor-class-library">Razor Class Libraries in ASP.NET Core</a></li>
+                                                </ul>
+                                            </nav>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /ListContent -->
+                    </div>
+                </div>
+                <!-- /List -->
+            </div>
         </div>
-        <a href="#page-top" id="back-to-top" class="page-scroll" title="Back to top"><i class="fas fa-arrow-alt-circle-up"></i></a>
     </div>
-    <div class="cookie-box" id="cookie-warning">
-        <div class="cookie-box-contents" id="learnrazorpages">This site uses cookies to analyse traffic, remember your preferences, and optimise your experience.</div>
-        <div class="cookie-box-buttons"><a href="/privacy" class="cookie-button">Learn more</a><a href="#" class="cookie-button" id="cookie-close">Close</a></div>
-    </div>
-    <script src="assets/libs/jquery/dist/jquery.min.js"></script>
-    <script src="assets/libs/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+
+    <a class="btn-scroll-top" href="./index.html#top" data-scroll="">
+        <span class="btn-scroll-top-tooltip text-muted font-size-sm mr-2">返回</span><i class="btn-scroll-top-icon fe fe-arrow-up">   </i>
+    </a>
+
+    <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="./assets/libs/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+    <script src="./assets/libs/bootstrap-4.4.1-dist/js/bootstrap.bundle.js"></script>
+    <script src="./assets/theme.js"></script>
 </body>
 </html>
