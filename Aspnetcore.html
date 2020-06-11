@@ -1,0 +1,290 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ASP.NET Core Razor简介 | 了解 Razor Pages</title>
+    <link href="./assets/libs/bootstrap-4.4.1-dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="./assets/theme.css" rel="stylesheet" />
+    <script>
+        window.onload = function () {
+            $("body").addClass("bg-light");
+        }
+    </script>
+</head>
+<body id="top">
+    <!-- 标准菜单 -->
+    <nav class="navbar navbar-vertical fixed-left navbar-expand-md " id="sidebar">
+        <div class="container-fluid">
+            <!-- Brand -->
+            <a class="navbar-brand" href="./index.html"><span class="text-center ml-2">了解 Razor Pages</span></a>
+            <!-- Collapse -->
+            <div class="collapse navbar-collapse" id="sidebarCollapse">
+                <!-- Divider -->
+                <hr class="navbar-divider my-3">
+                <!-- Navigation -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarIndex" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarIndex">主页</a>
+                        <div class="collapse" id="sidebarIndex">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="./fristlook.html">初试</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="./Aspnetcore.html">ASP.NET Core</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarTutorials" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarTutorials">讲解</a>
+                        <div class="collapse" id="sidebarTutorials">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="./bakery.html">面包店</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarRazorpages" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarRazorpages">Razor 页面文件</a>
+                        <div class="collapse" id="sidebarRazorpages">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item"><a class="nav-link" href="#">Razor 页面文件</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">Razor 文件</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">分部视图</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">布局</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">ViewImports</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">ViewStart</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">Razor 语法</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarPagemodel" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarPagemodel">Page Models</a>
+                        <div class="collapse" id="sidebarPagemodel">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item"><a class="nav-link" href="#">Page Models</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">Handler Methods</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">ViewData</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">Action Results</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarTaghelpers" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarTaghelpers">标记帮助程序</a>
+                        <div class="collapse" id="sidebarTaghelpers">
+                            <ul class="nav nav-sm flex-column">
+                                <li><a class="nav-link" href="#">Anchor Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Cache Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Distributed Cache Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Environment Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Form Action Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Form Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Image Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Input Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Label Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Link Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Option Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Partial Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Script Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Select Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">TextArea Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Validation Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Validation Summary Tag Helper</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">View Components</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarRouting" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarRouting">Routing and URLs</a>
+                        <div class="collapse" id="sidebarRouting">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item"><a class="nav-link" href="#">Routing and URLs</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">Customising Route Conventions</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">Startup</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarConfiguration" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarConfiguration">Configuration</a>
+                        <div class="collapse" id="sidebarConfiguration">
+                            <ul class="nav nav-sm flex-column">
+                                <li><a class="nav-link" href="#">Configuration</a></li>
+                                <li><a class="nav-link" href="#">Global Error Handling And Logging</a></li>
+                                <li><a class="nav-link" href="#">Custom Error Pages</a></li>
+                                <li><a class="nav-link" href="#">Configuring HTTPS</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">Middleware</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Dependency Injection</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarForms" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarForms">Working With Forms</a>
+                        <div class="collapse" id="sidebarForms">
+                            <ul class="nav nav-sm flex-column">
+                                <li><a class="nav-link" href="#">Working With Forms</a></li>
+                                <li><a class="nav-link" href="#">Uploading Files in Razor Pages</a></li>
+                                <li><a class="nav-link" href="#">Working With Checkboxes</a></li>
+                                <li><a class="nav-link" href="#">Select Lists in a Razor Pages Form</a></li>
+                                <li><a class="nav-link" href="#">Working With Radio Buttons</a></li>
+                                <li><a class="nav-link" href="#">Request Verification</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarValidation" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarValidation">Validation</a>
+                        <div class="collapse" id="sidebarValidation">
+                            <ul class="nav nav-sm flex-column">
+                                <li><a class="nav-link" href="#">Validation</a></li>
+                                <li><a class="nav-link" href="#">Remote Validation</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">Model Binding</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">State Management</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Caching</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarIdentity" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarIdentity">Managing Security With ASP.NET Identity</a>
+                        <div class="collapse" id="sidebarIdentity">
+                            <ul class="nav nav-sm flex-column">
+                                <li><a class="nav-link" href="#">Identity</a></li>
+                                <li><a class="nav-link" href="#">Customising Identity</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarAjax" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarAjax">使用 AJAX</a>
+                        <div class="collapse" id="sidebarAjax">
+                            <ul class="nav nav-sm flex-column">
+                                <li><a class="nav-link" href="#">AJAX</a></li>
+                                <li><a class="nav-link" href="#">Posting Forms</a></li>
+                                <li><a class="nav-link" href="#">Partial Page Updates</a></li>
+                                <li><a class="nav-link" href="#">Cascading Dropdowns</a></li>
+                                <li><a class="nav-link" href="#">Uploading Files</a></li>
+                                <li><a class="nav-link" href="#">Unobtrusive AJAX</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">Working with JSON</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Scaffolding</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Publishing To IIS</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarAdvanced" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarAdvanced">Advanced</a>
+                        <div class="collapse" id="sidebarAdvanced">
+                            <ul class="nav nav-sm flex-column">
+                                <li><a class="nav-link" href="#">Advanced</a></li>
+                                <li><a class="nav-link" href="#">Areas</a></li>
+                                <li><a class="nav-link" href="#">Custom Tag Helpers</a></li>
+                                <li><a class="nav-link" href="#">Customising Route Conventions</a></li>
+                                <li><a class="nav-link" href="#">Custom Route Constraints</a></li>
+                                <li><a class="nav-link" href="#">Parameter Transformers For Routes</a></li>
+                                <li><a class="nav-link" href="#">Dependency Injection</a></li>
+                                <li><a class="nav-link" href="#">Filters</a></li>
+                                <li><a class="nav-link" href="#">Razor Class Libraries</a></li>
+                                <li><a class="nav-link" href="#">Rendering A Partial View To A String</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">Table Of Contents</a></li>
+                </ul>
+                <!-- Push content down -->
+                <div class="mt-auto"></div>
+            </div>
+            <!-- /Navbar-collapse -->
+        </div>
+    </nav>
+    <nav class="navbar navbar-vertical navbar-vertical-sm fixed-left navbar-expand-md " id="sidebarSmall"></nav>
+    <div class="main-content">
+        <nav class="navbar navbar-expand-md navbar-light d-none d-md-flex" id="topbar">
+            <div class="container-fluid">
+                <!-- Title -->
+                <div class="input-group input-group-flush input-group-merge">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"></div><a id="tn">ASP.NET Core Razor技术指南</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="header bg-light pb-5">
+            <div class="container-fluid">
+                <!-- List -->
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-12 col-xl-12">
+                        <!-- Header -->
+                        <div class="header header-sm mt-md-0">
+                            <div class="header-body header-body-sm">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <!-- Pretitle -->
+                                        <h6 class="header-pretitle"></h6>
+                                        <!-- Title -->
+                                        <h4 class="header-title"><strong>什么是 ASP.NET Core ？</strong></h4>
+                                    </div>
+                                </div>
+                                <!-- /Row -->
+                            </div>
+                        </div>
+                        <!-- /Header -->
+                        <!-- ListContent -->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <div>
+                                            <h1 id="what-is-asp.net-core">什么是 ASP.NET Core？</h1>
+                                            <div>
+                                                <p>ASP.NET Core 是用于构建基于 Web 的应用程序的 Microsoft 框架的最新版本。 它位于 .NET Core 之上，.NET Core 是一个开放源代码开发平台，由一组框架库，一个软件开发工具包（SDK）和一个运行时组成。</p>
+                                                <h2 id="why-should-you-choose-asp.net-core">为什么要选择 ASP.NET Core？</h2>
+                                                <p>Web 开发正在发生变革。越来越需要更多的模块化框架，您可以在其中确定要包含在应用程序中的功能。 应用程序应为云就绪的-设计为可以在任何平台上运行并可以快速扩展。 他们还应该采用客户端框架，并使开发 RESTful API 变得容易。 框架本身需要灵活。 它们需要快速迭代以提供新功能，以响应 Web 开发领域的新创新。 开发人员希望能够选择用于创作网站的工具。</p>
+                                                <p>一些框架已经解决了这些问题，例如在 Node.js 上运行的 <a href="https://expressjs.com/">Express</a>。 没有旧版本的 ASP.NET 。 它已与仅 Windows 的 Web 服务器 Internet Information Services 结合在一起。 由于框架与完整的 .NET 框架绑定的方式，新功能需要花费很长时间才能上市。 它非常依赖 Visual Studio - 仅在 Windows 上运行的 IDE 的庞然大物。</p>
+                                                <div class="alert alert-dark">
+                                                    <p>请注意，称为 <a href="https://docs.microsoft.com/en-us/visualstudio/mac/">Visual Studio for Mac</a> 的产品实际上并不是大多数 .NET 开发人员都熟悉的 IDE 版本。 它是支持 .NET Core 开发的 Xamarin Studio 版本。</p>
+                                                </div>
+                                                <p>ASP.NET 是以模块化设计为主的。HTTP管道由可以根据需要插入的独立组件组成。 这种方法带来的好处包括：</p>
+                                                <ul>
+                                                    <li>您的应用程序更轻巧，因为它仅包含所需的组件</li>
+                                                    <li>您可以从多个来源中选择组件</li>
+                                                    <li>您可以选择在任意平台上托管您的应用程序</li>
+                                                    <li>与以前版本的ASP.NET相比，新功能的添加速度要快得多。</li>
+                                                </ul>
+                                                <p>
+                                                    ASP.NET Core 是一种基于模型-视图-控制器（MVC）模式的Web开发框架。 最重要的是 Razor Pages 框架，面向更喜欢或更熟悉以页面为中心来构建Web应用程序的开发人员。 ASP.NET Core 还包括用于开发基于REST的Web服务（Web API）的框架。 包括基于 Web Sockets 的框架（SignalR）在内的工作也正在进行中，该框架能支持服务器启动的页面内容的实时更新。
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 right-col">
+                                        <div class="alert alert-light" role="alert">
+                                            <a href="https://www.learnrazorpages.com/asp-net-core">原文地址</a>
+                                        </div>
+                                        <div id="doc-outline" class="doc-outline well">
+                                            <h3 class="doc-outline">快速导航</h3>
+                                            <nav class="doc-outline">
+                                                <ul>
+                                                    <li><a href="#what-is-asp.net-core" class="page-scroll">什么是 ASP.NET Core？</a></li>
+                                                    <li><a href="#why-should-you-choose-asp.net-core" class="page-scroll">为什么要选择 ASP.NET Core？</a></li>                        
+                                                </ul>
+                                            </nav>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /ListContent -->
+                    </div>
+                </div>
+                <!-- /List -->
+            </div>
+        </div>
+    </div>
+
+    <a class="btn-scroll-top" href="#top" data-scroll="">
+        <span class="btn-scroll-top-tooltip text-muted font-size-sm mr-2"></span>返回顶部
+    </a>
+
+    <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="./assets/libs/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+    <script src="./assets/libs/bootstrap-4.4.1-dist/js/bootstrap.bundle.js"></script>
+    <script src="./assets/theme.js"></script>
+</body>
+</html>
