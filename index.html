@@ -16,12 +16,18 @@
     <!-- 标准菜单 -->
     <nav class="navbar navbar-vertical fixed-left navbar-expand-md " id="sidebar">
         <div class="container-fluid">
+            <!-- Toggler -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <!-- Brand -->
-            <a class="navbar-brand" href="./index.html"><span class="text-center ml-2">了解 Razor Pages</span></a>
+            <div data-toggle="tooltip" data-placement="right" data-template='<div class="tooltip d-none d-md-block" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>' title="了解 Razor Pages">
+                <a class="navbar-brand" href="./index.html"><span class="text-center d-md-block">了解 Razor Pages</span></a>
+            </div>
             <!-- Collapse -->
             <div class="collapse navbar-collapse" id="sidebarCollapse">
                 <!-- Divider -->
-                <hr class="navbar-divider my-3">
+                <hr class="navbar-divider d-none d-md-block mt-0 my-3">
                 <!-- Navigation -->
                 <ul class="navbar-nav">
                     <li class="nav-item">
