@@ -237,117 +237,118 @@
                                 <div class="row">
                                     <div class="col-md-9">
                                         <div>
-                                            <h1 id="razor-pages-bakery-tutorial">Razor Pages 实例 - 面包店</h1>
-                                            <div>
-                                                <p>本实例会一步一步的演示如何从头开始创建 Razor Pages 应用程序，以及如何添加通用功能，包括与数据库通信，使用表单和发送电子邮件。</p>
-                                                <p>Fourth Coffee 网站以ASP.NET Web Pages 面包店模板网站开始。 模板站点提供了“最先进的”在线订购系统，使用户能够订购各种烘焙食品。 从技术角度来看，该网站展示了</p>
-                                                <ul>
-                                                    <li>使用基于文件的数据库来存储产品信息</li>
-                                                    <li>基本数据访问</li>
-                                                    <li>创建和处理表单</li>
-                                                    <li>和通过 WebMail 助手功能发送电子邮件。</li>
-                                                </ul>
-                                                <p><img src="./assets/img/13-11-2018-14-40-18.png" class="img-fluid" alt="ASP.NET Web Pages Bakery Template"></p>
-                                                <p>在本系列中，从网页移植到 Razor Pages 。分为7个步骤，每个步骤都代表了 Razor Pages 开发的一个方面。此后，将使用其他功能增强站点，将其作为一个平台来说明 Razor Pages 应用程序中的许多其他 ASP.NET Core 功能。</p>
-                                                <p>步骤如下：</p>
-                                                <ul>
-                                                    <li>创建应用程序</li>
-                                                    <li><a href="https://www.learnrazorpages.com/razor-pages/tutorial/bakery/new-page">添加新页面</a></li>
-                                                    <li><a href="https://www.learnrazorpages.com/razor-pages/tutorial/bakery/create-model">创建模型</a></li>
-                                                    <li><a href="https://www.learnrazorpages.com/razor-pages/tutorial/bakery/migration">添加迁移</a></li>
-                                                    <li><a href="https://www.learnrazorpages.com/razor-pages/tutorial/bakery/working-with-data">处理数据</a></li>
-                                                    <li><a href="https://www.learnrazorpages.com/razor-pages/tutorial/bakery/forms">使用表单</a></li>
-                                                    <li><a href="https://www.learnrazorpages.com/razor-pages/tutorial/bakery/email">添加电子邮件</a></li>
-                                                </ul>
-                                                <p>该网站将用 <a href="https://code.visualstudio.com/">Visual Studio Code</a> 构建 - Visual Studio Code 是 Microsoft 在开发人员社区的帮助下开发的开源代码编辑器。 数据将存储在 SQLite 数据库中。 选择这两个工具都具有跨平台且相对易于使用的优点，这有助于使该系列实例在任何平台上对所有有能力的开发人员都可使用。</p>
-                                                <p>该站点使用 ASP.NET Core 2.2 和 <a href="https://www.learnentityframeworkcore.com/">Entity Framework Core</a> 构建。</p>
-                                                <h2 id="get-the-bits">获取开发工具</h2>
-                                                <p>开始，您需要获取这些开发工具。 首先，您可以在此处获得 <a href="https://www.microsoft.com/net/download">.NET Core</a> 。 您可以下载构建 .NET Core 应用程序所需的SDK（软件开发工具包）。 其次 - <em>runtime</em> - 是要在要运行 ASP.NET Core 应用程序的服务器上安装的选项。 SDK 包含运行时。</p>
-                                                <p>接下来，您需要下载并安装 <a href="https://code.visualstudio.com/">Visual Studio Code</a> 。然后安装 <strong>C#</strong>  扩展，这是 C# 开发所需要的。 您可以通过单击左侧图像上的<em>扩展</em>图标<img src="./assets/img/19-11-2018-07-56-53.png" class="img-fluid" alt="Image">并在窗格顶部显示的搜索框中键入“C#”来找到它。 您还应该安装<strong> C# 扩展</strong>，该扩展提供了用于添加 C# 类和接口文件的模板。</p>
-                                                <p>最后，我使用 <strong>Material Icon Theme</strong> 扩展，该扩展在“资源管理器”窗格中提供了文件和文件夹的图标。</p>
-                                                <h2 id="create-a-blank-web-application">创建一个空白的 Web 应用程序</h2>
-                                                <p>您需要创建一个文件夹来容纳您的应用程序文件。 您可以按照自己喜欢的任何方式进行操作。 您可以手动创建文件夹，然后在VS Code中打开它，也可以打开VS Code并使用其 <a href="https://code.visualstudio.com/docs/editor/integrated-terminal">集成的终端</a>通过标准 mkdir 命令创建目录。 通过按 <kbd>Ctrl</kbd>+<kbd>'</kbd> （在Mac上为 <kbd>⌘</kbd>+<kbd>'</kbd>）访问 VS Code 中的终端。 无论如何，该文件夹应命名为 Bakery。</p>
-                                                <p>创建文件夹后，在 VS Code 中将其打开。 然后，确保终端的活动位置在 <em>Bakery</em> 文件夹中，使用以下命令创建一个新的 Razor Pages 应用程序：</p><pre class="prettyprint linenums"><code class="language-cmd">dotnet new webapp </code></pre>
-                                                <p>请注意，命令 <code>dotnet new razor</code> 也将导致创建Razor Pages项目。</p>
-                                                <div class="alert alert-warning">
-                                                    <p>该项目的名称来自创建该文件夹的文件夹。理想情况下，您希望它是带有大写字母“ <strong>B</strong>”的“Bakery”。 这样，如果您要将该系列中的代码复制并粘贴到您创建的项目中，则可以通过混合项目名称空间的大小写来最大程度地减少错误蔓延的可能性。 如果您在创建了 <em>Bakery</em> 文件夹后使用终端导航到 Bakery 文件夹并使用所有小写字母（例如<code>cd c:\bakery</code>），则生成的项目及其默认名称空间将使用小写的“ <strong>b</strong>”。</p>
-                                                </div>
-                                                <p>创建应用程序后，将自动执行 <code>dotnet restore</code> 命令。 这将导致恢复项目所需的依赖关系和工具。 如果这是您的第一个 .NET Core 应用程序，则此命令可能需要一些时间才能完成。 完成后，您可以从 VS Code 中打开 <em>Bakery</em> 文件夹，以查看创建的文件和文件夹。</p>
-                                                <p>此时，可能会提示您添加构建和调试项目所需的缺少项目：</p>
-                                                <p><img src="./assets/img/19-11-2018-09-34-19.png" class="img-fluid" alt="Add missing assets"></p>
-                                                <p>点击 <strong>是</strong>。</p>
-                                                <h2 id="the-file-and-folders">文件和文件夹</h2>
-                                                <p>在继续之前，我们将检查模板生成的文件和文件夹：</p>
-                                                <p><img src="./assets/img/19-11-2018-09-47-46.png" class="img-fluid" alt="Razor Pages Files and Folders"></p>
-                                                <ul>
-                                                    <li>
-                                                        <p>在上一步中单击“<strong>是</strong>”时，将生成 <em>.vscode</em> 文件夹。 它包含提供调试配置的文件。</p>
-                                                    </li>
-                                                    <li>
-                                                        <p>
-                                                            <em>bin</em> 文件夹包含 Build 操作的输出 - 应用程序的已编译二进制文件。目前没有文件 - 只是一个名为 <em>Debug</em> 的文件夹，其中包含另一个名为 <em>netcoreapp2.2</em> 的文件夹。该应用程序尚未编译（构建）。那将很快发生。
-                                                        </p>
-                                                    </li>
-                                                    <li>
-                                                        <p>
-                                                            <em>obj</em> 文件夹包含各种文件。 除了可能完全删除其内容之外，几乎不需要访问该文件夹。 框架将其用作存储临时文件和构建过程中使用的其他对象的地方。
-                                                        </p>
-                                                    </li>
-                                                    <li>
-                                                        <p>
-                                                            <em>Properties</em> 文件夹包含一个名为 <em>lanchSettings.json</em> 的文件。 这是用于在浏览器中启动应用程序的配置文件。
-                                                        </p>
-                                                    </li>
-                                                    <li>
-                                                        <p>应用程序的根目录由5个文件组成。 有两个名为 <em>appsettings</em> 的 JSON 文件。 这些包含应用程序配置信息。 它们等效于 ASP.NET 早期版本的 <em>web.Config</em> 文件中的 <code>appSettings</code> 部分。 名称为 <em>Development</em> 的版本仅在应用程序在开发模式下运行时使用。</p>
-                                                    </li>
-                                                    <li>
-                                                        <p><em>.csproj</em> 文件是基于 <a href="https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild?view=vs-2017">MS Build XML 的标准项目文件</a>。 它包含项目设置和对项目使用的文件的引用。 MS Build使用此文件来配置应用程序的实际生成过程。</p>
-                                                    </li>
-                                                    <li>
-                                                        <p>所有 ASP.NET Core 应用程序实际上都是控制台应用程序。 任何控制台应用程序的默认入口点是 <em>Program.cs</em> 文件中找到的 <code>Program</code> 类中的 <code>Main</code> 方法。 在这种情况下，<code>Main</code> 方法负责为应用程序配置 Web 主机并启动它，以使其准备好处理请求。</p>
-                                                    </li>
-                                                    <li>
-                                                        <p><em>Startup.cs</em> 文件包含一个名为 <code>Startup</code> 的类。 此类具有两个主要方法 - <code>ConfigureServices</code> 和 <code>Configure</code>。 这些用于配置应用程序的<em>请求处理管道</em>（应用程序所需的可选组件）及其依赖的服务。</p>
-                                                    </li>
-                                                    <li>
-                                                        <p><em>wwwroot</em> 文件夹包含静态文件-图像，JavaScript 文件，CSS 文件等。</p>
-                                                    </li>
-                                                    <li>
-                                                        <p>最后，是 <em>Pages</em> 文件夹。 这是 Razor Pages 的默认位置。 模板站点包括三个：<em>Error</em>, <em>Index</em> 和 <em>Privacy</em>。 您将很快添加到此。</p>
-                                                    </li>
-                                                </ul>
-                                                <h2 id="build-and-run-the-application">生成并运行应用程序</h2>
-                                                <p>在命令提示符下，键入以下内容：</p><pre class="prettyprint linenums"><code class="language-cmd">dotnet run</code></pre>
-                                                <p>您将得到以下信息确认：</p><pre class="prettyprint linenums"><code>Now listening on: https://localhost:5001 Now listening on: http://localhost:5000 Application started. Press Ctrl+C to shut down.</code></pre>
-                                                <p>打开浏览器并导航到该网站 <code>https://localhost:5001</code>。 如下所示：</p>
-                                                <p><img src="./assets/img/22-11-2018-08-20-46.png" class="img-fluid" alt="Bakery Site"></p>
+                                            <h1 id="adding-your-first-page">添加你的第一个页面</h1>
+                                            <div itemprop="articleBody">
+                                                <p>在本部分中，您将添加“关于”页面，并使用<a href="https://www.learnrazorpages.com/razor-pages/tag-helpers">标签助手</a>从主页提供指向该页面的链接。 您将使用 ASP.NET Core 框架系统创建页面，该页面在 VS Code 中由终端中执行的命令调用。</p>
+                                                <p>如果该应用程序仍在上一部分中运行，则可以打开另一个终端 (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>'</kbd>)，也可以按 <kbd>Ctrl</kbd>+<kbd>C</kbd> 关闭 Web 服务器。 完成此操作后，执行以下命令：</p>
+                                                <pre class="prettyprint linenums"><code class="language-cmd">dotnet new page --name About --namespace Bakery.Pages --output Pages</code></pre>
+                                                <p>该命令生成带有 PageModel 文件的 Razor Page。 您需要指定名称空间，否则将使用 <code>MyApp.Namespace</code> 的默认值。 同样，如果不将 <em>Pages</em> 目录指定为<code>输出</code>位置，则页面将在执行命令的文件夹中生成。</p>
+                                                <p>确认页面创建成功后，打开<em>About.cshtml</em> 文件 (<a href="https://www.learnrazorpages.com/razor-pages#content-pages">内容页面</a>), 并将其内容修改为以下内容：</p>
+<pre class="prettyprint linenums"><code class="language-html">
+@page
+@model Bakery.Pages.AboutModel
+@{
+    ViewData["Title"] = "About Us";
+}
+&lt;section id="main"&gt;
+    &lt;h1&gt;A little bit about Fourth Coffee&lt;/h1&gt;
+    &lt;p&gt;
+        Fourth Coffee was founded in 2010 and delivers coffee and fresh baked goods right to your door. 
+        In another life, Bill Baker was a developer by day and pastry chef by night.  
+        But soon Bill's innate skills with all things involving butter, flour and sugar put him 
+        even more in demand than his programming talents and what started out as a way to satisfy 
+        his own sweet tooth became all-consuming.  Fourth Coffee is not only a candy-coated wonderland 
+        of coffee, pastries, cookies and cakes, it also honors his tech background by employing a state 
+        of the art online ordering system that makes it easy for anybody with internet access to 
+        order his all natural, locally-sourced confections and have them delivered to their 
+        door within 24 hours.
+    &lt;/p&gt;
+&lt;/section&gt;
+</code></pre>
+                                                <p>这是“网页”模板中的原始内容。 唯一的不同是文件顶部的 <code>@page</code> 指令，指示这是 Razor 页面，<code>@model</code> 声明，以及使用 <code>ViewData</code> 属性保存页面标题。 在网页中，这是由 <code>PageData</code> 属性处理的，该属性具有基于<code>dynamic</code>类型的版本。 Razor Pages背后的团队在很大程度上不再使用<code>dynamic</code>类型</p>
+                                                <h2 id="adding-navigation">添加导航</h2>
+                                                <p>主站点导航位于 <a href="https://www.learnrazorpages.com/razor-pages/files/layout">布局页面</a> 中，该页面充当引用该页面的所有页面的模板。 要对其进行更改，请打开 <em>Pages/Shared</em> 文件夹中的 _<em>Layout.cshtml</em> 文件。 找到如下所示的代码行：</p>
+<pre class="prettyprint linenums"><code class="language-html">
+&lt;li class="nav-item"&gt;
+    &lt;a class="nav-link text-dark" asp-area="" asp-page="/Index"&gt;Page1&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class="nav-item"&gt;
+    &lt;a class="nav-link text-dark" asp-area="" asp-page="/Index"&gt;Page2&lt;/a&gt;
+&lt;/li&gt;
+</code></pre>
+                                                 <p>它们从第30行开始。对其进行如下更改：</p>
+<pre class="prettyprint linenums"><code class="language-html">&lt;li class="nav-item"&gt;
+    &lt;a class="nav-link text-dark" asp-page="/Index"&gt;Home&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class="nav-item"&gt;
+    &lt;a class="nav-link text-dark" asp-page="/About"&gt;About&lt;/a&gt;
+&lt;/li&gt;
+</code></pre>
+                                                <p>运行应用程序 (<code>dotnet run</code>) 并导航到 <code>https://localhost:5001</code> 。 然后单击关于链接以确保导航正常。 您应该到达刚刚创建的页面：</p>
+                                                <p><img src="./assets/img/22-11-2018-08-22-16.png" class="img-fluid" alt="Bakery Template"></p>
+                                                <p>
+                                                    链接是由标签助手生成的。 这些是旨在针对 HTML 中特定标签的组件。<a href="https://www.learnrazorpages.com/razor-pages/tag-helpers/anchor-tag-helper">定位标签助手</a> 将 HTML 定位为 <code>a</code> 元素。
+                                                    您没有提供 <code>href</code> 属性指向内部页面，而是提供了 <code>asp-page</code> 属性，该属性采用页面相对于根 <em>Pages</em> 文件夹的路径。 框架为生成的超链接构造正确的 URL 。
+                                                    原始标签帮助器中的 <code>asp-area</code> 属性分配了一个空字符串。 在此示例中，您不使用<a href="https://www.learnrazorpages.com/advanced/areas">区域</a>，因此已删除该属性以减少混乱。
+                                                </p>
+                                                <h2 id="finishing-off">最后</h2>
+                                                <p>最后，在本部分中，您将对布局页面进行一些微调，以包括品牌形象并添加一些样式。 您可以从我在 GitHub 上托管的 <a href="https://github.com/mikebrind/Bakery">原始面包店模板</a> 中获取图像文件。</p>
+                                                <p>在 <em>wwwroot</em> 文件夹中创建一个名为 <em>images</em> 的文件夹。 在其中创建另一个名为 <em>products</em> 的文件夹，在其中创建另一个名为 <em>thumbnails</em> 的文件夹。 然后将图像复制到正确的文件夹。 最终的文件夹结构应如下所示：</p>
+                                                <p><img src="./assets/img/21-11-2018-08-47-26.png" class="img-fluid" alt="Bakery Template Images"></p>
+                                                <p>用 <code>navbar-brand</code> CSS 类更改锚标记，以包括图像，如突出显示的部分所示：</p>
+<pre class="prettyprint linenums"><code class="language-html" data-lines="5-7">
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"&gt;
+            &lt;div class="container"&gt;
+                &lt;a class="navbar-brand" asp-page="/Index"&gt;
+                    &lt;img class="img-fluid" src="/images/brand.png" alt="Fourth Coffee" /&gt;
+                &lt;/a&gt;
+                &lt;button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation"&gt;
+                    &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+                &lt;/button&gt;
+</code></pre>
+                                                <p>最后，在 <em>wwwroot/css</em> 中找到的 <em>site.css</em> 文件中添加以下样式：</p>
+<pre class="prettyprint linenums"><code class="language-css">
+.navbar-nav {
+  justify-content: flex-end;
+}
+</code></pre>
                                                 <div class="alert alert-dark">
-                                                    <p>自版本2.1起，页面顶部的 cookie 允许横幅成为 ASP.NET Core 模板的一部分。 旨在帮助网站所有者遵守欧盟于2018年5月引入的 GDPR 法规。它还有助于遵守 Google 的隐私建议。由您决定在模板的“隐私”页面中提供相关内容。 您可以通过单击“<strong>接受</strong>”来删除横幅，也可以通过删除或注释掉 <em>Pages/Shared</em> 文件夹中 _<em>Layout.cshtml</em> 文件中的 <code>&lt;partial name="_CookieConsentPartial" /&gt;</code> 来删除横幅。</p>
+                                                    <p>Bootstrap 4 使用 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout">CSS Flexible Box Layout</a>（也称为 <strong>FlexBox</strong> ）来控制布局，而不是使用先前版本的 Bootstrap 中的 CSS float。</p>
                                                 </div>
-                                                <p>导航到Page1和Page2当前无用。下一节将解决该问题。</p>
+                                                <p>现在，使用 <kbd>Ctrl</kbd>+<kbd>R</kbd> 清除样式表的所有缓存版本，以在浏览器中刷新页面。 它看起来应该像这样：</p>
+                                                <p><img src="./assets/img/22-11-2018-08-17-31.png" class="img-fluid" alt="Bakery Template"></p>
                                                 <h3 id="summary">小结</h3>
-                                                <p>至此，您已经使用 .NET Core SDK 和 Visual Studio Code 创建了一个新的 Razor Pages 应用程序。 您已经查看了项目文件夹的内容，并已在浏览器中启动了该应用程序。 在下一部分中，您将添加一个新页面并开始自定义网站内容。</p>
+                                                <p>在本节中，您已经了解了如何使用脚手架命令添加 Razor 页面。 您还使用了定位标记帮助器来调整网站的导航，并在样式表中添加了一些样式。 在下一节中，您将开始通过为应用程序创建<em>模型</em>并添加 Entity Framework Core 来处理数据。</p>
+                                                <h3 id="further-reading">进一步阅读</h3>
+                                                <ul>
+                                                    <li><a href="https://www.learnrazorpages.com/razor-pages/files/layout">Layout 页面</a></li>
+                                                    <li><a href="https://www.learnrazorpages.com/razor-pages/tag-helpers/anchor-tag-helper">定位标签助手</a></li>
+                                                </ul>
                                                 <div class="pull-right">
-                                                    <p>下一步: <a href="./new-page.html">添加新页面</a></p>
+                                                    <p>下一步: <a href="./create-model.html">建立模型</a></p>
+                                                </div>
+                                                <div class="pull-left">
+                                                    <p>上一步: <a href="./bakery.html">入门</a></p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-3 right-col">
                                         <div class="alert alert-light" role="alert">
-                                            <a href="https://www.learnrazorpages.com/razor-pages/tutorial/bakery">原文地址</a>
+                                            <a href="https://www.learnrazorpages.com/razor-pages/tutorial/bakery/new-page">原文地址</a>
                                         </div>
                                         <div id="doc-outline" class="doc-outline well">
                                             <h3 class="doc-outline">快速导航</h3>
                                             <nav class="doc-outline">
                                                 <ul>
-                                                    <li><a href="#razor-pages-bakery-tutorial" class="page-scroll">Razor Pages 实例 - 面包店</a></li>
-                                                    <li><a href="#get-the-bits" class="page-scroll">获取工具</a></li>
-                                                    <li><a href="#create-a-blank-web-application" class="page-scroll">创建一个空白的 Web 应用程序</a></li>
-                                                    <li><a href="#the-file-and-folders" class="page-scroll">文件和文件夹</a></li>
-                                                    <li><a href="#build-and-run-the-application" class="page-scroll">生成并运行应用程序</a></li>
+                                                    <li><a href="#adding-your-first-page" class="page-scroll">添加你的第一个页面</a></li>
+                                                    <li><a href="#adding-navigation" class="page-scroll">添加导航</a></li>
+                                                    <li><a href="#finishing-off" class="page-scroll">最后</a></li>
                                                     <li><a href="#summary" class="page-scroll">小结</a></li>
+                                                    <li><a href="#further-reading" class="page-scroll">进一步阅读</a></li>
                                                 </ul>
                                             </nav>
                                         </div>

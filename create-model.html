@@ -13,7 +13,6 @@
     </script>
 </head>
 <body id="top">
-    <!-- 标准菜单 -->
     <nav class="navbar navbar-vertical fixed-left navbar-expand-md " id="sidebar">
         <div class="container-fluid">
             <!-- Toggler -->
@@ -236,117 +235,186 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-9">
-                                        <div>
-                                            <h1 id="razor-pages-bakery-tutorial">Razor Pages 实例 - 面包店</h1>
-                                            <div>
-                                                <p>本实例会一步一步的演示如何从头开始创建 Razor Pages 应用程序，以及如何添加通用功能，包括与数据库通信，使用表单和发送电子邮件。</p>
-                                                <p>Fourth Coffee 网站以ASP.NET Web Pages 面包店模板网站开始。 模板站点提供了“最先进的”在线订购系统，使用户能够订购各种烘焙食品。 从技术角度来看，该网站展示了</p>
+                                        <div id="article">
+                                            <h1 id="working-with-a-model">使用模型</h1>
+                                            <div itemprop="articleBody">
+                                                <p>在 .NET 应用程序中调用数据时，您可以选择。 您可以在记录集或数据集结构中在应用程序中移动数据，也可以将应用程序所关注的事物（或<em>实体</em>）表示为<a href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/classes">类</a>，并可以将这些实例用作容器来存储数据库中各行数据。</p>
+                                                <p>
+                                                    建议使用第二种方法，因为它使您能够以强类型的方式处理数据-这具有提供编译时检查的双重好处，从而减少了运行时错误，并且（希望）质量更高。 推理和维护代码时，
+                                                    将一条数据表示为 <code>Person.FirstName</code> 而不是 <code>ds.Tables[0].Rows[0]["FirstName"]</code>，
+                                                    这要容易得多，这是您访问代码的方式 <a href="https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/ado-net-datasets">ADO.NET DataSet 对象</a>中的数据项。
+                                                </p>
+                                                <p>总的来说，应用程序实体的代码表示形式称为<em>模型</em>。 面包店应用程序当前与第四咖啡店出售的<em><strong>产品</strong></em>有关，因此该模型包括一类：<code>Product</code>。</p>
+                                                <h2 id="creating-the-model">创建模型</h2>
+                                                <p>将一个新文件夹添加到名为 <em>Models</em> 的应用程序的根目录中。 如果已安装“C＃扩展”扩展，请右键单击该文件夹，然后选择 <strong>新建 C＃类</strong>：</p>
+                                                <p><img src="./assets/img/22-11-2018-14-07-40.png" class="img-fluid" alt="Add C# Class"></p>
+                                                <p>出现提示时，在对话框中将该类命名为 <code>Product</code>，然后按 <strong>Enter</strong>。 生成的文件应具有以下内容：</p>
+<pre class="prettyprint linenums"><code class="language-csharp">
+namespace Bakery.Models
+{
+    public class Product
+    {
+        
+    }
+}
+</code></pre>
+                                                <p>将以下突出显示的行添加到 <code>Product</code> 类：</p>
+<pre class="prettyprint linenums"><code class="language-csharp" data-lines="5-9">
+namespace Bakery.Models
+{
+    public class Product
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public decimal Price { get; set; }
+        public string ImageName { get; set; }
+    }
+}
+</code></pre>
+                                                <p>
+                                                    <code>Product</code> 类的属性来自原始示例站点随附的数据库的 Products 表中的列名称。
+                                                    大多数现代 Web 应用程序都使用一种数据访问技术，该技术可以自动映射具有应用程序模型类及其属性的数据库中的表和列，从而实现数据库与模型之间的双向数据传输。
+                                                    这些组件称为对象关系映射器 - ORM。 功能齐全的 ORM 还会生成 SQL 命令并针对数据库执行它们，并提供其他服务，例如事务管理和迁移。
+                                                </p>
+                                                <p>与 ASP.NET Core 应用程序一起使用的推荐 ORM 是 <a href="https://www.learnentityframeworkcore.com/">Entity Framework Core</a>（EF Core）。 在下一步中，您将其添加到应用程序中。</p>
+                                                <h2 id="adding-entity-framework-core">添加 Entity Framework Core </h2>
+                                                <p>
+                                                    EF Core 包括许多<em>提供程序</em> - 与特定数据库一起使用的组件。 许多提供商由第三方维护。 EF Core 团队维护 SQL Server 和 SQLite（基于跨平台文件的数据库）的提供程序，本练习中将使用它们。
+                                                </p>
+                                                <p>
+                                                    默认情况下，EF Core 不包括在项目模板中。 它是一个 Nuget 软件包，可以通过 <code>dotnet add package</code> 命令安装。 要将其与 SQLite 提供程序一起安装到 Bakery 站点中，请从终端执行以下命令：
+                                                </p>
+                                                <pre class="prettyprint linenums"><code class="language-cmd">dotnet add package Microsoft.EntityFrameworkCore.Sqlite</code></pre>
+                                                <p>终端将在成功完成操作时通知您。</p>
+                                                <h2 id="adding-and-registering-a-context">添加注册上下文</h2>
+                                                <p>
+                                                    您将用于与数据库通信的主要 EF Core 组件是从 <code>DbContext</code> 派生的类，称为<a href="https://www.learnentityframeworkcore.com/dbcontext">上下文</a>。 上下文代表与数据库的会话，并提供具有以下功能的 API 与之通信：
+                                                </p>
                                                 <ul>
-                                                    <li>使用基于文件的数据库来存储产品信息</li>
-                                                    <li>基本数据访问</li>
-                                                    <li>创建和处理表单</li>
-                                                    <li>和通过 WebMail 助手功能发送电子邮件。</li>
+                                                    <li>数据库连接</li>
+                                                    <li>数据操作，例如查询和持久性</li>
+                                                    <li>变更追踪</li>
+                                                    <li>建立模型</li>
+                                                    <li>数据视图</li>
+                                                    <li>对象缓存</li>
+                                                    <li>事务管理</li>
                                                 </ul>
-                                                <p><img src="./assets/img/13-11-2018-14-40-18.png" class="img-fluid" alt="ASP.NET Web Pages Bakery Template"></p>
-                                                <p>在本系列中，从网页移植到 Razor Pages 。分为7个步骤，每个步骤都代表了 Razor Pages 开发的一个方面。此后，将使用其他功能增强站点，将其作为一个平台来说明 Razor Pages 应用程序中的许多其他 ASP.NET Core 功能。</p>
-                                                <p>步骤如下：</p>
-                                                <ul>
-                                                    <li>创建应用程序</li>
-                                                    <li><a href="https://www.learnrazorpages.com/razor-pages/tutorial/bakery/new-page">添加新页面</a></li>
-                                                    <li><a href="https://www.learnrazorpages.com/razor-pages/tutorial/bakery/create-model">创建模型</a></li>
-                                                    <li><a href="https://www.learnrazorpages.com/razor-pages/tutorial/bakery/migration">添加迁移</a></li>
-                                                    <li><a href="https://www.learnrazorpages.com/razor-pages/tutorial/bakery/working-with-data">处理数据</a></li>
-                                                    <li><a href="https://www.learnrazorpages.com/razor-pages/tutorial/bakery/forms">使用表单</a></li>
-                                                    <li><a href="https://www.learnrazorpages.com/razor-pages/tutorial/bakery/email">添加电子邮件</a></li>
+                                                <p>
+                                                    要添加一个，在项目的根目录中创建一个名为 <em>Data</em> 的文件夹。 然后向其添加一个名为 <em>BakeryContext.cs</em> 的C＃类文件。 修改内容如下：
+                                                </p>
+<pre class="prettyprint linenums"><code class="language-csharp">
+using Bakery.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace Bakery.Data
+{
+    public class BakeryContext : DbContext
+    {
+        public DbSet&lt;Product&gt; Products { get; set; }
+        
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlite(@"Data source=Bakery.db");
+        }
+    }
+}
+</code></pre>
+                                                <p>
+                                                    这是用于处理数据的上下文。 上下文具有一个属性 - 名为 <em>Products</em> 的 <a href="https://www.learnentityframeworkcore.com/dbset">DbSet</a>。<code>DbSet</code> 类映射到数据库中的表。
+                                                </p>
+                                                <p>
+                                                    <code>OnConfiguring</code> 方法为您提供了一个配置上下文的地方。 在这种情况下，您已将上下文配置为使用 SQLite 提供程序，并指定了要使用的连接字符串。
+                                                </p>
+                                                <p>使用上下文时，您可以在需要时实例化实例，例如</p>
+<pre class="prettyprint linenums"><code class="language-csharp">
+using(var context = new BakeryContext())
+{
+    // do something with data
+}
+</code></pre>
+                                                <p>
+                                                    但是，在 ASP.NET Core 应用程序中使用上下文的推荐方法是在依赖项注入系统中注册它，并将其作为“服务”提供。 服务注册在 Startup 类的 <code>ConfigureServices</code> 方法中进行。
+                                                </p>
+                                                <p>
+                                                    要完成此步骤，请打开 <em>Startup.cs</em> 文件并添加 <code>using</code> 指令以将 <code>Bakery.Data</code> 命名空间纳入范围：
+                                                </p>
+<pre class="prettyprint linenums"><code class="language-csharp" data-lines="4">
+...
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Bakery.Data;  
+
+namespace Bakery
+{
+    public class Startup
+    {
+        ...
+</code></pre>
+                                                <p>
+                                                    然后将突出显示的代码行添加到下面的 <code>ConfigureServices</code> 方法中：
+                                                </p>
+                                                <ul class="nav nav-tabs" role="tablist">
+                                                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#three" aria-controls="three" role="tab" data-toggle="tab">3.x</a></li>
+                                                    <li class="nav-item" role="presentation"><a class="nav-link" href="#two" aria-controls="two" role="tab" data-toggle="tab">2.x</a></li>
                                                 </ul>
-                                                <p>该网站将用 <a href="https://code.visualstudio.com/">Visual Studio Code</a> 构建 - Visual Studio Code 是 Microsoft 在开发人员社区的帮助下开发的开源代码编辑器。 数据将存储在 SQLite 数据库中。 选择这两个工具都具有跨平台且相对易于使用的优点，这有助于使该系列实例在任何平台上对所有有能力的开发人员都可使用。</p>
-                                                <p>该站点使用 ASP.NET Core 2.2 和 <a href="https://www.learnentityframeworkcore.com/">Entity Framework Core</a> 构建。</p>
-                                                <h2 id="get-the-bits">获取开发工具</h2>
-                                                <p>开始，您需要获取这些开发工具。 首先，您可以在此处获得 <a href="https://www.microsoft.com/net/download">.NET Core</a> 。 您可以下载构建 .NET Core 应用程序所需的SDK（软件开发工具包）。 其次 - <em>runtime</em> - 是要在要运行 ASP.NET Core 应用程序的服务器上安装的选项。 SDK 包含运行时。</p>
-                                                <p>接下来，您需要下载并安装 <a href="https://code.visualstudio.com/">Visual Studio Code</a> 。然后安装 <strong>C#</strong>  扩展，这是 C# 开发所需要的。 您可以通过单击左侧图像上的<em>扩展</em>图标<img src="./assets/img/19-11-2018-07-56-53.png" class="img-fluid" alt="Image">并在窗格顶部显示的搜索框中键入“C#”来找到它。 您还应该安装<strong> C# 扩展</strong>，该扩展提供了用于添加 C# 类和接口文件的模板。</p>
-                                                <p>最后，我使用 <strong>Material Icon Theme</strong> 扩展，该扩展在“资源管理器”窗格中提供了文件和文件夹的图标。</p>
-                                                <h2 id="create-a-blank-web-application">创建一个空白的 Web 应用程序</h2>
-                                                <p>您需要创建一个文件夹来容纳您的应用程序文件。 您可以按照自己喜欢的任何方式进行操作。 您可以手动创建文件夹，然后在VS Code中打开它，也可以打开VS Code并使用其 <a href="https://code.visualstudio.com/docs/editor/integrated-terminal">集成的终端</a>通过标准 mkdir 命令创建目录。 通过按 <kbd>Ctrl</kbd>+<kbd>'</kbd> （在Mac上为 <kbd>⌘</kbd>+<kbd>'</kbd>）访问 VS Code 中的终端。 无论如何，该文件夹应命名为 Bakery。</p>
-                                                <p>创建文件夹后，在 VS Code 中将其打开。 然后，确保终端的活动位置在 <em>Bakery</em> 文件夹中，使用以下命令创建一个新的 Razor Pages 应用程序：</p><pre class="prettyprint linenums"><code class="language-cmd">dotnet new webapp </code></pre>
-                                                <p>请注意，命令 <code>dotnet new razor</code> 也将导致创建Razor Pages项目。</p>
-                                                <div class="alert alert-warning">
-                                                    <p>该项目的名称来自创建该文件夹的文件夹。理想情况下，您希望它是带有大写字母“ <strong>B</strong>”的“Bakery”。 这样，如果您要将该系列中的代码复制并粘贴到您创建的项目中，则可以通过混合项目名称空间的大小写来最大程度地减少错误蔓延的可能性。 如果您在创建了 <em>Bakery</em> 文件夹后使用终端导航到 Bakery 文件夹并使用所有小写字母（例如<code>cd c:\bakery</code>），则生成的项目及其默认名称空间将使用小写的“ <strong>b</strong>”。</p>
+                                                <div class="tab-content">
+                                                    <div role="tabpanel" class="tab-pane show active" id="three">
+<pre class="prettyprint linenums"><code class="language-csharp" data-lines="4">
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddRazorPages();
+    services.AddDbContext&lt;BakeryContext&gt;();
+}
+</code></pre>
+                                                    </div>
+                                                    <div role="tabpanel" class="tab-pane" id="two">
+<pre class="prettyprint linenums"><code class="language-csharp" data-lines="10">
+public void ConfigureServices(IServiceCollection services)
+{
+    services.Configure&lt;CookiePolicyOptions&gt;(options =&gt;
+    {
+        // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+        options.CheckConsentNeeded = context =&gt; true;
+        options.MinimumSameSitePolicy = SameSiteMode.None;
+    });
+
+    services.AddDbContext&lt;BakeryContext&gt;();
+    services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+}
+</code></pre>
+                                                    </div>
                                                 </div>
-                                                <p>创建应用程序后，将自动执行 <code>dotnet restore</code> 命令。 这将导致恢复项目所需的依赖关系和工具。 如果这是您的第一个 .NET Core 应用程序，则此命令可能需要一些时间才能完成。 完成后，您可以从 VS Code 中打开 <em>Bakery</em> 文件夹，以查看创建的文件和文件夹。</p>
-                                                <p>此时，可能会提示您添加构建和调试项目所需的缺少项目：</p>
-                                                <p><img src="./assets/img/19-11-2018-09-34-19.png" class="img-fluid" alt="Add missing assets"></p>
-                                                <p>点击 <strong>是</strong>。</p>
-                                                <h2 id="the-file-and-folders">文件和文件夹</h2>
-                                                <p>在继续之前，我们将检查模板生成的文件和文件夹：</p>
-                                                <p><img src="./assets/img/19-11-2018-09-47-46.png" class="img-fluid" alt="Razor Pages Files and Folders"></p>
-                                                <ul>
-                                                    <li>
-                                                        <p>在上一步中单击“<strong>是</strong>”时，将生成 <em>.vscode</em> 文件夹。 它包含提供调试配置的文件。</p>
-                                                    </li>
-                                                    <li>
-                                                        <p>
-                                                            <em>bin</em> 文件夹包含 Build 操作的输出 - 应用程序的已编译二进制文件。目前没有文件 - 只是一个名为 <em>Debug</em> 的文件夹，其中包含另一个名为 <em>netcoreapp2.2</em> 的文件夹。该应用程序尚未编译（构建）。那将很快发生。
-                                                        </p>
-                                                    </li>
-                                                    <li>
-                                                        <p>
-                                                            <em>obj</em> 文件夹包含各种文件。 除了可能完全删除其内容之外，几乎不需要访问该文件夹。 框架将其用作存储临时文件和构建过程中使用的其他对象的地方。
-                                                        </p>
-                                                    </li>
-                                                    <li>
-                                                        <p>
-                                                            <em>Properties</em> 文件夹包含一个名为 <em>lanchSettings.json</em> 的文件。 这是用于在浏览器中启动应用程序的配置文件。
-                                                        </p>
-                                                    </li>
-                                                    <li>
-                                                        <p>应用程序的根目录由5个文件组成。 有两个名为 <em>appsettings</em> 的 JSON 文件。 这些包含应用程序配置信息。 它们等效于 ASP.NET 早期版本的 <em>web.Config</em> 文件中的 <code>appSettings</code> 部分。 名称为 <em>Development</em> 的版本仅在应用程序在开发模式下运行时使用。</p>
-                                                    </li>
-                                                    <li>
-                                                        <p><em>.csproj</em> 文件是基于 <a href="https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild?view=vs-2017">MS Build XML 的标准项目文件</a>。 它包含项目设置和对项目使用的文件的引用。 MS Build使用此文件来配置应用程序的实际生成过程。</p>
-                                                    </li>
-                                                    <li>
-                                                        <p>所有 ASP.NET Core 应用程序实际上都是控制台应用程序。 任何控制台应用程序的默认入口点是 <em>Program.cs</em> 文件中找到的 <code>Program</code> 类中的 <code>Main</code> 方法。 在这种情况下，<code>Main</code> 方法负责为应用程序配置 Web 主机并启动它，以使其准备好处理请求。</p>
-                                                    </li>
-                                                    <li>
-                                                        <p><em>Startup.cs</em> 文件包含一个名为 <code>Startup</code> 的类。 此类具有两个主要方法 - <code>ConfigureServices</code> 和 <code>Configure</code>。 这些用于配置应用程序的<em>请求处理管道</em>（应用程序所需的可选组件）及其依赖的服务。</p>
-                                                    </li>
-                                                    <li>
-                                                        <p><em>wwwroot</em> 文件夹包含静态文件-图像，JavaScript 文件，CSS 文件等。</p>
-                                                    </li>
-                                                    <li>
-                                                        <p>最后，是 <em>Pages</em> 文件夹。 这是 Razor Pages 的默认位置。 模板站点包括三个：<em>Error</em>, <em>Index</em> 和 <em>Privacy</em>。 您将很快添加到此。</p>
-                                                    </li>
-                                                </ul>
-                                                <h2 id="build-and-run-the-application">生成并运行应用程序</h2>
-                                                <p>在命令提示符下，键入以下内容：</p><pre class="prettyprint linenums"><code class="language-cmd">dotnet run</code></pre>
-                                                <p>您将得到以下信息确认：</p><pre class="prettyprint linenums"><code>Now listening on: https://localhost:5001 Now listening on: http://localhost:5000 Application started. Press Ctrl+C to shut down.</code></pre>
-                                                <p>打开浏览器并导航到该网站 <code>https://localhost:5001</code>。 如下所示：</p>
-                                                <p><img src="./assets/img/22-11-2018-08-20-46.png" class="img-fluid" alt="Bakery Site"></p>
-                                                <div class="alert alert-dark">
-                                                    <p>自版本2.1起，页面顶部的 cookie 允许横幅成为 ASP.NET Core 模板的一部分。 旨在帮助网站所有者遵守欧盟于2018年5月引入的 GDPR 法规。它还有助于遵守 Google 的隐私建议。由您决定在模板的“隐私”页面中提供相关内容。 您可以通过单击“<strong>接受</strong>”来删除横幅，也可以通过删除或注释掉 <em>Pages/Shared</em> 文件夹中 _<em>Layout.cshtml</em> 文件中的 <code>&lt;partial name="_CookieConsentPartial" /&gt;</code> 来删除横幅。</p>
-                                                </div>
-                                                <p>导航到Page1和Page2当前无用。下一节将解决该问题。</p>
+                                                <p>
+                                                    现在，可以通过类构造函数注入上下文，从而在 PageModel 类中使上下文可用。 无需管理上下文的生存期。 
+                                                    <code>AddDbContect</code> 方法以Scoped生存期注册上下文，这意味着将为整个请求提供一个新的生存期。 服务容器将负责确保正确处理。
+                                                </p>
                                                 <h3 id="summary">小结</h3>
-                                                <p>至此，您已经使用 .NET Core SDK 和 Visual Studio Code 创建了一个新的 Razor Pages 应用程序。 您已经查看了项目文件夹的内容，并已在浏览器中启动了该应用程序。 在下一部分中，您将添加一个新页面并开始自定义网站内容。</p>
+                                                <p>
+                                                    现在，您有了一个模型（很小，但仍然是一个模型）和一个 EF Core 上下文。 您现在只需要一个数据库。 在下一节中，您将看到如何使用 EF Core 迁移来创建一个。
+                                                </p>
                                                 <div class="pull-right">
-                                                    <p>下一步: <a href="./new-page.html">添加新页面</a></p>
+                                                    <p>下一步: <a href="https://www.learnrazorpages.com/razor-pages/tutorial/bakery/migration">创建迁移</a></p>
                                                 </div>
+                                                <div class="pull-left">
+                                                    <p>上一步: <a href="./new-page.html">添加你的第一个页面</a></p>
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-3 right-col">
                                         <div class="alert alert-light" role="alert">
-                                            <a href="https://www.learnrazorpages.com/razor-pages/tutorial/bakery">原文地址</a>
+                                            <a href="https://www.learnrazorpages.com/razor-pages/tutorial/bakery/create-model">原文地址</a>
                                         </div>
                                         <div id="doc-outline" class="doc-outline well">
                                             <h3 class="doc-outline">快速导航</h3>
                                             <nav class="doc-outline">
                                                 <ul>
-                                                    <li><a href="#razor-pages-bakery-tutorial" class="page-scroll">Razor Pages 实例 - 面包店</a></li>
-                                                    <li><a href="#get-the-bits" class="page-scroll">获取工具</a></li>
-                                                    <li><a href="#create-a-blank-web-application" class="page-scroll">创建一个空白的 Web 应用程序</a></li>
-                                                    <li><a href="#the-file-and-folders" class="page-scroll">文件和文件夹</a></li>
-                                                    <li><a href="#build-and-run-the-application" class="page-scroll">生成并运行应用程序</a></li>
+                                                    <li><a href="#working-with-a-model" class="page-scroll">使用模型</a></li>
+                                                    <li><a href="#creating-the-model" class="page-scroll">创建模型</a></li>
+                                                    <li><a href="#adding-entity-framework-core" class="page-scroll">添加 Entity Framework Core </a></li>
+                                                    <li><a href="#adding-and-registering-a-context" class="page-scroll">添加注册上下文</a></li>
                                                     <li><a href="#summary" class="page-scroll">小结</a></li>
                                                 </ul>
                                             </nav>
