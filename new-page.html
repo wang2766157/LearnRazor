@@ -55,32 +55,32 @@
                         <a class="nav-link" href="#sidebarRazorpages" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarRazorpages">Razor 页面文件</a>
                         <div class="collapse" id="sidebarRazorpages">
                             <ul class="nav nav-sm flex-column">
-                                <li class="nav-item"><a class="nav-link" href="#">Razor 页面文件</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">Razor 文件</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">分部视图</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">布局</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">ViewImports</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">ViewStart</a></li>
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages.html">Razor 页面文件</a></li>
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages-files.html">Razor 文件</a></li>
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages-partial-pages.html">部分页</a></li>
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages-files-layout.html">布局</a></li>
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages-files-viewimports.html">ViewImports</a></li>
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages-files-viewstart.html">ViewStart</a></li>
                             </ul>
                         </div>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="#">Razor 语法</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./razor-syntax.html">Razor 语法</a></li>
                     <li class="nav-item">
                         <a class="nav-link" href="#sidebarPagemodel" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarPagemodel">Page Models</a>
                         <div class="collapse" id="sidebarPagemodel">
                             <ul class="nav nav-sm flex-column">
-                                <li class="nav-item"><a class="nav-link" href="#">Page Models</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">Handler Methods</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">ViewData</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">Action Results</a></li>
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages-pagemodel.html">Page Models</a></li>
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages-handler-methods.html">Handler 方法</a></li>
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages-viewdata.html">ViewData</a></li>
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages-action-results.html">结果返回</a></li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#sidebarTaghelpers" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarTaghelpers">标记帮助程序</a>
+                        <a class="nav-link" href="#sidebarTaghelpers" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarTaghelpers">标签助手</a>
                         <div class="collapse" id="sidebarTaghelpers">
                             <ul class="nav nav-sm flex-column">
-                                <li><a class="nav-link" href="#">Anchor Tag Helper</a></li>
+                                <li><a class="nav-link" href="./razor-pages-tag-helpers.html">标签助手</a></li><li><a class="nav-link" href="#">Anchor Tag Helper</a></li>
                                 <li><a class="nav-link" href="#">Cache Tag Helper</a></li>
                                 <li><a class="nav-link" href="#">Distributed Cache Tag Helper</a></li>
                                 <li><a class="nav-link" href="#">Environment Tag Helper</a></li>
@@ -244,8 +244,7 @@
                                                 <pre class="prettyprint linenums"><code class="language-cmd">dotnet new page --name About --namespace Bakery.Pages --output Pages</code></pre>
                                                 <p>该命令生成带有 PageModel 文件的 Razor Page。 您需要指定名称空间，否则将使用 <code>MyApp.Namespace</code> 的默认值。 同样，如果不将 <em>Pages</em> 目录指定为<code>输出</code>位置，则页面将在执行命令的文件夹中生成。</p>
                                                 <p>确认页面创建成功后，打开<em>About.cshtml</em> 文件 (<a href="https://www.learnrazorpages.com/razor-pages#content-pages">内容页面</a>), 并将其内容修改为以下内容：</p>
-<pre class="prettyprint linenums"><code class="language-html">
-@page
+<pre class="prettyprint linenums"><code class="language-html">@page
 @model Bakery.Pages.AboutModel
 @{
     ViewData["Title"] = "About Us";
@@ -268,15 +267,14 @@
                                                 <p>这是“网页”模板中的原始内容。 唯一的不同是文件顶部的 <code>@page</code> 指令，指示这是 Razor 页面，<code>@model</code> 声明，以及使用 <code>ViewData</code> 属性保存页面标题。 在网页中，这是由 <code>PageData</code> 属性处理的，该属性具有基于<code>dynamic</code>类型的版本。 Razor Pages背后的团队在很大程度上不再使用<code>dynamic</code>类型</p>
                                                 <h2 id="adding-navigation">添加导航</h2>
                                                 <p>主站点导航位于 <a href="https://www.learnrazorpages.com/razor-pages/files/layout">布局页面</a> 中，该页面充当引用该页面的所有页面的模板。 要对其进行更改，请打开 <em>Pages/Shared</em> 文件夹中的 _<em>Layout.cshtml</em> 文件。 找到如下所示的代码行：</p>
-<pre class="prettyprint linenums"><code class="language-html">
-&lt;li class="nav-item"&gt;
+<pre class="prettyprint linenums"><code class="language-html">&lt;li class="nav-item"&gt;
     &lt;a class="nav-link text-dark" asp-area="" asp-page="/Index"&gt;Page1&lt;/a&gt;
 &lt;/li&gt;
 &lt;li class="nav-item"&gt;
     &lt;a class="nav-link text-dark" asp-area="" asp-page="/Index"&gt;Page2&lt;/a&gt;
 &lt;/li&gt;
 </code></pre>
-                                                 <p>它们从第30行开始。对其进行如下更改：</p>
+                                                <p>它们从第30行开始。对其进行如下更改：</p>
 <pre class="prettyprint linenums"><code class="language-html">&lt;li class="nav-item"&gt;
     &lt;a class="nav-link text-dark" asp-page="/Index"&gt;Home&lt;/a&gt;
 &lt;/li&gt;
@@ -296,8 +294,7 @@
                                                 <p>在 <em>wwwroot</em> 文件夹中创建一个名为 <em>images</em> 的文件夹。 在其中创建另一个名为 <em>products</em> 的文件夹，在其中创建另一个名为 <em>thumbnails</em> 的文件夹。 然后将图像复制到正确的文件夹。 最终的文件夹结构应如下所示：</p>
                                                 <p><img src="./assets/img/21-11-2018-08-47-26.png" class="img-fluid" alt="Bakery Template Images"></p>
                                                 <p>用 <code>navbar-brand</code> CSS 类更改锚标记，以包括图像，如突出显示的部分所示：</p>
-<pre class="prettyprint linenums"><code class="language-html" data-lines="5-7">
-&lt;body&gt;
+<pre class="prettyprint linenums"><code class="language-html" data-lines="5-7">&lt;body&gt;
     &lt;header&gt;
         &lt;nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"&gt;
             &lt;div class="container"&gt;
@@ -310,8 +307,7 @@
                 &lt;/button&gt;
 </code></pre>
                                                 <p>最后，在 <em>wwwroot/css</em> 中找到的 <em>site.css</em> 文件中添加以下样式：</p>
-<pre class="prettyprint linenums"><code class="language-css">
-.navbar-nav {
+<pre class="prettyprint linenums"><code class="language-css">.navbar-nav {
   justify-content: flex-end;
 }
 </code></pre>
@@ -362,6 +358,11 @@
                 <!-- /List -->
             </div>
         </div>
+        <!-- /footer -->
+        <footer style="text-align:center;">
+            <p>© 2018 - 2021 - Mike Brind. All rights reserved. Contact me at Outlook.com</p>
+            <p>更新于: 2019-04-09 07:27:35</p>
+        </footer>
     </div>
 
     <a class="btn-scroll-top" href="#top" data-scroll="">

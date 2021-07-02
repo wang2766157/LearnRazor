@@ -1,0 +1,471 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ASP.NET Core Razor简介 | 了解 Razor Pages</title>
+    <link href="./assets/libs/bootstrap-4.4.1-dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="./assets/theme.css" rel="stylesheet" />
+    <script>
+        window.onload = function () {
+            $("body").addClass("bg-light");
+        }
+    </script>
+</head>
+<body id="top">
+    <nav class="navbar navbar-vertical fixed-left navbar-expand-md " id="sidebar">
+        <div class="container-fluid">
+            <!-- Toggler -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Brand -->
+            <div data-toggle="tooltip" data-placement="right" data-template='<div class="tooltip d-none d-md-block" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>' title="了解 Razor Pages">
+                <a class="navbar-brand" href="./index.html"><span class="text-center d-md-block">了解 Razor Pages</span></a>
+            </div>
+            <!-- Collapse -->
+            <div class="collapse navbar-collapse" id="sidebarCollapse">
+                <!-- Divider -->
+                <hr class="navbar-divider d-none d-md-block mt-0 my-3">
+                <!-- Navigation -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarIndex" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarIndex">主页</a>
+                        <div class="collapse" id="sidebarIndex">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="./fristlook.html">初试</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="./Aspnetcore.html">ASP.NET Core</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarTutorials" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarTutorials">讲解</a>
+                        <div class="collapse" id="sidebarTutorials">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="./bakery.html">面包店</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarRazorpages" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarRazorpages">Razor 页面文件</a>
+                        <div class="collapse" id="sidebarRazorpages">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages.html">Razor 页面文件</a></li>
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages-files.html">Razor 文件</a></li>
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages-partial-pages.html">部分页</a></li>
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages-files-layout.html">布局</a></li>
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages-files-viewimports.html">ViewImports</a></li>
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages-files-viewstart.html">ViewStart</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="./razor-syntax.html">Razor 语法</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarPagemodel" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarPagemodel">Page Models</a>
+                        <div class="collapse" id="sidebarPagemodel">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages-pagemodel.html">Page Models</a></li>
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages-handler-methods.html">Handler 方法</a></li>
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages-viewdata.html">ViewData</a></li>
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages-action-results.html">结果返回</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarTaghelpers" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarTaghelpers">标签助手</a>
+                        <div class="collapse" id="sidebarTaghelpers">
+                            <ul class="nav nav-sm flex-column">
+                                <li><a class="nav-link" href="./razor-pages-tag-helpers.html">标签助手</a></li><li><a class="nav-link" href="#">Anchor Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Cache Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Distributed Cache Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Environment Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Form Action Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Form Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Image Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Input Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Label Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Link Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Option Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Partial Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Script Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Select Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">TextArea Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Validation Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Validation Summary Tag Helper</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">View Components</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarRouting" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarRouting">Routing and URLs</a>
+                        <div class="collapse" id="sidebarRouting">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item"><a class="nav-link" href="#">Routing and URLs</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">Customising Route Conventions</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">Startup</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarConfiguration" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarConfiguration">Configuration</a>
+                        <div class="collapse" id="sidebarConfiguration">
+                            <ul class="nav nav-sm flex-column">
+                                <li><a class="nav-link" href="#">Configuration</a></li>
+                                <li><a class="nav-link" href="#">Global Error Handling And Logging</a></li>
+                                <li><a class="nav-link" href="#">Custom Error Pages</a></li>
+                                <li><a class="nav-link" href="#">Configuring HTTPS</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">Middleware</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Dependency Injection</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarForms" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarForms">Working With Forms</a>
+                        <div class="collapse" id="sidebarForms">
+                            <ul class="nav nav-sm flex-column">
+                                <li><a class="nav-link" href="#">Working With Forms</a></li>
+                                <li><a class="nav-link" href="#">Uploading Files in Razor Pages</a></li>
+                                <li><a class="nav-link" href="#">Working With Checkboxes</a></li>
+                                <li><a class="nav-link" href="#">Select Lists in a Razor Pages Form</a></li>
+                                <li><a class="nav-link" href="#">Working With Radio Buttons</a></li>
+                                <li><a class="nav-link" href="#">Request Verification</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarValidation" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarValidation">Validation</a>
+                        <div class="collapse" id="sidebarValidation">
+                            <ul class="nav nav-sm flex-column">
+                                <li><a class="nav-link" href="#">Validation</a></li>
+                                <li><a class="nav-link" href="#">Remote Validation</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">Model Binding</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">State Management</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Caching</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarIdentity" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarIdentity">Managing Security With ASP.NET Identity</a>
+                        <div class="collapse" id="sidebarIdentity">
+                            <ul class="nav nav-sm flex-column">
+                                <li><a class="nav-link" href="#">Identity</a></li>
+                                <li><a class="nav-link" href="#">Customising Identity</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarAjax" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarAjax">使用 AJAX</a>
+                        <div class="collapse" id="sidebarAjax">
+                            <ul class="nav nav-sm flex-column">
+                                <li><a class="nav-link" href="#">AJAX</a></li>
+                                <li><a class="nav-link" href="#">Posting Forms</a></li>
+                                <li><a class="nav-link" href="#">Partial Page Updates</a></li>
+                                <li><a class="nav-link" href="#">Cascading Dropdowns</a></li>
+                                <li><a class="nav-link" href="#">Uploading Files</a></li>
+                                <li><a class="nav-link" href="#">Unobtrusive AJAX</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">Working with JSON</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Scaffolding</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Publishing To IIS</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarAdvanced" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarAdvanced">Advanced</a>
+                        <div class="collapse" id="sidebarAdvanced">
+                            <ul class="nav nav-sm flex-column">
+                                <li><a class="nav-link" href="#">Advanced</a></li>
+                                <li><a class="nav-link" href="#">Areas</a></li>
+                                <li><a class="nav-link" href="#">Custom Tag Helpers</a></li>
+                                <li><a class="nav-link" href="#">Customising Route Conventions</a></li>
+                                <li><a class="nav-link" href="#">Custom Route Constraints</a></li>
+                                <li><a class="nav-link" href="#">Parameter Transformers For Routes</a></li>
+                                <li><a class="nav-link" href="#">Dependency Injection</a></li>
+                                <li><a class="nav-link" href="#">Filters</a></li>
+                                <li><a class="nav-link" href="#">Razor Class Libraries</a></li>
+                                <li><a class="nav-link" href="#">Rendering A Partial View To A String</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">Table Of Contents</a></li>
+                </ul>
+                <!-- Push content down -->
+                <div class="mt-auto"></div>
+            </div>
+            <!-- /Navbar-collapse -->
+        </div>
+    </nav>
+    <nav class="navbar navbar-vertical navbar-vertical-sm fixed-left navbar-expand-md " id="sidebarSmall"></nav>
+
+    <div class="main-content">
+        <nav class="navbar navbar-expand-md navbar-light d-none d-md-flex" id="topbar">
+            <div class="container-fluid">
+                <!-- Title -->
+                <div class="input-group input-group-flush input-group-merge">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"></div><a id="tn">ASP.NET Core Razor技术指南</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="header bg-light pb-5">
+            <div class="container-fluid">
+                <!-- List -->
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-12 col-xl-12">
+                        <!-- Header -->
+                        <div class="header header-sm mt-md-0">
+                            <div class="header-body header-body-sm">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <!-- Pretitle -->
+                                        <h6 class="header-pretitle"></h6>
+                                        <!-- Title -->
+                                        <h4 class="header-title"><strong>Page Models</strong></h4>
+                                    </div>
+                                </div>
+                                <!-- /Row -->
+                            </div>
+                        </div>
+                        <!-- /Header -->
+                        <!-- ListContent -->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <div id="article">
+                                            <h1 itemprop="headline" id="action-results-in-razor-pages">Razor 页面中的返回结果 </h1>
+                                            <div itemprop="articleBody">
+                                                <p>
+                                                    Razor 页面中的操作结果通常用作<a href="./razor-pages-handler-methods.html">Handler 方法</a> 的返回类型，并负责生成响应和适当的状态代码。
+                                                    操作结果实现抽象的 <code style="background: rgb(249, 249, 249);">Microsoft.AspNetCore.Mvc.ActionResult</code> 类，
+                                                    或 <code style="background: rgb(249, 249, 249);">Microsoft.AspNetCore.Mvc.IActionResult</code> 接口。
+                                                    ASP.NET Core 包含三个以上的 <code style="background: rgb(249, 249, 249);">ActionResult</code> 类，涵盖了广泛的需求，
+                                                    包括但不限于执行并返回Razor页面的内容，返回文件的内容，
+                                                    重定向到另一个资源或简单地返回特定的 HTTP 状态代码。 如果您需要定制的东西，也可以创建自己的 <code style="background: rgb(249, 249, 249);">ActionResult</code> 类。
+                                                </p>
+                                                <p>下面的代码说明了 <code style="background: rgb(249, 249, 249);">RedirectToPageResult</code> 类在一个简单的 <code style="background: rgb(249, 249, 249);">OnGet</code> 处理程序方法中的使用，这导致用户被重定向到指定的页面：</p>
+<pre class="prettyprint linenums prettyprinted" style="background: rgb(249, 249, 249); padding: 10px; border: 1px solid rgb(221, 221, 221);"><ol class="linenums"><li class="L0"><code class="language-csharp" style="background: rgb(249, 249, 249);"><span class="kwd" style="color: rgb(0, 0, 255);">public</span><span class="pln"> </span><span class="typ" style="color: rgb(85, 85, 85);">IActionResult</span><span class="pln"> </span><span class="typ" style="color: rgb(85, 85, 85);">OnGet</span><span class="pun">()</span></code></li><li class="L1" style="background: rgb(249, 249, 249);"><code class="language-csharp" style="background: rgb(249, 249, 249);"><span class="pun">{</span></code></li><li class="L2"><code class="language-csharp" style="background: rgb(249, 249, 249);"><span class="pln">    </span><span class="kwd" style="color: rgb(0, 0, 255);">return</span><span class="pln"> </span><span class="kwd" style="color: rgb(0, 0, 255);">new</span><span class="pln"> </span><span class="typ" style="color: rgb(85, 85, 85);">RedirectToPageResult</span><span class="pun">(</span><span class="str" style="color: brown;">"Index"</span><span class="pun">);</span></code></li><li class="L3" style="background: rgb(249, 249, 249);"><code class="language-csharp" style="background: rgb(249, 249, 249);"><span class="pun">}</span></code></li></ol></pre>
+                                                <p>
+                                                    <code style="background: rgb(249, 249, 249);">OnGet</code> handler 方法的返回类型为 <code style="background: rgb(249, 249, 249);">IActionResult </code>，
+                                                    这意味着返回类型可以是在其继承层次结构中某处实现 <code style="background: rgb(249, 249, 249);">IActionResult</code> 接口的任何类。
+                                                    最终，这表示着代表整个框架中的任何返回结果。 通常，handler 方法返回类型尽可能具体是一个好方式，因此应按如下方式重构此示例：
+                                                </p>
+<pre class="prettyprint linenums prettyprinted" style="background: rgb(249, 249, 249); padding: 10px; border: 1px solid rgb(221, 221, 221);"><ol class="linenums"><li class="L0"><code class="language-csharp" style="background: rgb(249, 249, 249);"><span class="kwd" style="color: rgb(0, 0, 255);">public</span><span class="pln"> </span><span class="typ" style="color: rgb(85, 85, 85);">RedirectToPageResult</span><span class="pln"> </span><span class="typ" style="color: rgb(85, 85, 85);">OnGet</span><span class="pun">()</span></code></li><li class="L1" style="background: rgb(249, 249, 249);"><code class="language-csharp" style="background: rgb(249, 249, 249);"><span class="pun">{</span></code></li><li class="L2"><code class="language-csharp" style="background: rgb(249, 249, 249);"><span class="pln">    </span><span class="kwd" style="color: rgb(0, 0, 255);">return</span><span class="pln"> </span><span class="kwd" style="color: rgb(0, 0, 255);">new</span><span class="pln"> </span><span class="typ" style="color: rgb(85, 85, 85);">RedirectToPageResult</span><span class="pun">(</span><span class="str" style="color: brown;">"Index"</span><span class="pun">);</span></code></li><li class="L3" style="background: rgb(249, 249, 249);"><code class="language-csharp" style="background: rgb(249, 249, 249);"><span class="pun">}</span></code></li></ol></pre>
+                                                <p>
+                                                    如果您的处理程序方法根据条件返回不止一种类型的操作结果，则需要将方法的返回类型扩展为 <code style="background: rgb(249, 249, 249);">ActionResult</code> 或 <code style="background: rgb(249, 249, 249);">IActionResult</code>，
+                                                    如本示例所示，如果 <code style="background: rgb(249, 249, 249);">ModelState</code> 无效，则返回 <code style="background: rgb(249, 249, 249);">PageResult</code> 或 <code style="background: rgb(249, 249, 249);">RedirectToPageResult</code> （不同的类型）
+                                                    如果 <code style="background: rgb(249, 249, 249);">ModelState</code> 有效：
+                                                </p>
+<pre class="prettyprint linenums prettyprinted" style="background: rgb(249, 249, 249); padding: 10px; border: 1px solid rgb(221, 221, 221);"><ol class="linenums"><li class="L0"><code class="language-csharp" style="background: rgb(249, 249, 249);"><span class="kwd" style="color: rgb(0, 0, 255);">public</span><span class="pln"> </span><span class="typ" style="color: rgb(85, 85, 85);">IActionResult</span><span class="pln"> </span><span class="typ" style="color: rgb(85, 85, 85);">OnPost</span><span class="pun">()</span></code></li><li class="L1" style="background: rgb(249, 249, 249);"><code class="language-csharp" style="background: rgb(249, 249, 249);"><span class="pun">{</span></code></li><li class="L2"><code class="language-csharp" style="background: rgb(249, 249, 249);"><span class="pln">    </span><span class="kwd" style="color: rgb(0, 0, 255);">if</span><span class="pun">(!</span><span class="typ" style="color: rgb(85, 85, 85);">ModelState</span><span class="pun">.</span><span class="typ" style="color: rgb(85, 85, 85);">IsValid</span><span class="pun">)</span></code></li><li class="L3" style="background: rgb(249, 249, 249);"><code class="language-csharp" style="background: rgb(249, 249, 249);"><span class="pln">    </span><span class="pun">{</span></code></li><li class="L4"><code class="language-csharp" style="background: rgb(249, 249, 249);"><span class="pln">        </span><span class="kwd" style="color: rgb(0, 0, 255);">return</span><span class="pln"> </span><span class="kwd" style="color: rgb(0, 0, 255);">new</span><span class="pln"> </span><span class="typ" style="color: rgb(85, 85, 85);">PageResult</span><span class="pun">();</span></code></li><li class="L5" style="background: rgb(249, 249, 249);"><code class="language-csharp" style="background: rgb(249, 249, 249);"><span class="pln">    </span><span class="pun">}</span></code></li><li class="L6"><code class="language-csharp" style="background: rgb(249, 249, 249);"><span class="pln">    </span><span class="com" style="color: rgb(0, 128, 0);">// otherwise do some processing</span></code></li><li class="L7" style="background: rgb(249, 249, 249);"><code class="language-csharp" style="background: rgb(249, 249, 249);"><span class="pln">    </span><span class="kwd" style="color: rgb(0, 0, 255);">return</span><span class="pln"> </span><span class="kwd" style="color: rgb(0, 0, 255);">new</span><span class="pln"> </span><span class="typ" style="color: rgb(85, 85, 85);">RedirectToPageResult</span><span class="pun">(</span><span class="str" style="color: brown;">"Index"</span><span class="pun">);</span></code></li><li class="L8"><code class="language-csharp" style="background: rgb(249, 249, 249);"><span class="pun">}</span></code></li></ol></pre>
+                                                <p>
+                                                    许多操作结果都在 Razor 页面 <code style="background: rgb(249, 249, 249);">PageModel</code> 类上定义了关联的辅助方法，这些方法不需要“新建”<code style="background: rgb(249, 249, 249);">ActionResult</code> 类的实例，从而有助于简化代码。
+                                                    <code style="background: rgb(249, 249, 249);">Page()</code> 方法返回 <code style="background: rgb(249, 249, 249);">PageResult</code>，
+                                                    <code style="background: rgb(249, 249, 249);">RedirectToPage</code> 方法返回 <code style="background: rgb(249, 249, 249);">RedirectToPageResult</code>，因此可以使用这些方法简化前面的示例：
+                                                </p>
+<pre class="prettyprint linenums prettyprinted" style="background: rgb(249, 249, 249); padding: 10px; border: 1px solid rgb(221, 221, 221);"><ol class="linenums"><li class="L0"><code class="language-csharp" style="background: rgb(249, 249, 249);"><span class="kwd" style="color: rgb(0, 0, 255);">public</span><span class="pln"> </span><span class="typ" style="color: rgb(85, 85, 85);">IActionResult</span><span class="pln"> </span><span class="typ" style="color: rgb(85, 85, 85);">OnPost</span><span class="pun">()</span></code></li><li class="L1" style="background: rgb(249, 249, 249);"><code class="language-csharp" style="background: rgb(249, 249, 249);"><span class="pun">{</span></code></li><li class="L2"><code class="language-csharp" style="background: rgb(249, 249, 249);"><span class="pln">    </span><span class="kwd" style="color: rgb(0, 0, 255);">if</span><span class="pun">(!</span><span class="typ" style="color: rgb(85, 85, 85);">ModelState</span><span class="pun">.</span><span class="typ" style="color: rgb(85, 85, 85);">IsValid</span><span class="pun">)</span></code></li><li class="L3" style="background: rgb(249, 249, 249);"><code class="language-csharp" style="background: rgb(249, 249, 249);"><span class="pln">    </span><span class="pun">{</span></code></li><li class="L4"><code class="language-csharp" style="background: rgb(249, 249, 249);"><span class="pln">        </span><span class="kwd" style="color: rgb(0, 0, 255);">return</span><span class="pln"> </span><span class="typ" style="color: rgb(85, 85, 85);">Page</span><span class="pun">();</span></code></li><li class="L5" style="background: rgb(249, 249, 249);"><code class="language-csharp" style="background: rgb(249, 249, 249);"><span class="pln">    </span><span class="pun">}</span></code></li><li class="L6"><code class="language-csharp" style="background: rgb(249, 249, 249);"><span class="pln">    </span><span class="com" style="color: rgb(0, 128, 0);">// otherwise do some processing</span></code></li><li class="L7" style="background: rgb(249, 249, 249);"><code class="language-csharp" style="background: rgb(249, 249, 249);"><span class="pln">    </span><span class="kwd" style="color: rgb(0, 0, 255);">return</span><span class="pln"> </span><span class="typ" style="color: rgb(85, 85, 85);">RedirectToPage</span><span class="pun">(</span><span class="str" style="color: brown;">"Index"</span><span class="pun">);</span></code></li><li class="L8"><code class="language-csharp" style="background: rgb(249, 249, 249);"><span class="pun">}</span></code></li></ol></pre>
+                                                <p>
+                                                    下表列出了旨在用于 Razor 页面开发的 <code style="background: rgb(249, 249, 249);">ActionResult</code> 类，
+                                                    连同它们返回的任何 HTTP 状态代码，以及相关的辅助方法（如果存在）。
+                                                </p>
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="text-align: left;">ActionResult 类</th>
+                                                            <th style="text-align: left;">Helper</th>
+                                                            <th style="text-align: left;">HTTP Status Code</th>
+                                                            <th style="text-align: left;">描述</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td style="text-align: left;">ChallengeResult</td>
+                                                            <td style="text-align: left;"><code style="background: rgb(249, 249, 249);">Challenge</code></td>
+                                                            <td style="text-align: left;">401</td>
+                                                            <td style="text-align: left;">
+                                                                用于身份验证。 如果用户未通过身份验证，您将返回 <code style="background: rgb(249, 249, 249);">ChallengeResult</code>。 它返回 401（未授权）HTTP 状态代码。
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: left;">ContentResult</td>
+                                                            <td style="text-align: left;"><code style="background: rgb(249, 249, 249);">Content</code></td>
+                                                            <td style="text-align: left;">200</td>
+                                                            <td style="text-align: left;">
+                                                                默认情况下，接受一个字符串并使用 <code style="background: rgb(249, 249, 249);">text/plain</code> 内容类型标头返回它。
+                                                                重载使您可以指定内容类型以返回其他格式，例如 <code style="background: rgb(249, 249, 249);">text/html</code>
+                                                                或 <code style="background: rgb(249, 249, 249);">application/json</code> 例如。
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: left;">EmptyResult</td>
+                                                            <td style="text-align: left;"></td>
+                                                            <td style="text-align: left;">200</td>
+                                                            <td style="text-align: left;">此操作结果类型可用于表示服务器端操作成功完成，但没有返回值。</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: left;">FileContentResult</td>
+                                                            <td style="text-align: left;"><code style="background: rgb(249, 249, 249);">File</code></td>
+                                                            <td style="text-align: left;">200</td>
+                                                            <td style="text-align: left;">从字节数组、流或虚拟路径返回文件。</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: left;">FileStreamResult</td>
+                                                            <td style="text-align: left;"></td>
+                                                            <td style="text-align: left;">200</td>
+                                                            <td style="text-align: left;">从流中返回文件</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: left;">ForbidResult</td>
+                                                            <td style="text-align: left;"><code style="background: rgb(249, 249, 249);">Forbid</code></td>
+                                                            <td style="text-align: left;">403</td>
+                                                            <td style="text-align: left;">用于身份验证。 Forbid 方法返回 403（禁止）HTTP 状态代码。</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: left;">LocalRedirectResult</td>
+                                                            <td style="text-align: left;"><code style="background: rgb(249, 249, 249);">LocalRedirect</code><br> <code style="background: rgb(249, 249, 249);">LocalRedirectPermanent</code><br>  <code style="background: rgb(249, 249, 249);">LocalRedirectPreserveMethod</code><br> <code style="background: rgb(249, 249, 249);">LocalRedirectPreserveMethodPermanent</code></td>
+                                                            <td style="text-align: left;">302<br>301<br>307<br>308</td>
+                                                            <td style="text-align: left;">将用户重定向到由相对 url <sup>1</sup> 指定的当前站点内的位置。</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: left;">NotFoundResult</td>
+                                                            <td style="text-align: left;"><code style="background: rgb(249, 249, 249);">NotFound</code></td>
+                                                            <td style="text-align: left;">404</td>
+                                                            <td style="text-align: left;">返回一个 HTTP 404（未找到）状态代码，指示无法找到请求的资源。</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: left;">PageResult</td>
+                                                            <td style="text-align: left;"><code style="background: rgb(249, 249, 249);">Page</code></td>
+                                                            <td style="text-align: left;">200</td>
+                                                            <td style="text-align: left;">将处理并返回当前页面的结果。</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: left;">PartialResult</td>
+                                                            <td style="text-align: left;"><code style="background: rgb(249, 249, 249);">Partial</code><sup>3</sup></td>
+                                                            <td style="text-align: left;">200</td>
+                                                            <td style="text-align: left;">返回一个<a href="./razor-pages-partial-pages.html">部分页面</a> </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: left;">PhysicalFileResult</td>
+                                                            <td style="text-align: left;"><code style="background: rgb(249, 249, 249);">PhysicalFile</code></td>
+                                                            <td style="text-align: left;">200</td>
+                                                            <td style="text-align: left;">从指定的物理路径返回一个文件。</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: left;">RedirectResult</td>
+                                                            <td style="text-align: left;"><code style="background: rgb(249, 249, 249);">Redirect</code><br><code style="background: rgb(249, 249, 249);">RedirectPermanent</code><br><code style="background: rgb(249, 249, 249);">RedirectPreserveMethod</code><br><code style="background: rgb(249, 249, 249);">RedirectPermanentPreserveMethod</code></td>
+                                                            <td style="text-align: left;">301<br>302<br>307<br>308</td>
+                                                            <td style="text-align: left;">
+                                                                将用户重定向到指定的 URL，HTTP 状态代码取决于指定的选项。 默认是临时重定向 (302) <sup>1</sup>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: left;">RedirectToPageResult</td>
+                                                            <td style="text-align: left;"><code style="background: rgb(249, 249, 249);">RedirectToPagePermanent</code><br><code style="background: rgb(249, 249, 249);">RedirectToPage</code><br>  <code style="background: rgb(249, 249, 249);">RedirectToPagePreserveMethod</code><br> <code style="background: rgb(249, 249, 249);">RedirectToPagePreserveMethodPermanent</code></td>
+                                                            <td style="text-align: left;">301<br>302<br>307<br>308</td>
+                                                            <td style="text-align: left;">将用户重定向到指定页面。 <sup>1,2</sup></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: left;">SignInResult</td>
+                                                            <td style="text-align: left;"></td>
+                                                            <td style="text-align: left;"></td>
+                                                            <td style="text-align: left;">身份验证的一部分。 表示登录操作的结果。</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: left;">SignOutResult</td>
+                                                            <td style="text-align: left;"></td>
+                                                            <td style="text-align: left;"></td>
+                                                            <td style="text-align: left;">身份验证的一部分。 表示注销操作的结果。</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: left;">StatusCodeResult</td>
+                                                            <td style="text-align: left;"></td>
+                                                            <td style="text-align: left;"></td>
+                                                            <td style="text-align: left;">使您能够使用您选择的 HTTP 状态代码生成响应</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: left;">UnauthorizedResult</td>
+                                                            <td style="text-align: left;"></td>
+                                                            <td style="text-align: left;">401</td>
+                                                            <td style="text-align: left;"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: left;">ViewComponentResult</td>
+                                                            <td style="text-align: left;"></td>
+                                                            <td style="text-align: left;">200</td>
+                                                            <td style="text-align: left;">返回执行 <a href="https://www.learnrazorpages.com/razor-pages/view-components">ViewComponent</a> 的结果</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <h3 id="notes">注释</h3>
+                                                <ol>
+                                                    <li>
+                                                        <p>
+                                                            重定向操作结果包括用于指定重定向应该是永久的和/或 HTTP 动词应该跨重定向保留的选项。
+                                                            临时重定向由 HTTP 状态代码 302 和 307 表示。永久重定向由状态代码 301 和 308 表示。
+                                                            永久重定向指令通常受到搜索引擎和其他索引技术的支持，它们将用<code style="background: rgb(249, 249, 249);">新位置</code>替换其索引中的现有条目，在操作结果生成的位置标头中指定。
+                                                        </p>
+                                                        <p>
+                                                            如果您不选择保留原始请求使用的 HTTP 方法，则重定向的请求可能（并且经常会）使用 GET，而不管原始请求使用的方法如何。 
+                                                            如果要确保为后续请求（以及可能的任何表单值）保留原始 HTTP 方法，则应使用名称中包含 <code style="background: rgb(249, 249, 249);">PreserveMethod</code> 的选项之一，
+                                                            或者为更通用的 <code style="background: rgb(249, 249, 249);">RedirectResult</code> 中的适当参数指定 <code style="background: rgb(249, 249, 249);">true</code> 方法。
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p>
+                                                            传递给 <code style="background: rgb(249, 249, 249);">RedirectToPageResult</code> 方法的值是相对于当前页面的，
+                                                            除非它以正斜杠 (<code style="background: rgb(249, 249, 249);">/</code>) 为前缀，
+                                                            在这种情况下它是相对于 <em>Pages</em> 文件夹的。
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><code style="background: rgb(249, 249, 249);">Partial</code> 辅助方法从 ASP.NET Core 2.2 开始可用。</p>
+                                                    </li>
+                                                </ol>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-3 right-col">
+                                        <div class="alert alert-light" role="alert">
+                                            <a href="https://www.learnrazorpages.com/razor-pages/action-results">原文地址</a>
+                                        </div>
+                                        <div id="doc-outline" class="doc-outline well">
+                                            <h3 class="doc-outline">快速导航</h3>
+                                            <nav class="doc-outline">
+                                                <ul>
+                                                    <li><a href="#action-results-in-razor-pages" class="page-scroll">Razor 页面中的返回结果</a></li>
+                                                    <li><a href="#notes" class="page-scroll">注释</a></li>
+                                                </ul>
+                                            </nav>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /ListContent -->
+                    </div>
+                </div>
+                <!-- /List -->
+            </div>
+        </div>
+        <!-- /footer -->
+        <footer style="text-align:center;">
+            <p>© 2018 - 2021 - Mike Brind. All rights reserved. Contact me at Outlook.com</p>
+            <p>更新于: 2020-10-24 07:02:14</p>
+        </footer>
+    </div>
+
+    <a class="btn-scroll-top" href="#top" data-scroll="">
+        <span class="btn-scroll-top-tooltip text-muted font-size-sm mr-2"></span>返回顶部
+    </a>
+
+    <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="./assets/libs/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+    <script src="./assets/libs/bootstrap-4.4.1-dist/js/bootstrap.bundle.js"></script>
+    <script src="./assets/theme.js"></script>
+</body>
+</html>

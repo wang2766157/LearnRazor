@@ -13,7 +13,6 @@
     </script>
 </head>
 <body id="top">
-    <!-- 标准菜单 -->
     <nav class="navbar navbar-vertical fixed-left navbar-expand-md " id="sidebar">
         <div class="container-fluid">
             <!-- Toggler -->
@@ -55,7 +54,7 @@
                         <a class="nav-link" href="#sidebarRazorpages" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarRazorpages">Razor 页面文件</a>
                         <div class="collapse" id="sidebarRazorpages">
                             <ul class="nav nav-sm flex-column">
-                                <li class="nav-item"><a class="nav-link"  href="./razor-pages.html">Razor 页面文件</a></li>
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages.html">Razor 页面文件</a></li>
                                 <li class="nav-item"><a class="nav-link" href="./razor-pages-files.html">Razor 文件</a></li>
                                 <li class="nav-item"><a class="nav-link" href="./razor-pages-partial-pages.html">部分页</a></li>
                                 <li class="nav-item"><a class="nav-link" href="./razor-pages-files-layout.html">布局</a></li>
@@ -200,6 +199,7 @@
         </div>
     </nav>
     <nav class="navbar navbar-vertical navbar-vertical-sm fixed-left navbar-expand-md " id="sidebarSmall"></nav>
+
     <div class="main-content">
         <nav class="navbar navbar-expand-md navbar-light d-none d-md-flex" id="topbar">
             <div class="container-fluid">
@@ -224,7 +224,7 @@
                                         <!-- Pretitle -->
                                         <h6 class="header-pretitle"></h6>
                                         <!-- Title -->
-                                        <h4 class="header-title"><strong>主页</strong></h4>
+                                        <h4 class="header-title"><strong>Page Models</strong></h4>
                                     </div>
                                 </div>
                                 <!-- /Row -->
@@ -236,137 +236,130 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-9">
-                                        <div>
-                                            <h1 id="first-look-at-razor-pages">初试 Razor Pages</h1>
-                                            <div>
-                                                <p>在本节中，将向您展示如何使用.NET Core命令行工具来创建简单的 Razor Pages 应用程序，以及如何在浏览器中构建和运行它。 您还将探索应用程序的各个部分，并了解每个部分所扮演的角色。</p>
-                                                <h2 id="try-it-out-creating-your-first-razor-pages-application">尝试： 创建您的第一个 Razor Pages 应用程序</h2>
-                                                <ol>
-                                                    <li>
-                                                        <p>再次之前，如果您还没有任何准备，您可以先<a href="https://www.microsoft.com/net/download/core">下载最新版本的 .NET Core SDK</a>。</p>
-                                                    </li>
-                                                    <li>
-                                                        <p>打开首选的命令行工具（在 Windows 中为 cmd.exe 或 Powershell ；在 Mac 上为 Terminal ；在 Linux 上为 Bash 或类似工具），然后输入 <code>dotnet --version</code> 。</p>
-                                                    </li>
-                                                    <li>
-                                                        <p>检查输出以确认您的.NET Core版本至少为2.0。</p>
-                                                        <p><img src="./assets/img/2020-01-08_07-19-09.png" class="img-fluid" alt="Dotnet Version"></p>
-                                                    </li>
-                                                    <li>
-                                                        <p>如果需要，请导航至适合您的应用程序的位置，然后输入 <code>mkdir RazorPages</code> 以创建应用程序文件的文件夹。</p>
-                                                    </li>
-                                                    <li>
-                                                        <p>输入 <code>cd RazorPages</code> 进入应用程序文件夹。</p>
-                                                    </li>
-                                                    <li>
-                                                        <p>输入 <code>dotnet new razor</code>。此命令从基本站点模板生成应用程序文件。 您应收到确认已创建该站点并且正在运行 <code>dotnet restore</code> 命令的确认。<code>dotnet restore </code> 命令查看应用程序所需的依赖关系，并从NuGet获取它们。</p>
-                                                        <p><img src="./assets/img/2020-01-08_07-22-19.png" class="img-fluid" alt="dotnet new razor"></p>
-                                                    </li>
-                                                    <li>
-                                                        <p>输入 <code>dotnet run</code> 编译应用程序并在端口5000上启动它：</p>
-                                                        <p><img src="./assets/img/2020-01-08_07-24-54.png" class="img-fluid" alt="dotnet run"></p>
-                                                    </li>
-                                                    <li>
-                                                        <p>打开您常用的浏览器并导航到 <code>http://localhost:5000</code>。 该网站会显示：</p>
-                                                        <p><img src="./assets/img/2020-01-08_07-25-41.png" class="img-fluid" alt="Default template"></p>
-                                                    </li>
-                                                </ol>
-                                                <h2 id="visual-studio">Visual Studio</h2>
-                                                <p>如果您使用的是Visual Studio，请从开始屏幕中选择<strong>“创建新项目”</strong></p>
-                                                <p><img src="./assets/img/2020-01-08_07-27-34.png" class="img-fluid" alt="Create New Project"></p>
-                                                <p>从项目选项中选择“ ASP.NET Core Web应用程序”：</p>
-                                                <p><img src="./assets/img/2020-01-08_07-29-26.png" class="img-fluid" alt="Template options"></p>
-                                                <p>修改项目名称选项和创建项目文件的位置，以满足您的需要。</p>
-                                                <p>下一步, 从出现的模板选项中选择<strong>Web 应用程序</strong> ：</p>
-                                                <p><img src="./assets/img/2020-01-08_07-31-57.png" class="img-fluid" alt="Web Application Options"></p>
-                                                <p>这将会创建一个新的 Razor Pages 应用程序，该应用程序会与通过命令行生成的应用程序相同。</p>
-                                                <h2 id="anatomy-of-a-razor-pages-application">Razor Pages 应用程序内容解析</h2>
-                                                <p>
-                                                    Razor Pages 应用程序包含许多文件夹和文件。 在下一节中，您将在上一节中探索在创建，还原，编译和运行应用程序时生成的文件。这是应用程序文件夹结构的浏览器视图，然后仔细查看每个文件夹或文件组：
-                                                </p>
-                                                <p><img src="./assets/img/2020-01-08_07-42-24.png" class="img-fluid" alt="Razor Pages file structure"></p>
-                                                <h3 id="pages-folder">Pages 文件夹</h3>
-                                                <p><img src="./assets/img/2020-01-08_07-43-32.png" class="img-fluid" alt="Pages Folder"></p>
-                                                <p>
-                                                    <em>Pages</em> 文件夹是 Razor Pages 项目文件的默认位置。以 <em>.cshtml</em> 结尾的文件是Razor文件。 以 <em>.cs</em> 结尾的其他文件是 C＃ 类文件。 这些与 Razor 文件配对，称为 <a href="https://www.learnrazorpages.com/razor-pages/pagemodel">PageModell</a> 文件。 并非所有的Razor文件都具有匹配的类文件。 某些 Razor 文件的文件名中带有下划线（_）【这里习惯用在前缀加“下划线” 译者注】。 这些文件不可浏览，但作为Razor Pages应用程序的一部分，它们将扮演不同的角色。 您可以阅读有关这些特殊Razor文件及其角色的<a href="https://www.learnrazorpages.com/razor-pages/files">更多信息</a>。
-                                                </p>
-                                                <h3 id="wwwroot-folder">wwwroot 文件夹</h3>
-                                                <p><img src="./assets/img/2020-01-08_07-45-10.png" class="img-fluid" alt="wwwroot folder in Razor Pages"></p>
-                                                <p>
-                                                    <em>wwwroot</em> 文件夹是在 .NET Core Web 应用程序中放置静态文件的位置。
-                                                    这些文件包括站点使用的 CSS 样式表，图像和 JavaScript 文件。 <em>lib</em> 的其他文件夹包含第三方客户端软件包【脚本文件包  译者注】。 这些软件包可以由 LibMan（Razor Pages 和 MVC 应用程序的默认客户端软件包管理器）管理。
-                                                </p>
-                                                <h3 id="lib-folder">lib 文件夹</h3>
-                                                <p><img src="./assets/img/2020-01-08_07-46-57.png" class="img-fluid" alt="lib folder in Razor Pages"></p>
-                                                <p>图例中包含的第三方客户端软件包是：</p>
+                                        <div id="article">
+                                            <h1 itemprop="headline" id="the-razor-pages-pagemodel">Razor 页面 PageModel</h1>
+                                            <div itemprop="articleBody">
+                                                <p>Razor 页面 PageModel 类的主要目的是在 UI 层（.cshtml <em>view</em> 文件）和页面的处理逻辑之间提供清晰的分离。 这种分离的优点在于： </p>
                                                 <ul>
-                                                    <li>BootStrap：一个由Twitter团队构建的UI框架，它减少了设计网站布局所需的工作，并且还为按钮，表单，表格，输入等组件提供了一系列内置样式。 在Razor Pages 3.x中，Bootstrap的版本为4。</li>
-                                                    <li>jQuery：BootStrap 依赖的 JavaScript 库。</li>
-                                                    <li>jQuery 验证：用于表单客户端验证的jQuery插件</li>
-                                                    <li>jQuery Unobtrusive Validation：另一个由 ASP.NET 团队设计的 jQuery 验证插件，专门用于处理 Razor 帮助程序生成的表单输入。</li>
+                                                    <li>它降低了 UI 层的复杂性，使其更易于维护。</li>
+                                                    <li>它有助于自动化单元测试。</li>
+                                                    <li>它为团队提供了更大的灵活性，因为一个成员可以在视图上工作，而另一个成员可以在处理逻辑上工作。 </li>
+                                                    <li>它鼓励用于特定目的的更小、可重用的代码单元，这有助于维护和可扩展性（即可以轻松添加应用程序的代码库以满足未来的额外需求）。</li>
                                                 </ul>
-                                                <h3 id="root-files">Root 文件</h3>
-                                                <p><img src="./assets/img/2020-01-08_07-50-29.png" class="img-fluid" alt="Razor Pages root files"></p>
-                                                <p>多种文件位于 Root 文件夹中。</p>
-                                                <table class="table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th style="text-align: left;">文件夹</th>
-                                                            <th style="text-align: left;">备注</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td style="text-align: left;"><em>appsettings.json</em></td>
-                                                            <td style="text-align: left;">项目的配置文件，格式为 json，详见<a href="https://www.learnrazorpages.com/configuration">配置设定</a> 【作用等同于之前aspx中的web.config，但并不是 web.config 。web.config 文件会由项目编译后自动生成，与此文件无关  译者注】</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="text-align: left;"><em>appsettings.Development.json</em></td>
-                                                            <td style="text-align: left;">用于应用程序范围的<a href="https://www.learnrazorpages.com/configuration">配置设置</a>，仅在开发期间生效</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="text-align: left;"><em>Program.cs</em></td>
-                                                            <td style="text-align: left;">应用程序的入口点</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="text-align: left;"><em>RazorPages.csproj</em></td>
-                                                            <td style="text-align: left;">包含有关项目的信息，MSBuild系统将其用于编译和发布</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="text-align: left;"><em>Startup.cs</em></td>
-                                                            <td style="text-align: left;"><a href="https://www.learnrazorpages.com/startup">Startup 类</a> 配置处理所有对应用程序的请求的请求管道</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                                <h3 id="bin-folder">Bin 文件夹</h3>
-                                                <p><img src="./assets/img/2020-01-08_07-57-33.png" class="img-fluid" alt="Razor Pages bin folder"></p>
+                                                <p>当您在添加新项目时选择 Razor 页面（带页面模型）选项时，将创建 PageModel 类： </p>
+                                                <p><img src="./assets/img/13-07-2017-08-19-45.png" class="img-fluid" alt="Razor Page with page model"></p>
                                                 <p>
-                                                    <em>bin</em> 文件夹是编译应用程序时生成的二进制文件的默认输出位置。 通常，此文件夹包含两个子文件夹，即 <em>Debug</em>和<em>Release</em>。 第一个用于在调试模式下编译应用程序所产生的二进制文件，第二个用于放置在发布模式下通过编译生成的二进制文件。 这两个文件夹都包含一个名为 <em>netcoreapp[version number]</em> 的子文件夹，其中 [version number] 代表用于创建应用程序的.NET Core版本。 例如，如果使用的是 .NET Core 3.1，则文件夹名称将为 <em>netcoreapp3.1</em> 。 您在上图中看到的文件来自 <em>/bin/Debug/netcoreapp3.1/</em>
+                                                    PageModel 类在一个单独的类文件中声明 - 一个带有 <em>.cs</em> 扩展名的文件。
+                                                    PageModel 类放置在与页面相同的命名空间中，默认情况下遵循模式 <code>&lt;default namespace&gt;.&lt;root folder name&gt;</code> 并以页面文件命名，“PageModel”为 一个后缀。
+                                                    <em>About.cshtml</em> 的 PageModel 类将被命名为 <code>AboutPageModel</code>，并将在名为 <em>About.cshtml.cs</em> 的文件中生成。
                                                 </p>
-                                                <h3 id="obj-folder">Obj 文件夹</h3>
-                                                <p><img src="./assets/img/15-08-2017-09-16-50.png" class="img-fluid" alt="obj Folder"></p>
-                                                <p><em>Obj</em> 文件夹用于存储临时对象文件和其他用于在编译过程中创建最终二进制文件的文件。</p>
+                                                <p>就其特性和功能而言，PageModel 类是 <em>控制器（Controllers）</em> 和 <em>视图模型</em> 的组合。</p>
+                                                <h2 id="controllers">控制器 （Controllers）</h2>
+                                                <p>
+                                                    控制器 （Controllers）在与应用程序的表示层相关的许多设计和架构模式中具有特色。
+                                                    它们最常见于模型-视图-控制器 (MVC) 模式，其中控制器可以实现为<em>前控制器</em>或<em>页面控制器</em>。
+                                                    <a href="https://martinfowler.com/eaaCatalog/frontController.html">前端控制器定义</a> 为“处理网站所有请求的控制器”。
+                                                    在 ASP.NET MVC 实现中，前端控制器通常处理对由控制器名称的第一部分表示的网站中功能区域的所有请求。
+                                                    例如，<code>ProductController</code> 将处理与 Product 实体或功能相关的所有请求。
+                                                    <a href="https://martinfowler.com/eaaCatalog/pageController.html">页面控制器</a>是“处理对特定页面或网站操作的请求的对象”。
+                                                    Razor PageModel 类是页面控制器模式的实现。
+                                                </p>
+                                                <p>
+                                                    页面控制器模式的特点是页面与其控制器之间存在一对一的映射关系。
+                                                    页面控制器模式中控制器的作用是接受来自页面请求的输入，以确保应用对模型（数据）的任何请求操作，然后确定用于结果页面的正确视图。
+                                                </p>
+                                                <h2 id="view-models">视图模型</h2>
+                                                <p>
+                                                    视图模型是表示模型设计模式的实现。 它是一个自包含的类，表示特定“视图”或页面的数据和行为。
+                                                    视图模型模式广泛用于 MVC 应用程序开发，它主要表示数据，但通常很少有行为。 在 Razor Pages 中，PageModel 也是视图模型。
+                                                </p>
+                                                <p>
+                                                    Razor Pages 有时被描述为实现 <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel">MVVM（模型、视图视图模型）</a> 模式。
+                                                    并不是。 MVVM 模式应用于表示和模型共享同一层的应用程序。
+                                                    它在 WPF、移动应用程序开发和一些 JavaScript 库中很流行。 MVVM 的一个主要特性是视图会自动更新以反映对底层模型的更改。
+                                                    这个过程通常由双向绑定和观察者模式的实现控制。在服务器端 Web 应用程序中，模型驻留在服务器上，而视图在客户端上。
+                                                    您需要实现额外的复杂层，以在这种分布式架构中实现类似于观察者模式的任何内容。
+                                                </p>
+                                                <h2 id="default-template">默认模板</h2>
+                                                <p>以下代码显示了当您使用 Razor Page（带页面模型）选项向 Razor Pages 应用程序添加新页面时为每个文件生成的内容：</p>
+                                                <p>(Index.cshtml)</p>
+<pre><code class="language-html">@page
+@model IndexModel
+@{
+}
+</code></pre>
+                                                <p>(Index.cshtml.cs)</p>
+<pre><code class="language-csharp">using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
+namespace LearnRazorPages.Pages
+{
+    public class IndexModel : PageModel
+    {
+        public void OnGet()
+        {
+        }
+    }
+}
+</code></pre>
+                                                <p>
+                                                    PageModel 类通过 <code>@model</code> 指令可用于视图文件。
+                                                    生成的 PageModel 类继承自 <code>Microsoft.AspNetCore.Mvc.RazorPages.PageModel</code>，
+                                                    它具有许多属性，使您能够处理与 HTTP 请求相关的各种项目，例如 HttpContext、Request、Response、ViewData、ModelState 和 TempData。
+                                                    它还包括一系列方法，使您能够指定<a href="https://www.learnrazorpages.com/razor-pages/action-results">结果响应的类型</a>，包括另一个 Razor 页面、文件、一些 JSON、字符串或重定向到另一个资源。
+                                                </p>
+                                                <h2 id="request-processing">请求处理</h2>
+                                                <p>
+                                                    PageModel 中的请求处理是在类似于 ASP.NET MVC 控制器上的 Action 方法的<a href="./razor-pages-handler-methods.html"> handler 方法</a>中执行的。
+                                                    按照惯例，handler 方法选择基于将用于请求的 HTTP 动词与 handler 方法的名称匹配，使用模式 <code>On&lt;verb&gt;</code> 并可选地附加 <code>Async</code> 以表示该方法旨在异步运行。
+                                                    GET 请求选择 <code>OnGet</code> 或 <code>OnGetAsync</code> 方法，POST 请求选择 <code>OnPost</code> 或 <code>OnPostAsync</code> 方法。
+                                                    如果您想创建一个完全符合 REST 的应用程序，还支持所有其他 HTTP 动词（PUT、DELETE 等）。
+                                                </p>
+                                                <p>匹配方式只看方法名。 不考虑返回类型和任何参数。 handler 方法的唯一其他规定是它必须是 <code>public</code>。</p>
+                                                <p><a href="./razor-pages-handler-methods.html#named-handlers">命名 handler 方法</a>允许您为特定动词指定许多替代方法。 如果您的页面包含多个表单，每个表单都需要执行不同的过程，则您可能希望使用这些。</p>
+                                                <h2 id="properties-and-methods">属性和方法 </h2>
+                                                <p>
+                                                    应用于 PageModel 类的属性和方法在 Razor 页面的 <code>Model</code> 属性中可用。
+                                                    属性可以是简单的，如 <code>string</code>、<code>int</code>、<code>DateTime</code> 等，也可以是复杂的类，或组合。
+                                                    如果您的页面旨在向数据库添加新产品，则您可能具有以下属性范围：
+                                                </p>
+<pre><code class="language-csharp">public string Name { get ; set; }
+public SelectList Categories { get; set; }
+public int CategoryId { get; set; }
+</code></pre>
+                                                <p>
+                                                    您还可以将属性或方法添加到 PageModel 来处理用于显示的格式化值，以最大限度地减少添加到 Razor 页面的代码量。
+                                                    以下示例显示了如何使用属性来格式化计算结果：
+                                                </p>
+<pre><code class="language-csharp">public List&lt;OrderItems&gt; Orders { get; set; }
+public string TotalRevenue =&gt; Orders.Sum(o =&gt; o.NetPrice).ToString("f");
+</code></pre>
+                                                <p>然后，您的 Razor 页面将只需要 <code>@Model.TotalRevenue</code> 将所有销售额的总额显示到小数点后两位，无需在 HTML 中进行 LINQ 计算。</p>
+                                                <p>
+                                                    您添加到 PageModel 的属性还使您能够以强类型方式开发表单，从而减少运行时错误的可能性。 例如，它们可用于标签和输入标签助手的 for 属性。
+                                                    例如，它们可用于<a href="https://www.learnrazorpages.com/razor-pages/tag-helpers/label-tag-helper">标签</a>和<a href="https://www.learnrazorpages.com/razor-pages/tag-helpers/input-tag-helper">输入</a>标签助手的 <code>for</code> 属性。
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-3 right-col">
                                         <div class="alert alert-light" role="alert">
-                                            <a href="https://www.learnrazorpages.com/first-look">原文地址</a>
+                                            <a href="https://www.learnrazorpages.com/razor-pages/pagemodel">原文地址</a>
                                         </div>
                                         <div id="doc-outline" class="doc-outline well">
                                             <h3 class="doc-outline">快速导航</h3>
                                             <nav class="doc-outline">
                                                 <ul>
-                                                    <li><a href="#first-look-at-razor-pages" class="page-scroll">初试 Razor Pages</a></li>
-                                                    <li><a href="#try-it-out-creating-your-first-razor-pages-application" class="page-scroll">尝试： 创建您的第一个 Razor Pages 应用程序</a></li>
-                                                    <li><a href="#visual-studio" class="page-scroll">Visual Studio</a></li>
-                                                    <li><a href="#anatomy-of-a-razor-pages-application" class="page-scroll">Razor Pages 应用程序内容解析</a></li>
-                                                    <li><a href="#pages-folder" class="page-scroll">页面文件</a></li>
-                                                    <li><a href="#wwwroot-folder" class="page-scroll">wwwroot 文件夹</a></li>
-                                                    <li><a href="#lib-folder" class="page-scroll">lib 文件夹</a></li>
-                                                    <li><a href="#root-files" class="page-scroll">Root 文件</a></li>
-                                                    <li><a href="#bin-folder" class="page-scroll">Bin 文件夹</a></li>
-                                                    <li><a href="#obj-folder" class="page-scroll">Obj 文件夹</a></li>
+                                                    <li><a href="#the-razor-pages-pagemodel" class="page-scroll">Razor 页面 PageModel</a></li>
+                                                    <li><a href="#controllers" class="page-scroll">控制器 （Controllers）</a></li>
+                                                    <li><a href="#view-models" class="page-scroll">视图模型</a></li>
+                                                    <li><a href="#default-template" class="page-scroll">默认模板</a></li>
+                                                    <li><a href="#request-processing" class="page-scroll">请求处理</a></li>
+                                                    <li><a href="#properties-and-methods" class="page-scroll">属性和方法</a></li>
                                                 </ul>
                                             </nav>
                                         </div>
@@ -383,7 +376,7 @@
         <!-- /footer -->
         <footer style="text-align:center;">
             <p>© 2018 - 2021 - Mike Brind. All rights reserved. Contact me at Outlook.com</p>
-            <p>更新于: 2020-01-08 08:44:36</p>
+            <p>更新于: 2021-04-28 10:38:56</p>
         </footer>
     </div>
 

@@ -1,0 +1,345 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ASP.NET Core Razor简介 | 了解 Razor Pages</title>
+    <link href="./assets/libs/bootstrap-4.4.1-dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="./assets/theme.css" rel="stylesheet" />
+    <script>
+        window.onload = function () {
+            $("body").addClass("bg-light");
+        }
+    </script>
+</head>
+<body id="top">
+    <nav class="navbar navbar-vertical fixed-left navbar-expand-md " id="sidebar">
+        <div class="container-fluid">
+            <!-- Toggler -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Brand -->
+            <div data-toggle="tooltip" data-placement="right" data-template='<div class="tooltip d-none d-md-block" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>' title="了解 Razor Pages">
+                <a class="navbar-brand" href="./index.html"><span class="text-center d-md-block">了解 Razor Pages</span></a>
+            </div>
+            <!-- Collapse -->
+            <div class="collapse navbar-collapse" id="sidebarCollapse">
+                <!-- Divider -->
+                <hr class="navbar-divider d-none d-md-block mt-0 my-3">
+                <!-- Navigation -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarIndex" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarIndex">主页</a>
+                        <div class="collapse" id="sidebarIndex">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="./fristlook.html">初试</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="./Aspnetcore.html">ASP.NET Core</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarTutorials" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarTutorials">讲解</a>
+                        <div class="collapse" id="sidebarTutorials">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="./bakery.html">面包店</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarRazorpages" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarRazorpages">Razor 页面文件</a>
+                        <div class="collapse" id="sidebarRazorpages">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages.html">Razor 页面文件</a></li>
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages-files.html">Razor 文件</a></li>
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages-partial-pages.html">部分页</a></li>
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages-files-layout.html">布局</a></li>
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages-files-viewimports.html">ViewImports</a></li>
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages-files-viewstart.html">ViewStart</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="./razor-syntax.html">Razor 语法</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarPagemodel" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarPagemodel">Page Models</a>
+                        <div class="collapse" id="sidebarPagemodel">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages-pagemodel.html">Page Models</a></li>
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages-handler-methods.html">Handler 方法</a></li>
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages-viewdata.html">ViewData</a></li>
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages-action-results.html">结果返回</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarTaghelpers" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarTaghelpers">标签助手</a>
+                        <div class="collapse" id="sidebarTaghelpers">
+                            <ul class="nav nav-sm flex-column">
+                                <li><a class="nav-link" href="./razor-pages-tag-helpers.html">标签助手</a></li><li><a class="nav-link" href="#">Anchor Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Cache Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Distributed Cache Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Environment Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Form Action Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Form Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Image Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Input Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Label Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Link Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Option Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Partial Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Script Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Select Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">TextArea Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Validation Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Validation Summary Tag Helper</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">View Components</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarRouting" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarRouting">Routing and URLs</a>
+                        <div class="collapse" id="sidebarRouting">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item"><a class="nav-link" href="#">Routing and URLs</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">Customising Route Conventions</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">Startup</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarConfiguration" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarConfiguration">Configuration</a>
+                        <div class="collapse" id="sidebarConfiguration">
+                            <ul class="nav nav-sm flex-column">
+                                <li><a class="nav-link" href="#">Configuration</a></li>
+                                <li><a class="nav-link" href="#">Global Error Handling And Logging</a></li>
+                                <li><a class="nav-link" href="#">Custom Error Pages</a></li>
+                                <li><a class="nav-link" href="#">Configuring HTTPS</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">Middleware</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Dependency Injection</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarForms" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarForms">Working With Forms</a>
+                        <div class="collapse" id="sidebarForms">
+                            <ul class="nav nav-sm flex-column">
+                                <li><a class="nav-link" href="#">Working With Forms</a></li>
+                                <li><a class="nav-link" href="#">Uploading Files in Razor Pages</a></li>
+                                <li><a class="nav-link" href="#">Working With Checkboxes</a></li>
+                                <li><a class="nav-link" href="#">Select Lists in a Razor Pages Form</a></li>
+                                <li><a class="nav-link" href="#">Working With Radio Buttons</a></li>
+                                <li><a class="nav-link" href="#">Request Verification</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarValidation" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarValidation">Validation</a>
+                        <div class="collapse" id="sidebarValidation">
+                            <ul class="nav nav-sm flex-column">
+                                <li><a class="nav-link" href="#">Validation</a></li>
+                                <li><a class="nav-link" href="#">Remote Validation</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">Model Binding</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">State Management</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Caching</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarIdentity" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarIdentity">Managing Security With ASP.NET Identity</a>
+                        <div class="collapse" id="sidebarIdentity">
+                            <ul class="nav nav-sm flex-column">
+                                <li><a class="nav-link" href="#">Identity</a></li>
+                                <li><a class="nav-link" href="#">Customising Identity</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarAjax" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarAjax">使用 AJAX</a>
+                        <div class="collapse" id="sidebarAjax">
+                            <ul class="nav nav-sm flex-column">
+                                <li><a class="nav-link" href="#">AJAX</a></li>
+                                <li><a class="nav-link" href="#">Posting Forms</a></li>
+                                <li><a class="nav-link" href="#">Partial Page Updates</a></li>
+                                <li><a class="nav-link" href="#">Cascading Dropdowns</a></li>
+                                <li><a class="nav-link" href="#">Uploading Files</a></li>
+                                <li><a class="nav-link" href="#">Unobtrusive AJAX</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">Working with JSON</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Scaffolding</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Publishing To IIS</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarAdvanced" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarAdvanced">Advanced</a>
+                        <div class="collapse" id="sidebarAdvanced">
+                            <ul class="nav nav-sm flex-column">
+                                <li><a class="nav-link" href="#">Advanced</a></li>
+                                <li><a class="nav-link" href="#">Areas</a></li>
+                                <li><a class="nav-link" href="#">Custom Tag Helpers</a></li>
+                                <li><a class="nav-link" href="#">Customising Route Conventions</a></li>
+                                <li><a class="nav-link" href="#">Custom Route Constraints</a></li>
+                                <li><a class="nav-link" href="#">Parameter Transformers For Routes</a></li>
+                                <li><a class="nav-link" href="#">Dependency Injection</a></li>
+                                <li><a class="nav-link" href="#">Filters</a></li>
+                                <li><a class="nav-link" href="#">Razor Class Libraries</a></li>
+                                <li><a class="nav-link" href="#">Rendering A Partial View To A String</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">Table Of Contents</a></li>
+                </ul>
+                <!-- Push content down -->
+                <div class="mt-auto"></div>
+            </div>
+            <!-- /Navbar-collapse -->
+        </div>
+    </nav>
+    <nav class="navbar navbar-vertical navbar-vertical-sm fixed-left navbar-expand-md " id="sidebarSmall"></nav>
+
+    <div class="main-content">
+        <nav class="navbar navbar-expand-md navbar-light d-none d-md-flex" id="topbar">
+            <div class="container-fluid">
+                <!-- Title -->
+                <div class="input-group input-group-flush input-group-merge">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"></div><a id="tn">ASP.NET Core Razor技术指南</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="header bg-light pb-5">
+            <div class="container-fluid">
+                <!-- List -->
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-12 col-xl-12">
+                        <!-- Header -->
+                        <div class="header header-sm mt-md-0">
+                            <div class="header-body header-body-sm">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <!-- Pretitle -->
+                                        <h6 class="header-pretitle"></h6>
+                                        <!-- Title -->
+                                        <h4 class="header-title"><strong>Razor 页面文件</strong></h4>
+                                    </div>
+                                </div>
+                                <!-- /Row -->
+                            </div>
+                        </div>
+                        <!-- /Header -->
+                        <!-- ListContent -->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <div id="article" style="height: auto !important;">
+                                            <h1 itemprop="headline" id="layout-pages">布局</h1>
+                                            <div itemprop="articleBody" style="height: auto !important;">
+                                                <p>大多数网站在每个页面上或在大量页面中都具有相同的内容。 页眉、页脚和导航系统只是一些示例。 站点范围的脚本和样式表也属于这一类。 向站点中的每个页面添加相同的标题违反了 DRY 原则（不要重复自己）。 如果您需要更改页眉的外观，则需要编辑每个页面。 这同样适用于其他常见内容，例如，如果您想升级您的客户端框架。 一些 IDE 包含用于在多个文件中进行替换的工具，但这并不是真正可靠的解决方案。 这个问题的正确解决方案是<strong>布局</strong>页面。</p>
+                                                <p>布局页面充当所有引用它的页面的模板。 引用布局页面的页面称为内容页面。 内容页面不是完整的网页。 它们只包含从一页到下一页不同的内容。 下面的代码示例说明了一个非常简单的布局页面：</p>
+<pre class="prettyprint linenums prettyprinted" style="background: rgb(249, 249, 249); padding: 10px; border: 1px solid rgb(221, 221, 221);"><ol class="linenums"><li class="L0"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="dec">&lt;!DOCTYPE html&gt;</span></code></li><li class="L1" style="background: rgb(249, 249, 249);"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="tag">&lt;html</span><span class="pln"> </span><span class="atn">lang</span><span class="pun">=</span><span class="atv">"en"</span><span class="tag">&gt;</span></code></li><li class="L2"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">    </span><span class="tag">&lt;head&gt;</span></code></li><li class="L3" style="background: rgb(249, 249, 249);"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">        </span><span class="tag">&lt;meta</span><span class="pln"> </span><span class="atn">charset</span><span class="pun">=</span><span class="atv">"utf-8"</span><span class="pln"> </span><span class="tag">/&gt;</span></code></li><li class="L4"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">        </span><span class="tag">&lt;title&gt;&lt;/title&gt;</span></code></li><li class="L5" style="background: rgb(249, 249, 249);"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">        </span><span class="tag">&lt;link</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"/css/site.css"</span><span class="pln"> </span><span class="atn">rel</span><span class="pun">=</span><span class="atv">"stylesheet"</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text/css"</span><span class="pln"> </span><span class="tag">/&gt;</span></code></li><li class="L6"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">    </span><span class="tag">&lt;/head&gt;</span></code></li><li class="L7" style="background: rgb(249, 249, 249);"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">    </span><span class="tag">&lt;body&gt;</span></code></li><li class="L8"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">        @RenderBody()</span></code></li><li class="L9" style="background: rgb(249, 249, 249);"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">    </span><span class="tag">&lt;/body&gt;</span></code></li><li class="L0"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="tag">&lt;/html&gt;</span></code></li></ol></pre>
+                                                <p>使其成为布局页面的是对 <code style="background: rgb(249, 249, 249);">RenderBody</code> 方法的调用。 那就是放置内容页面处理结果的地方。 内容页面通过页面的 <code style="background: rgb(249, 249, 249);">Layout</code> 属性引用其布局页面，该属性可以在内容顶部的代码块中分配 指向相对位置的页面：</p>
+<pre class="prettyprint linenums prettyprinted" style="background: rgb(249, 249, 249); padding: 10px; border: 1px solid rgb(221, 221, 221);"><ol class="linenums"><li class="L0"><code class="language-csharp" style="background: rgb(249, 249, 249);"><span class="pun">@{</span></code></li><li class="L1" style="background: rgb(249, 249, 249);"><code class="language-csharp" style="background: rgb(249, 249, 249);"><span class="pln">    </span><span class="typ" style="color: rgb(85, 85, 85);">Layout</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="str" style="color: brown;">"_Layout"</span><span class="pun">;</span></code></li><li class="L2"><code class="language-csharp" style="background: rgb(249, 249, 249);"><span class="pun">}</span></code></li></ol></pre>
+                                                <p>传递给 <code style="background: rgb(249, 249, 249);">Layout</code> 属性的值要么是不带扩展名的文件名，要么是植根于项目的相对文件路径。</p>
+                                                <p>布局页面通常命名为 _<em>Layout.cshtml</em>，首字母下划线防止它们被直接浏览。 标准做法是在 _<em>ViewStart.cshtml</em> 文件中指定布局页面，这会影响放置它的文件夹中的所有内容页面以及所有子文件夹。 </p>
+                                                <p>默认情况下，布局文件放置在 <em>Pages/Shared</em> 文件夹中，但它可以放置在应用程序文件夹结构中的任何位置。 使用 _<em>ViewStart</em> 文件集中布局的位置使得更新到新位置变得容易：</p>
+<pre class="prettyprint linenums prettyprinted" style="background: rgb(249, 249, 249); padding: 10px; border: 1px solid rgb(221, 221, 221);"><ol class="linenums"><li class="L0"><code class="language-csharp" style="background: rgb(249, 249, 249);"><span class="pun">@{</span></code></li><li class="L1" style="background: rgb(249, 249, 249);"><code class="language-csharp" style="background: rgb(249, 249, 249);"><span class="pln">    </span><span class="typ" style="color: rgb(85, 85, 85);">Layout</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="str" style="color: brown;">"/Themes/MyTheme/_Layout.cshtml"</span><span class="pun">;</span></code></li><li class="L2"><code class="language-csharp" style="background: rgb(249, 249, 249);"><span class="pun">}</span></code></li></ol></pre>
+                                                <p>您还可以在 Razor 页面本身中指定布局的位置。 这将覆盖 _<em>ViewStart</em> 文件中的指令集。 如果不希望页面使用_<em>ViewStart</em> 文件中指定的布局，可以将 null 传递给 <code style="background: rgb(249, 249, 249);">Layout </code> 属性：</p>
+<pre class="prettyprint linenums prettyprinted" style="background: rgb(249, 249, 249); padding: 10px; border: 1px solid rgb(221, 221, 221);"><ol class="linenums"><li class="L0"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">@{</span></code></li><li class="L1" style="background: rgb(249, 249, 249);"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">    Layout = null;</span></code></li><li class="L2"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">}</span></code></li></ol></pre>
+                                                <p>例如，如果您的页面用于返回 XML，您可能会这样做。</p>
+                                                <h2 id="locating-a-layout">定位布局</h2>
+                                                <p>如果您将文件名提供给 <code style="background: rgb(249, 249, 249);">Layout</code> 属性而不是文件路径，Razor Pages 框架将搜索一组预定义的位置 对于布局：</p>
+<pre class="prettyprint linenums prettyprinted" style="background: rgb(249, 249, 249); padding: 10px; border: 1px solid rgb(221, 221, 221);"><ol class="linenums"><li class="L0"><code style="background: rgb(249, 249, 249);"><span class="pun">@{</span></code></li><li class="L1" style="background: rgb(249, 249, 249);"><code style="background: rgb(249, 249, 249);"><span class="pln">    </span><span class="typ" style="color: rgb(85, 85, 85);">Layout</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="str" style="color: brown;">"_Layout"</span><span class="pun">;</span></code></li><li class="L2"><code style="background: rgb(249, 249, 249);"><span class="pun">}</span></code></li></ol></pre>
+                                                <p>框架通过从调用页面的位置沿着文件目录向上查找您传入的文件名进行搜索，只要您不包含文件扩展名，直到它到达根 <em>Pages</em> 文件夹。一旦搜索完，就会搜索正式注册的位置。 默认注册的搜索路径是 Pages/Shared（从 ASP.NET Core 2.1 开始）和 Views/Shared（MVC 应用程序中布局页面的默认位置）。</p>
+                                                <p>如果调用页面位于 <em>Pages/Orders</em> 中，则对名为 _<em>Layout</em> 的布局的搜索将包括以下位置：</p>
+<pre class="prettyprint linenums prettyprinted" style="background: rgb(249, 249, 249); padding: 10px; border: 1px solid rgb(221, 221, 221);"><ol class="linenums"><li class="L0"><code style="background: rgb(249, 249, 249);"><span class="typ" style="color: rgb(85, 85, 85);">Pages</span><span class="pun">/</span><span class="typ" style="color: rgb(85, 85, 85);">Orders</span><span class="pun">/</span><span class="typ" style="color: rgb(85, 85, 85);">_Layout</span><span class="pun">.</span><span class="pln">cshtml</span></code></li><li class="L1" style="background: rgb(249, 249, 249);"><code style="background: rgb(249, 249, 249);"><span class="typ" style="color: rgb(85, 85, 85);">Pages</span><span class="pun">/</span><span class="typ" style="color: rgb(85, 85, 85);">_Layout</span><span class="pun">.</span><span class="pln">cshtml</span></code></li><li class="L2"><code style="background: rgb(249, 249, 249);"><span class="typ" style="color: rgb(85, 85, 85);">Pages</span><span class="pun">/</span><span class="typ" style="color: rgb(85, 85, 85);">Shared</span><span class="pun">/</span><span class="typ" style="color: rgb(85, 85, 85);">_Layout</span><span class="pun">.</span><span class="pln">cshtml</span></code></li><li class="L3" style="background: rgb(249, 249, 249);"><code style="background: rgb(249, 249, 249);"><span class="typ" style="color: rgb(85, 85, 85);">Views</span><span class="pun">/</span><span class="typ" style="color: rgb(85, 85, 85);">Shared</span><span class="pun">/</span><span class="typ" style="color: rgb(85, 85, 85);">_Layout</span><span class="pun">.</span><span class="pln">cshtml</span></code></li></ol></pre>
+                                                <p>如果调用布局的页面位于一个区域中，搜索也会从当前执行页面的文件夹中开始，然后沿着该区域内的文件目录向上查找。 一旦区域文件夹结构搜索完，将搜索相对于区域文件夹位置的注册布局位置（即区域内的<em>页面/共享</em>和<em>视图/共享</em>）。 最后，搜索注册位置本身。</p>
+                                                <p>以下搜索位置假设调用页面位于 <em>Areas/Orders/Pages/Archive/Index.cshtml</em>：</p>
+<pre class="prettyprint linenums prettyprinted" style="background: rgb(249, 249, 249); padding: 10px; border: 1px solid rgb(221, 221, 221);"><ol class="linenums"><li class="L0"><code style="background: rgb(249, 249, 249);"><span class="typ" style="color: rgb(85, 85, 85);">Areas</span><span class="pun">/</span><span class="typ" style="color: rgb(85, 85, 85);">Orders</span><span class="pun">/</span><span class="typ" style="color: rgb(85, 85, 85);">Pages</span><span class="pun">/</span><span class="typ" style="color: rgb(85, 85, 85);">Archive</span><span class="pun">/</span><span class="typ" style="color: rgb(85, 85, 85);">_Layout</span><span class="pun">.</span><span class="pln">cshtml</span></code></li><li class="L1" style="background: rgb(249, 249, 249);"><code style="background: rgb(249, 249, 249);"><span class="typ" style="color: rgb(85, 85, 85);">Areas</span><span class="pun">/</span><span class="typ" style="color: rgb(85, 85, 85);">Orders</span><span class="pun">/</span><span class="typ" style="color: rgb(85, 85, 85);">Pages</span><span class="pun">/</span><span class="typ" style="color: rgb(85, 85, 85);">_Layout</span><span class="pun">.</span><span class="pln">cshtml</span></code></li><li class="L2"><code style="background: rgb(249, 249, 249);"><span class="typ" style="color: rgb(85, 85, 85);">Areas</span><span class="pun">/</span><span class="typ" style="color: rgb(85, 85, 85);">Orders</span><span class="pun">/</span><span class="typ" style="color: rgb(85, 85, 85);">Pages</span><span class="pun">/</span><span class="typ" style="color: rgb(85, 85, 85);">Shared</span><span class="pun">/</span><span class="typ" style="color: rgb(85, 85, 85);">_Layout</span><span class="pun">.</span><span class="pln">cshtml</span></code></li><li class="L3" style="background: rgb(249, 249, 249);"><code style="background: rgb(249, 249, 249);"><span class="typ" style="color: rgb(85, 85, 85);">Areas</span><span class="pun">/</span><span class="typ" style="color: rgb(85, 85, 85);">Orders</span><span class="pun">/</span><span class="typ" style="color: rgb(85, 85, 85);">Views</span><span class="pun">/</span><span class="typ" style="color: rgb(85, 85, 85);">Shared</span><span class="pun">/</span><span class="typ" style="color: rgb(85, 85, 85);">_Layout</span><span class="pun">.</span><span class="pln">cshtml</span></code></li><li class="L4"><code style="background: rgb(249, 249, 249);"><span class="typ" style="color: rgb(85, 85, 85);">Pages</span><span class="pun">/</span><span class="typ" style="color: rgb(85, 85, 85);">Shared</span><span class="pun">/</span><span class="typ" style="color: rgb(85, 85, 85);">_Layout</span><span class="pun">.</span><span class="pln">cshtml</span></code></li><li class="L5" style="background: rgb(249, 249, 249);"><code style="background: rgb(249, 249, 249);"><span class="typ" style="color: rgb(85, 85, 85);">Views</span><span class="pun">/</span><span class="typ" style="color: rgb(85, 85, 85);">Shared</span><span class="pun">/</span><span class="typ" style="color: rgb(85, 85, 85);">_Layout</span><span class="pun">.</span><span class="pln">cshtml</span></code></li></ol></pre>
+                                                <p>这与用于<a href="./razor-pages-partial-pages.html">部分页</a>的发现过程相同。</p>
+                                                <h2 id="adding-additional-search-locations">添加其他搜索位置</h2>
+                                                <p>
+                                                    如果要将布局存储在其他位置，可以指定其他搜索位置。
+                                                    这是通过在 Startup 的 <code style="background: rgb(249, 249, 249);">ConfigureServices</code> 方法中配置
+                                                    <code style="background: rgb(249, 249, 249);">RazorViewEngineOptions</code> 以向 <code style="background: rgb(249, 249, 249);">PageViewLocationFormats</code> 集合添加其他条目来完成的：
+                                                </p>
+<pre class="prettyprint linenums prettyprinted" style="background: rgb(249, 249, 249); padding: 10px; border: 1px solid rgb(221, 221, 221);"><ol class="linenums"><li class="L0"><code class="language-csharp" style="background: rgb(249, 249, 249);"><span class="pln">services</span><span class="pun">.</span><span class="typ" style="color: rgb(85, 85, 85);">Configure</span><span class="pun">&lt;</span><span class="typ" style="color: rgb(85, 85, 85);">RazorViewEngineOptions</span><span class="pun">&gt;(</span><span class="pln">options </span><span class="pun">=&gt;</span></code></li><li class="L1" style="background: rgb(249, 249, 249);"><code class="language-csharp" style="background: rgb(249, 249, 249);"><span class="pun">{</span></code></li><li class="L2"><code class="language-csharp" style="background: rgb(249, 249, 249);"><span class="pln">    options</span><span class="pun">.</span><span class="typ" style="color: rgb(85, 85, 85);">PageViewLocationFormats</span><span class="pun">.</span><span class="typ" style="color: rgb(85, 85, 85);">Add</span><span class="pun">(</span><span class="str" style="color: brown;">"/Pages/Shared/Layouts/{0}"</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="typ" style="color: rgb(85, 85, 85);">RazorViewEngine</span><span class="pun">.</span><span class="typ" style="color: rgb(85, 85, 85);">ViewExtension</span><span class="pun">);</span></code></li><li class="L3" style="background: rgb(249, 249, 249);"><code class="language-csharp" style="background: rgb(249, 249, 249);"><span class="pun">});</span></code></li></ol></pre>
+                                                <p>上面的代码将 <em>/Pages/Shared/Layouts/</em> 添加到将搜索布局和部分的位置列表。</p>
+                                                <h2 id="sections">部分（Sections）</h2>
+                                                <p><code style="background: rgb(249, 249, 249);">RenderBody</code> 方法在布局页面中的位置决定了内容页面将在何处呈现，但也可以呈现由 布局页面中的内容页面。 这由对 <code style="background: rgb(249, 249, 249);">RenderSectionAsync</code> 方法的调用位置控制。 以下调用此方法的示例取自构成默认模板 Razor Pages 站点的一部分的布局页面：</p>
+<pre class="prettyprint linenums prettyprinted" style="background: rgb(249, 249, 249); padding: 10px; border: 1px solid rgb(221, 221, 221);"><ol class="linenums"><li class="L0"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">@await RenderSectionAsync("Scripts", required: false)</span></code></li></ol></pre>
+                                                <p>
+                                                    此调用引用名为“Scripts”的部分 - 用于特定页面的脚本文件引用或 JavaScript 代码块，以便它们可以位于结束 <code style="background: rgb(249, 249, 249);">&lt;/body&gt;</code> 标记之前。
+                                                    第二个参数 <code style="background: rgb(249, 249, 249);">required</code> 确定内容页面是否必须为命名部分提供内容。
+                                                    在此示例中，<code style="background: rgb(249, 249, 249);">required</code> 设置为 <code style="background: rgb(249, 249, 249);">false</code>，导致该部分是可选的。
+                                                    如果该部分不是可选的，则每个引用布局页面的内容页面都必须使用 <code style="background: rgb(249, 249, 249);">@section</code> 指令来定义该部分并提供内容：
+                                                </p>
+<pre class="prettyprint linenums prettyprinted" style="background: rgb(249, 249, 249); padding: 10px; border: 1px solid rgb(221, 221, 221);"><ol class="linenums"><li class="L0"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">@section Scripts{</span></code></li><li class="L1" style="background: rgb(249, 249, 249);"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">    // content here</span></code></li><li class="L2"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">}</span></code></li></ol></pre>
+                                                <p>在某些情况下，您可能希望将某个部分设为可选，但您希望在内容页面没有为该部分提供任何内容的情况下提供一些默认内容。 您可以使用 <code style="background: rgb(249, 249, 249);">IsSectionDefined</code> 方法： </p>
+<pre class="prettyprint linenums prettyprinted" style="background: rgb(249, 249, 249); padding: 10px; border: 1px solid rgb(221, 221, 221);"><ol class="linenums"><li class="L0"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">@if(IsSectionDefined("OptionalSection"))</span></code></li><li class="L1" style="background: rgb(249, 249, 249);"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">{</span></code></li><li class="L2"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">    @RenderSection("OptionalSection")</span></code></li><li class="L3" style="background: rgb(249, 249, 249);"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">}</span></code></li><li class="L4"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">else</span></code></li><li class="L5" style="background: rgb(249, 249, 249);"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">{</span></code></li><li class="L6"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">    // default content</span></code></li><li class="L7" style="background: rgb(249, 249, 249);"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">}</span></code></li></ol></pre>
+                                                <p>在某些情况下，您可能不想呈现已在内容页面中定义的部分的内容。 您可以使用 <code style="background: rgb(249, 249, 249);">IgnoreSection</code> 方法来实现这一点： </p>
+<pre class="prettyprint linenums prettyprinted" style="background: rgb(249, 249, 249); padding: 10px; border: 1px solid rgb(221, 221, 221);"><ol class="linenums"><li class="L0"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">@if(!IsAdmin){</span></code></li><li class="L1" style="background: rgb(249, 249, 249);"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">    @{ IgnoreSection("admin"); }</span></code></li><li class="L2"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">}else{</span></code></li><li class="L3" style="background: rgb(249, 249, 249);"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">    @await RenderSectionAsync("admin")</span></code></li><li class="L4"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">}</span></code></li></ol></pre>
+                                                <p>请注意，<code style="background: rgb(249, 249, 249);">IgnoreSection</code> 方法返回 <code style="background: rgb(249, 249, 249);">void</code>，这就是在代码块中调用它的原因。</p>
+                                                <h2 id="nested-layouts">嵌套布局</h2>
+                                                <p>布局页面可以嵌套，也就是说，为布局页面指定布局是完全合法的。 以下示例显示了一个主布局，其中包含头部和样式引用，以及两个子布局页面。 一列包含一列内容，另一列包含两列，其中第二列包含一个部分。 内容页面可以引用两个子布局页面中的任何一个，并且仍然受益于主布局文件提供的公共标记。</p>
+                                                <p>_<em>MasterLayout.cshtml</em></p>
+<pre class="prettyprint linenums prettyprinted" style="background: rgb(249, 249, 249); padding: 10px; border: 1px solid rgb(221, 221, 221);"><ol class="linenums"><li class="L0"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="dec">&lt;!DOCTYPE html&gt;</span></code></li><li class="L1" style="background: rgb(249, 249, 249);"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="tag">&lt;html</span><span class="pln"> </span><span class="atn">lang</span><span class="pun">=</span><span class="atv">"en"</span><span class="tag">&gt;</span></code></li><li class="L2"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">    </span><span class="tag">&lt;head&gt;</span></code></li><li class="L3" style="background: rgb(249, 249, 249);"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">        </span><span class="tag">&lt;meta</span><span class="pln"> </span><span class="atn">charset</span><span class="pun">=</span><span class="atv">"utf-8"</span><span class="pln"> </span><span class="tag">/&gt;</span></code></li><li class="L4"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">        </span><span class="tag">&lt;title&gt;&lt;/title&gt;</span></code></li><li class="L5" style="background: rgb(249, 249, 249);"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">        </span><span class="tag">&lt;link</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"/css/site.css"</span><span class="pln"> </span><span class="atn">rel</span><span class="pun">=</span><span class="atv">"stylesheet"</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text/css"</span><span class="pln"> </span><span class="tag">/&gt;</span></code></li><li class="L6"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">    </span><span class="tag">&lt;/head&gt;</span></code></li><li class="L7" style="background: rgb(249, 249, 249);"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">    </span><span class="tag">&lt;body&gt;</span></code></li><li class="L8"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">        @RenderBody()</span></code></li><li class="L9" style="background: rgb(249, 249, 249);"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">    </span><span class="tag">&lt;/body&gt;</span></code></li><li class="L0"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="tag">&lt;/html&gt;</span></code></li></ol></pre>
+                                                <p><em>SubLayout1.cshtml</em></p>
+<pre class="prettyprint linenums prettyprinted" style="background: rgb(249, 249, 249); padding: 10px; border: 1px solid rgb(221, 221, 221);"><ol class="linenums"><li class="L0"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">@{</span></code></li><li class="L1" style="background: rgb(249, 249, 249);"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">    Layout = "/_MasterLayout";</span></code></li><li class="L2"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">}</span></code></li><li class="L3" style="background: rgb(249, 249, 249);"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"main-content-one-col"</span><span class="tag">&gt;</span></code></li><li class="L4"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">@RenderBody()</span></code></li><li class="L5" style="background: rgb(249, 249, 249);"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="tag">&lt;/div&gt;</span></code></li></ol></pre>
+                                                <p><em>SubLayout2.cshtml</em></p>
+<pre class="prettyprint linenums prettyprinted" style="background: rgb(249, 249, 249); padding: 10px; border: 1px solid rgb(221, 221, 221);"><ol class="linenums"><li class="L0"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">@{</span></code></li><li class="L1" style="background: rgb(249, 249, 249);"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">    Layout = "/_MasterLayout";</span></code></li><li class="L2"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">}</span></code></li><li class="L3" style="background: rgb(249, 249, 249);"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"main-content-two-col"</span><span class="tag">&gt;</span></code></li><li class="L4"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">@RenderBody()</span></code></li><li class="L5" style="background: rgb(249, 249, 249);"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="tag">&lt;/div&gt;</span></code></li><li class="L6"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="tag">&lt;div&gt;</span></code></li><li class="L7" style="background: rgb(249, 249, 249);"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">@RenderSection("RightCol")</span></code></li><li class="L8"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="tag">&lt;/div&gt;</span></code></li></ol></pre>
+                                                <p>主布局中定义的任何部分也应该在子布局中重新定义：</p>
+                                                <p>_<em>MasterLayout.cshtml</em></p>
+<pre class="prettyprint linenums prettyprinted" style="background: rgb(249, 249, 249); padding: 10px; border: 1px solid rgb(221, 221, 221);"><ol class="linenums"><li class="L0"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="dec">&lt;!DOCTYPE html&gt;</span></code></li><li class="L1" style="background: rgb(249, 249, 249);"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="tag">&lt;html</span><span class="pln"> </span><span class="atn">lang</span><span class="pun">=</span><span class="atv">"en"</span><span class="tag">&gt;</span></code></li><li class="L2"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">    </span><span class="tag">&lt;head&gt;</span></code></li><li class="L3" style="background: rgb(249, 249, 249);"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">        </span><span class="tag">&lt;meta</span><span class="pln"> </span><span class="atn">charset</span><span class="pun">=</span><span class="atv">"utf-8"</span><span class="pln"> </span><span class="tag">/&gt;</span></code></li><li class="L4"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">        </span><span class="tag">&lt;title&gt;&lt;/title&gt;</span></code></li><li class="L5" style="background: rgb(249, 249, 249);"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">        </span><span class="tag">&lt;link</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"/css/site.css"</span><span class="pln"> </span><span class="atn">rel</span><span class="pun">=</span><span class="atv">"stylesheet"</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text/css"</span><span class="pln"> </span><span class="tag">/&gt;</span></code></li><li class="L6"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">    </span><span class="tag">&lt;/head&gt;</span></code></li><li class="L7" style="background: rgb(249, 249, 249);"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">    </span><span class="tag">&lt;body&gt;</span></code></li><li class="L8"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">        @RenderBody()</span></code></li><li class="L9" style="background: rgb(249, 249, 249);"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">        @RenderSection("scripts", required:false)</span></code></li><li class="L0"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">    </span><span class="tag">&lt;/body&gt;</span></code></li><li class="L1" style="background: rgb(249, 249, 249);"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="tag">&lt;/html&gt;</span></code></li></ol></pre>
+                                                <p>_<em>ChildLayout.cshtml</em></p>
+<pre class="prettyprint linenums prettyprinted" style="background: rgb(249, 249, 249); padding: 10px; border: 1px solid rgb(221, 221, 221);"><ol class="linenums"><li class="L0"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">@{</span></code></li><li class="L1" style="background: rgb(249, 249, 249);"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">    Layout = "/_MasterLayout";</span></code></li><li class="L2"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">}</span></code></li><li class="L3" style="background: rgb(249, 249, 249);"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"main-content-two-col"</span><span class="tag">&gt;</span></code></li><li class="L4"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">@RenderBody()</span></code></li><li class="L5" style="background: rgb(249, 249, 249);"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="tag">&lt;/div&gt;</span></code></li><li class="L6"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">@section scripts {</span></code></li><li class="L7" style="background: rgb(249, 249, 249);"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">  @RenderSection("scripts", required: false)</span></code></li><li class="L8"><code class="language-html" style="background: rgb(249, 249, 249);"><span class="pln">}</span></code></li></ol></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 right-col">
+                                        <div class="alert alert-light" role="alert">
+                                            <a href="https://www.learnrazorpages.com/razor-pages/files/layout">原文地址</a>
+                                        </div>
+                                        <div id="doc-outline" class="doc-outline well">
+                                            <h3 class="doc-outline">快速导航</h3>
+                                            <nav class="doc-outline">
+                                                <ul>
+                                                    <li><a href="#layout-pages" class="page-scroll">布局</a></li>
+                                                    <li><a href="#locating-a-layout" class="page-scroll">定位布局</a></li>
+                                                    <li><a href="#adding-additional-search-locations" class="page-scroll">添加其他搜索位置</a></li>
+                                                    <li><a href="#sections" class="page-scroll">部分（Sections）</a></li>
+                                                    <li><a href="#nested-layouts" class="page-scroll">嵌套布局</a></li>
+                                                </ul>
+                                            </nav>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /ListContent -->
+                    </div>
+                </div>
+                <!-- /List -->
+            </div>
+        </div>
+        <!-- /footer -->
+        <footer style="text-align:center;">
+            <p>© 2018 - 2021 - Mike Brind. All rights reserved. Contact me at Outlook.com</p>
+            <p>更新于: 2021-04-20 07:01:48</p>
+        </footer>
+    </div>
+
+    <a class="btn-scroll-top" href="#top" data-scroll="">
+        <span class="btn-scroll-top-tooltip text-muted font-size-sm mr-2"></span>返回顶部
+    </a>
+
+    <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="./assets/libs/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+    <script src="./assets/libs/bootstrap-4.4.1-dist/js/bootstrap.bundle.js"></script>
+    <script src="./assets/theme.js"></script>
+</body>
+</html>

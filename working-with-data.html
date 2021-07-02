@@ -1,0 +1,607 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ASP.NET Core Razor简介 | 了解 Razor Pages</title>
+    <link href="./assets/libs/bootstrap-4.4.1-dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="./assets/theme.css" rel="stylesheet" />
+    <script>
+        window.onload = function () {
+            $("body").addClass("bg-light");
+        }
+    </script>
+</head>
+<body id="top">
+    <nav class="navbar navbar-vertical fixed-left navbar-expand-md " id="sidebar">
+        <div class="container-fluid">
+            <!-- Toggler -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Brand -->
+            <div data-toggle="tooltip" data-placement="right" data-template='<div class="tooltip d-none d-md-block" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>' title="了解 Razor Pages">
+                <a class="navbar-brand" href="./index.html"><span class="text-center d-md-block">了解 Razor Pages</span></a>
+            </div>
+            <!-- Collapse -->
+            <div class="collapse navbar-collapse" id="sidebarCollapse">
+                <!-- Divider -->
+                <hr class="navbar-divider d-none d-md-block mt-0 my-3">
+                <!-- Navigation -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarIndex" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarIndex">主页</a>
+                        <div class="collapse" id="sidebarIndex">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="./fristlook.html">初试</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="./Aspnetcore.html">ASP.NET Core</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarTutorials" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarTutorials">讲解</a>
+                        <div class="collapse" id="sidebarTutorials">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="./bakery.html">面包店</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarRazorpages" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarRazorpages">Razor 页面文件</a>
+                        <div class="collapse" id="sidebarRazorpages">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages.html">Razor 页面文件</a></li>
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages-files.html">Razor 文件</a></li>
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages-partial-pages.html">部分页</a></li>
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages-files-layout.html">布局</a></li>
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages-files-viewimports.html">ViewImports</a></li>
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages-files-viewstart.html">ViewStart</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="./razor-syntax.html">Razor 语法</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarPagemodel" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarPagemodel">Page Models</a>
+                        <div class="collapse" id="sidebarPagemodel">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages-pagemodel.html">Page Models</a></li>
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages-handler-methods.html">Handler 方法</a></li>
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages-viewdata.html">ViewData</a></li>
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages-action-results.html">结果返回</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarTaghelpers" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarTaghelpers">标签助手</a>
+                        <div class="collapse" id="sidebarTaghelpers">
+                            <ul class="nav nav-sm flex-column">
+                                <li><a class="nav-link" href="./razor-pages-tag-helpers.html">标签助手</a></li><li><a class="nav-link" href="#">Anchor Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Cache Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Distributed Cache Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Environment Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Form Action Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Form Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Image Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Input Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Label Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Link Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Option Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Partial Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Script Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Select Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">TextArea Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Validation Tag Helper</a></li>
+                                <li><a class="nav-link" href="#">Validation Summary Tag Helper</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">View Components</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarRouting" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarRouting">Routing and URLs</a>
+                        <div class="collapse" id="sidebarRouting">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item"><a class="nav-link" href="#">Routing and URLs</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">Customising Route Conventions</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">Startup</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarConfiguration" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarConfiguration">Configuration</a>
+                        <div class="collapse" id="sidebarConfiguration">
+                            <ul class="nav nav-sm flex-column">
+                                <li><a class="nav-link" href="#">Configuration</a></li>
+                                <li><a class="nav-link" href="#">Global Error Handling And Logging</a></li>
+                                <li><a class="nav-link" href="#">Custom Error Pages</a></li>
+                                <li><a class="nav-link" href="#">Configuring HTTPS</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">Middleware</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Dependency Injection</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarForms" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarForms">Working With Forms</a>
+                        <div class="collapse" id="sidebarForms">
+                            <ul class="nav nav-sm flex-column">
+                                <li><a class="nav-link" href="#">Working With Forms</a></li>
+                                <li><a class="nav-link" href="#">Uploading Files in Razor Pages</a></li>
+                                <li><a class="nav-link" href="#">Working With Checkboxes</a></li>
+                                <li><a class="nav-link" href="#">Select Lists in a Razor Pages Form</a></li>
+                                <li><a class="nav-link" href="#">Working With Radio Buttons</a></li>
+                                <li><a class="nav-link" href="#">Request Verification</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarValidation" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarValidation">Validation</a>
+                        <div class="collapse" id="sidebarValidation">
+                            <ul class="nav nav-sm flex-column">
+                                <li><a class="nav-link" href="#">Validation</a></li>
+                                <li><a class="nav-link" href="#">Remote Validation</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">Model Binding</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">State Management</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Caching</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarIdentity" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarIdentity">Managing Security With ASP.NET Identity</a>
+                        <div class="collapse" id="sidebarIdentity">
+                            <ul class="nav nav-sm flex-column">
+                                <li><a class="nav-link" href="#">Identity</a></li>
+                                <li><a class="nav-link" href="#">Customising Identity</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarAjax" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarAjax">使用 AJAX</a>
+                        <div class="collapse" id="sidebarAjax">
+                            <ul class="nav nav-sm flex-column">
+                                <li><a class="nav-link" href="#">AJAX</a></li>
+                                <li><a class="nav-link" href="#">Posting Forms</a></li>
+                                <li><a class="nav-link" href="#">Partial Page Updates</a></li>
+                                <li><a class="nav-link" href="#">Cascading Dropdowns</a></li>
+                                <li><a class="nav-link" href="#">Uploading Files</a></li>
+                                <li><a class="nav-link" href="#">Unobtrusive AJAX</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">Working with JSON</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Scaffolding</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Publishing To IIS</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarAdvanced" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarAdvanced">Advanced</a>
+                        <div class="collapse" id="sidebarAdvanced">
+                            <ul class="nav nav-sm flex-column">
+                                <li><a class="nav-link" href="#">Advanced</a></li>
+                                <li><a class="nav-link" href="#">Areas</a></li>
+                                <li><a class="nav-link" href="#">Custom Tag Helpers</a></li>
+                                <li><a class="nav-link" href="#">Customising Route Conventions</a></li>
+                                <li><a class="nav-link" href="#">Custom Route Constraints</a></li>
+                                <li><a class="nav-link" href="#">Parameter Transformers For Routes</a></li>
+                                <li><a class="nav-link" href="#">Dependency Injection</a></li>
+                                <li><a class="nav-link" href="#">Filters</a></li>
+                                <li><a class="nav-link" href="#">Razor Class Libraries</a></li>
+                                <li><a class="nav-link" href="#">Rendering A Partial View To A String</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">Table Of Contents</a></li>
+                </ul>
+                <!-- Push content down -->
+                <div class="mt-auto"></div>
+            </div>
+            <!-- /Navbar-collapse -->
+        </div>
+    </nav>
+    <nav class="navbar navbar-vertical navbar-vertical-sm fixed-left navbar-expand-md " id="sidebarSmall"></nav>
+
+    <div class="main-content">
+        <nav class="navbar navbar-expand-md navbar-light d-none d-md-flex" id="topbar">
+            <div class="container-fluid">
+                <!-- Title -->
+                <div class="input-group input-group-flush input-group-merge">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"></div><a id="tn">ASP.NET Core Razor技术指南</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="header bg-light pb-5">
+            <div class="container-fluid">
+                <!-- List -->
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-12 col-xl-12">
+                        <!-- Header -->
+                        <div class="header header-sm mt-md-0">
+                            <div class="header-body header-body-sm">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <!-- Pretitle -->
+                                        <h6 class="header-pretitle"></h6>
+                                        <!-- Title -->
+                                        <h4 class="header-title"><strong>讲解</strong></h4>
+                                    </div>
+                                </div>
+                                <!-- /Row -->
+                            </div>
+                        </div>
+                        <!-- /Header -->
+                        <!-- ListContent -->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <div id="article">
+                                            <h1 itemprop="headline" id="working-with-data">处理数据</h1>
+                                            <div itemprop="articleBody">
+                                                <p>
+                                                    在第一次使用数据时，您将重点关注使用 <code>BakeryContext</code> 检索要显示在主页和订购页面上的数据，这些数据尚未添加到应用程序中。
+                                                    提醒一下，该主页应类似于此处的 ASP.NET Web Pages 版本：
+                                                </p>
+                                                <p><img src="./assets/img/13-11-2018-14-40-18.png" class="img-fluid" alt="ASP.NET Web Pages Bakery Template"></p>
+                                                <p>
+                                                    显示所有产品及其说明，图像和价格，并随机选择其中一种产品作为特色产品出现在页面顶部。
+                                                </p>
+                                                <p>
+                                                    需要少量准备工作才能管理数据的显示。 因此，首先，将以下代码添加到位于 <em>wwwroot/css</em> 中的现有 <em>site.css</em> 文件中：
+                                                </p>
+<pre class="prettyprint linenums"><code class="language-css">body{
+  color: #696969;
+}
+a:link {
+  color: #3b3420;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #3b3420;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #a52f09;
+  text-decoration: none;
+}
+
+a:active {
+  color: #a52f09;
+}
+
+a.order-button, a.order-button:hover{
+  color: #fdfcf7;
+}
+
+.productInfo, .action{
+  max-width: 200px;
+}
+
+p{
+  font-size: 0.8rem;
+}
+
+#orderProcess {
+  list-style: none;
+  padding: 0;
+  clear: both;
+}
+
+#orderProcess li {
+  color: #696969;
+  display: inline;
+  font-size: 1.2em;
+  margin-right: 15px;
+  padding: 3px 0px 0px 5px;
+}
+
+.step-number {
+    background-color: #edece8;
+    border: 1px solid #e6e4d9;
+    font-size: 1.5em;
+    margin-right: 5px;
+    padding: 3px 10px;
+}
+
+.current .step-number {
+    background-color: #a52f09;
+    border-color: #712107;
+    color: #fefefe;
+} 
+
+.orderPageList{
+    padding-inline-start: 20px;
+}
+
+.actions .order-button{
+  margin-left:20px;
+}
+</code></pre>
+                                                <h2 id="the-pagemodel">PageModel</h2>
+                                                <p>
+                                                    现在，打开 <em>Pages/Index.cshtml.cs</em> 文件，并将内容替换为以下内容：
+                                                </p>
+<pre class="prettyprint linenums"><code class="language-csharp">using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Bakery.Data;
+using Bakery.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+
+namespace Bakery.Pages
+{
+    public class IndexModel : PageModel
+    {
+        private readonly BakeryContext db;  
+
+        public IndexModel(BakeryContext db) =&gt; this.db = db;
+
+        public List&lt;Product&gt; Products { get; set; } = new List&lt;Product&gt;();  
+        public Product FeaturedProduct { get; set; }  
+
+        public async Task OnGetAsync()
+        {
+            Products = await db.Products.ToListAsync();
+            FeaturedProduct = Products.ElementAt(new Random().Next(Products.Count));
+        }
+    }
+}
+</code></pre>
+                                                <p>
+                                                    这是 <a href="https://www.learnrazorpages.com/razor-pages/pagemodel">PageModel</a> 文件。
+                                                    PageModel 充当页面控制器和视图模型的组合。
+                                                    作为控制器，其作用是处理来自请求的信息，然后为视图准备模型（viewmodel）。
+                                                    PageModels 和内容页面（视图）之间存在一对一的映射，因此 PageModel 本身就<em>是</em> viewmodel。
+                                                </p>
+                                                <p>
+                                                    来自请求的信息在<a href="./razor-pages-handler-methods.html"> handler 方法</a>中处理。
+                                                    此 PageModel 具有一个 handler 方法 - <code>OnGetAsync</code> ，该约定是作为约定使用由 <code>GET</code> 动词发出的 HTTP 请求而执行的。
+                                                    PageModel 有一个名为 <code>db</code> 的私有字段，它是 <code>BakeryContext</code> 类型。
+                                                    它还具有一个构造函数方法，该方法将 <code>BakeryContext</code> 对象作为参数。
+                                                    参数的值由依赖项注入系统提供。这种模式称为<em>构造注入</em>。
+                                                    将参数分配给构造函数中的私有字段（使用<a href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/expression-bodied-members">表达式主体</a>）。
+                                                </p>
+                                                <p>
+                                                    PageModel 类具有两个公共属性 - 产品列表和一个产品，代表出现在页面顶部的特色产品。
+                                                    该列表由 <code>OnGetAsync</code> 方法中的以下代码填充：
+                                                </p>
+                                                <pre class="prettyprint linenums"><code class="language-csharp">Products = await db.Products.ToListAsync();</code></pre>
+                                                <p>
+                                                    <code>OnGetAsync</code> 方法中的下一行代码将其中一个产品随机分配给 <code>FeaturedProduct</code> 属性：
+                                                </p>
+                                                <pre class="prettyprint linenums"><code class="language-csharp">FeaturedProduct = Products.ElementAt(new Random().Next(Products.Count));</code></pre>
+                                                <h2 id="the-content-page">内容页面</h2>
+                                                <p>
+                                                    现在该制作产品界面了。 用以下内容替换 Index 页面（<em>Pages/Index.cshtml</em>）中的代码：
+                                                </p>
+<pre class="prettyprint linenums"><code class="language-html">@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+&lt;h1&gt;Welcome to Fourth Coffee!&lt;/h1&gt;
+
+&lt;div id="featuredProduct" class="row"&gt; 
+    &lt;div class="col-sm-8"&gt;
+        &lt;img alt="Featured Product" src="~/Images/Products/@Model.FeaturedProduct.ImageName" class="img-fluid rounded"/&gt;
+    &lt;/div&gt;
+    &lt;div id="featuredProductInfo" class="col-sm-4"&gt;
+        &lt;div id="productInfo"&gt;
+            &lt;h2&gt;@Model.FeaturedProduct.Name&lt;/h2&gt;
+            &lt;p class="price"&gt;$@string.Format("{0:f}", Model.FeaturedProduct.Price)&lt;/p&gt;
+            &lt;p class="description"&gt;@Model.FeaturedProduct.Description&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div id="callToAction"&gt;
+            &lt;a class="btn btn-danger order-button" asp-page="/order" asp-route-id="@Model.FeaturedProduct.Id" title="Order @Model.FeaturedProduct.Name"&gt;Order Now&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="productsWrapper" class="row"&gt;
+@foreach (var product in Model.Products)
+{
+    &lt;div class="col-sm-3"&gt;
+        &lt;a asp-page="/order" asp-route-id="@product.Id" title="Order @product.Name"&gt;
+            &lt;div class="productInfo"&gt;
+                &lt;h3&gt;@product.Name&lt;/h3&gt;
+                &lt;img class="product-image img-fluid img-thumbnail" src="~/Images/Products/Thumbnails/@product.ImageName" alt="Image of @product.Name" /&gt;
+                &lt;p class="description"&gt;@product.Description&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/a&gt;
+
+        &lt;div class="action"&gt;
+            &lt;p class="price float-left"&gt;$@string.Format("{0:f}", product.Price)&lt;/p&gt;
+            &lt;a class="btn btn-sm btn-danger order-button float-right" asp-page="/order" asp-route-id="@product.Id" title="Order @product.Name"&gt;Order Now&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+}
+&lt;/div&gt;
+</code></pre>
+                                                <p>
+                                                    页面顶部的 <code>@model</code> 指令指定页面模型的类型（<code>IndexModel</code>）。 您可以通过内容页面的 <code>Model</code> 属性使用 PageModel 。
+                                                </p>
+                                                <p>
+                                                    HTML 的顶部显示了特色产品。
+                                                    底部循环浏览所有产品并显示其缩略图。
+                                                    每个产品都包含一个超链接，其样式类似于按钮（使用 Bootstrap 样式）。
+                                                    尽管还没有到位，但超链接是由定位标签助手生成的，它包括一个 <code>asp-route</code> 属性。
+                                                    此属性用于将数据作为路由值传递到目标页面。
+                                                    当您添加“订购”页面时，您将看到下一步的工作方式。
+                                                </p>
+                                                <p>
+                                                    同时，通过在终端上运行 <code>dotnet run</code> 来测试应用程序，然后浏览至 <code>https://localhost:5001</code> 。 主页应如下所示：
+                                                </p>
+                                                <p><img src="./assets/img/27-11-2018-09-03-27.jpg" class="img-fluid" alt="Bakery Home Page"></p>
+                                                <div class="alert alert-dark">
+                                                    <h2 id="mobile-users">移动端用户浏览</h2>
+                                                    <p>
+                                                        原始的网页烘焙模板使用<em>设备检测</em>或<em>浏览器嗅探</em>来满足移动用户的需求。
+                                                        如果检测到用户正在使用移动设备（主要是根据在<code>user-agent</code>标头中找到的值推断），则站点将切换为使用其他布局文件（<em>sitelayout.mobile.cshtml</em>）。
+                                                        这种方法有两个问题：首先，您需要使设备检测库保持最新状态，否则它最终会失败而不是成功。
+                                                        其次，您需要为网站维护多个版本的布局文件和样式表。
+                                                    </p>
+                                                    <p>
+                                                        如今，解决不同设备分辨率问题的解决方案是使用<a href="https://en.wikipedia.org/wiki/Responsive_web_design">响应设计</a>，
+                                                        该技术可检测可用的屏幕尺寸，并相应地对内容进行重排。
+                                                        此功能内置在 Bootstrap 中，您可以通过调整当前打开的浏览器的大小来查看其功能。
+                                                        一旦浏览器窗口的宽度降到576px以下，显示就会发生巨大变化：
+                                                    </p>
+                                                    <p><img src="./assets/img/27-11-2018-09-26-42.jpg" class="img-fluid" alt="Responsive Design"></p>
+                                                    <p>
+                                                        特色产品图片已按比例缩小，其他产品面板已垂直堆叠。 此外，菜单现在处于隐藏状态，当用户使用3个水平条点击/单击按钮时将调用该菜单。
+                                                    </p>
+                                                    <p>
+                                                        576px的断点是通过在 div 中使用 <code>col-sm-*</code> 类确定的，其中 <code>sm</code> 是CSS类名称的相关部分。
+                                                        如果我们使用过 如果使用 <code>col-md-3</code> ，则当浏览器宽度低于768px时，内容就会堆积起来。
+                                                        您可以在此处<a href="https://getbootstrap.com/docs/4.1/layout/grid/">了解有关 Bootstrap Grid 系统</a>的更多信息。
+                                                    </p>
+                                                    <p>
+                                                        当然，由于自适应设计技术与设备无关，因此您无需依赖仿真器来测试它们。
+                                                    </p>
+                                                </div>
+                                                <h2 id="adding-the-order-page">添加订单页面</h2>
+                                                <p>通过在命令行中执行以下命令来添加新页面：</p>
+                                                <pre class="prettyprint linenums"><code class="language-cmd">dotnet new page --name Order --namespace Bakery.Pages --output Pages</code></pre>
+                                                <p>
+                                                    打开新创建的 <em>Order.cshtml.cs</em> 文件，并将内容替换为以下内容：
+                                                </p>
+<pre class="prettyprint linenums"><code class="language-csharp">using System;
+using System.Threading.Tasks;
+using Bakery.Data;
+using Bakery.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
+namespace Bakery.Pages
+{
+    public class OrderModel : PageModel
+    {
+        private BakeryContext db;
+
+        public OrderModel(BakeryContext db) =&gt; this.db = db;
+
+        [BindProperty(SupportsGet =true)]
+        public int Id { get; set; }
+
+        public Product Product { get; set;}
+
+        public async Task OnGetAsync() =&gt;  Product = await db.Products.FindAsync(Id);
+    }
+}
+</code></pre>
+                                                <p>
+                                                    同样，将 <code>BakeryContext</code> 注入到 PageModel 构造函数中。 一个公共属性 <code>Product</code> 在 <code>OnGetAsync</code> 方法中实例化。
+                                                    <code>FindAsync</code> 方法采用一个值，该值表示要返回的实体的主键。 在这种情况下，传递给 <code>FindAsync</code> 方法的参数是另一个公共属性 - <code>Id</code>。
+                                                    但是它从哪里获得值呢？
+                                                </p>
+                                                <p>
+                                                    <code>Id</code> 属性用 <code>BindProperty</code> 属性装饰。
+                                                    此属性确保该属性包含在<a href="https://www.learnrazorpages.com/razor-pages/model-binding">模型绑定</a>过程中，这导致将作为 HTTP 请求的一部分传递的值映射到 PageModel 属性和 handler 方法参数。
+                                                    默认情况下，模型绑定仅适用于 <code>POST</code> 请求中传递的值。
+                                                    单击主页上的链接可进入“订购”页面，这将导致 <code>GET</code> 请求。
+                                                    您必须添加 <code>SupportsGet = true</code> 才能选择加入 <code>GET</code> 请求的模型绑定。
+                                                </p>
+                                                <p>
+                                                    如果您还记得的话，链接到“订单”页面的主页上的定位标记帮助器包括一个 <code>asp-route-id</code> 属性，代表名为<code>id</code>的<em>路由值</em>。
+                                                    路由值作为URL的一部分传递。
+                                                    如果接收页面定义了匹配的路由参数，则该值将作为 URL 的一部分传递，例如 <code>order/3</code>。
+                                                    否则，它将作为查询字符串值传递：<code>order?id=3</code>。
+                                                    无论哪种方式，输入值都将绑定到 <code>Id</code> 属性。
+                                                </p>
+                                                <p>
+                                                    接下来，修改 <em>Order.cshtml</em> 的内容，如下所示：
+                                                </p>
+<pre class="prettyprint linenums"><code class="language-html">@page "{id:int}"
+@model Bakery.Pages.OrderModel
+@{
+    ViewData["Title"] = "Place Your Order";
+}
+&lt;ol id="orderProcess"&gt;
+    &lt;li&gt;&lt;span class="step-number"&gt;1&lt;/span&gt;Choose Item&lt;/li&gt;
+    &lt;li class="current"&gt;&lt;span class="step-number"&gt;2&lt;/span&gt;Details &amp;amp; Submit&lt;/li&gt;
+    &lt;li&gt;&lt;span class="step-number"&gt;3&lt;/span&gt;Receipt&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1&gt;Place Your Order: @Model.Product.Name&lt;/h1&gt;
+</code></pre>
+                                                <p id:int="">
+                                                    代码的第一行包含 <code>@page</code> 指令，这就是使其成为 Razor Page 的原因，并且还包括以下内容：“”。
+                                                    这是一个<a href="https://www.learnrazorpages.com/razor-pages/routing#route-templates">路由模板</a>。 在此处定义页面的路由参数。
+                                                    该模板定义了一个名为 <code>id</code> 的参数（这将导致主页上的定位标记帮助程序生成以 id 值作为分段的 URL）。
+                                                    您还 <a href="https://www.learnrazorpages.com/razor-pages/routing#adding-constraints">添加了约束</a>。 在这种情况下，您已指定 id 的值必须为整数(<code>:int</code>)。
+                                                    基本上，这意味着除非提供 <code>id</code> 路由值的整数值，否则无法访问订单页面。
+                                                </p>
+                                                <p>
+                                                    现在，如果您运行该应用程序并单击主页上的按钮之一，则会显示订单页面，其中包含所选产品的名称：
+                                                </p>
+                                                <p><img src="./assets/img/28-11-2018-09-53-01.png" class="img-fluid" alt="Razor Pages Bakery"></p>
+                                                <h3 id="summary">小结</h3>
+                                                <p>
+                                                    您已成功使用 <code>BakeryContext</code> 连接到数据库并检索已分配给 PageModel 属性的数据。
+                                                    它们通过内容页面中的 <code>Model</code> 属性公开，您可以在其中循环浏览产品集合以显示它们。
+                                                    您还将在本节中看到如何在URL中传递数据并利用 <code>BindProperty</code> 属性将路由值映射到 PageModel 中的公共属性。
+                                                    最后，您已经了解了如何使用该值查询特定项目，以便可以显示其详细信息。
+                                                </p>
+                                                <p>
+                                                    在下一部分中，您将使用户能够通过表单提供其订单的联系方式和运输详细信息。
+                                                </p>
+                                                <div class="pull-right">
+                                                    <p>下一步:  <a href="./forms.html">使用表单（forms）</a></p>
+                                                </div>
+                                                <div class="pull-left">
+                                                    <p>上一步: <a href="./migration.html">创建迁移</a></p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 right-col">
+                                        <div class="alert alert-light" role="alert">
+                                            <a href="https://www.learnrazorpages.com/razor-pages/tutorial/bakery/working-with-data">原文地址</a>
+                                        </div>
+                                        <div id="doc-outline" class="doc-outline well">
+                                            <h3 class="doc-outline">快速导航</h3>
+                                            <nav class="doc-outline">
+                                                <ul>
+                                                    <li><a href="#working-with-data" class="page-scroll">处理数据</a></li>
+                                                    <li><a href="#the-pagemodel" class="page-scroll">PageModel</a></li>
+                                                    <li><a href="#the-content-page" class="page-scroll">内容页面</a></li>
+                                                    <li><a href="#mobile-users" class="page-scroll">移动端用户浏览</a></li>
+                                                    <li><a href="#adding-the-order-page" class="page-scroll">添加订单页面</a></li>
+                                                    <li><a href="#summary" class="page-scroll">小结</a></li>
+                                                </ul>
+                                            </nav>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /ListContent -->
+                    </div>
+                </div>
+                <!-- /List -->
+            </div>
+        </div>
+        <!-- /footer -->
+        <footer style="text-align:center;">
+            <p>© 2018 - 2021 - Mike Brind. All rights reserved. Contact me at Outlook.com</p>
+            <p>更新于: 2018-12-07 07:38:59</p>
+        </footer>
+    </div>
+
+    <a class="btn-scroll-top" href="#top" data-scroll="">
+        <span class="btn-scroll-top-tooltip text-muted font-size-sm mr-2"></span>返回顶部
+    </a>
+
+    <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="./assets/libs/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+    <script src="./assets/libs/bootstrap-4.4.1-dist/js/bootstrap.bundle.js"></script>
+    <script src="./assets/theme.js"></script>
+</body>
+</html>

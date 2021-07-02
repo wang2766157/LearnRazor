@@ -13,7 +13,6 @@
     </script>
 </head>
 <body id="top">
-    <!-- 标准菜单 -->
     <nav class="navbar navbar-vertical fixed-left navbar-expand-md " id="sidebar">
         <div class="container-fluid">
             <!-- Toggler -->
@@ -55,7 +54,7 @@
                         <a class="nav-link" href="#sidebarRazorpages" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarRazorpages">Razor 页面文件</a>
                         <div class="collapse" id="sidebarRazorpages">
                             <ul class="nav nav-sm flex-column">
-                                <li class="nav-item"><a class="nav-link"  href="./razor-pages.html">Razor 页面文件</a></li>
+                                <li class="nav-item"><a class="nav-link" href="./razor-pages.html">Razor 页面文件</a></li>
                                 <li class="nav-item"><a class="nav-link" href="./razor-pages-files.html">Razor 文件</a></li>
                                 <li class="nav-item"><a class="nav-link" href="./razor-pages-partial-pages.html">部分页</a></li>
                                 <li class="nav-item"><a class="nav-link" href="./razor-pages-files-layout.html">布局</a></li>
@@ -200,6 +199,7 @@
         </div>
     </nav>
     <nav class="navbar navbar-vertical navbar-vertical-sm fixed-left navbar-expand-md " id="sidebarSmall"></nav>
+
     <div class="main-content">
         <nav class="navbar navbar-expand-md navbar-light d-none d-md-flex" id="topbar">
             <div class="container-fluid">
@@ -224,7 +224,7 @@
                                         <!-- Pretitle -->
                                         <h6 class="header-pretitle"></h6>
                                         <!-- Title -->
-                                        <h4 class="header-title"><strong>主页</strong></h4>
+                                        <h4 class="header-title"><strong>讲解</strong></h4>
                                     </div>
                                 </div>
                                 <!-- /Row -->
@@ -236,137 +236,220 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-9">
-                                        <div>
-                                            <h1 id="first-look-at-razor-pages">初试 Razor Pages</h1>
-                                            <div>
-                                                <p>在本节中，将向您展示如何使用.NET Core命令行工具来创建简单的 Razor Pages 应用程序，以及如何在浏览器中构建和运行它。 您还将探索应用程序的各个部分，并了解每个部分所扮演的角色。</p>
-                                                <h2 id="try-it-out-creating-your-first-razor-pages-application">尝试： 创建您的第一个 Razor Pages 应用程序</h2>
-                                                <ol>
-                                                    <li>
-                                                        <p>再次之前，如果您还没有任何准备，您可以先<a href="https://www.microsoft.com/net/download/core">下载最新版本的 .NET Core SDK</a>。</p>
-                                                    </li>
-                                                    <li>
-                                                        <p>打开首选的命令行工具（在 Windows 中为 cmd.exe 或 Powershell ；在 Mac 上为 Terminal ；在 Linux 上为 Bash 或类似工具），然后输入 <code>dotnet --version</code> 。</p>
-                                                    </li>
-                                                    <li>
-                                                        <p>检查输出以确认您的.NET Core版本至少为2.0。</p>
-                                                        <p><img src="./assets/img/2020-01-08_07-19-09.png" class="img-fluid" alt="Dotnet Version"></p>
-                                                    </li>
-                                                    <li>
-                                                        <p>如果需要，请导航至适合您的应用程序的位置，然后输入 <code>mkdir RazorPages</code> 以创建应用程序文件的文件夹。</p>
-                                                    </li>
-                                                    <li>
-                                                        <p>输入 <code>cd RazorPages</code> 进入应用程序文件夹。</p>
-                                                    </li>
-                                                    <li>
-                                                        <p>输入 <code>dotnet new razor</code>。此命令从基本站点模板生成应用程序文件。 您应收到确认已创建该站点并且正在运行 <code>dotnet restore</code> 命令的确认。<code>dotnet restore </code> 命令查看应用程序所需的依赖关系，并从NuGet获取它们。</p>
-                                                        <p><img src="./assets/img/2020-01-08_07-22-19.png" class="img-fluid" alt="dotnet new razor"></p>
-                                                    </li>
-                                                    <li>
-                                                        <p>输入 <code>dotnet run</code> 编译应用程序并在端口5000上启动它：</p>
-                                                        <p><img src="./assets/img/2020-01-08_07-24-54.png" class="img-fluid" alt="dotnet run"></p>
-                                                    </li>
-                                                    <li>
-                                                        <p>打开您常用的浏览器并导航到 <code>http://localhost:5000</code>。 该网站会显示：</p>
-                                                        <p><img src="./assets/img/2020-01-08_07-25-41.png" class="img-fluid" alt="Default template"></p>
-                                                    </li>
-                                                </ol>
-                                                <h2 id="visual-studio">Visual Studio</h2>
-                                                <p>如果您使用的是Visual Studio，请从开始屏幕中选择<strong>“创建新项目”</strong></p>
-                                                <p><img src="./assets/img/2020-01-08_07-27-34.png" class="img-fluid" alt="Create New Project"></p>
-                                                <p>从项目选项中选择“ ASP.NET Core Web应用程序”：</p>
-                                                <p><img src="./assets/img/2020-01-08_07-29-26.png" class="img-fluid" alt="Template options"></p>
-                                                <p>修改项目名称选项和创建项目文件的位置，以满足您的需要。</p>
-                                                <p>下一步, 从出现的模板选项中选择<strong>Web 应用程序</strong> ：</p>
-                                                <p><img src="./assets/img/2020-01-08_07-31-57.png" class="img-fluid" alt="Web Application Options"></p>
-                                                <p>这将会创建一个新的 Razor Pages 应用程序，该应用程序会与通过命令行生成的应用程序相同。</p>
-                                                <h2 id="anatomy-of-a-razor-pages-application">Razor Pages 应用程序内容解析</h2>
+                                        <div id="article">
+                                            <h1 itemprop="headline" id="creating-a-migration">创建迁移</h1>
+                                            <div itemprop="articleBody">
                                                 <p>
-                                                    Razor Pages 应用程序包含许多文件夹和文件。 在下一节中，您将在上一节中探索在创建，还原，编译和运行应用程序时生成的文件。这是应用程序文件夹结构的浏览器视图，然后仔细查看每个文件夹或文件组：
+                                                    在开发应用程序时，随着新要求的出现，模型可能会经常更改。
+                                                    数据库需要与模型保持同步。 使用 Entity Framework Core 迁移功能，您可以对模型进行更改，然后将这些更改传播到数据库架构。
+                                                    如果数据库不存在，也可以使用迁移功能来创建数据库。
                                                 </p>
-                                                <p><img src="./assets/img/2020-01-08_07-42-24.png" class="img-fluid" alt="Razor Pages file structure"></p>
-                                                <h3 id="pages-folder">Pages 文件夹</h3>
-                                                <p><img src="./assets/img/2020-01-08_07-43-32.png" class="img-fluid" alt="Pages Folder"></p>
+                                                <h2 id="configure-the-model">配置模型</h2>
                                                 <p>
-                                                    <em>Pages</em> 文件夹是 Razor Pages 项目文件的默认位置。以 <em>.cshtml</em> 结尾的文件是Razor文件。 以 <em>.cs</em> 结尾的其他文件是 C＃ 类文件。 这些与 Razor 文件配对，称为 <a href="https://www.learnrazorpages.com/razor-pages/pagemodel">PageModell</a> 文件。 并非所有的Razor文件都具有匹配的类文件。 某些 Razor 文件的文件名中带有下划线（_）【这里习惯用在前缀加“下划线” 译者注】。 这些文件不可浏览，但作为Razor Pages应用程序的一部分，它们将扮演不同的角色。 您可以阅读有关这些特殊Razor文件及其角色的<a href="https://www.learnrazorpages.com/razor-pages/files">更多信息</a>。
+                                                    EF Core 迁移基于一组<a href="https://www.learnentityframeworkcore.com/conventions">约定</a>。 这些约定控制着如何将 <code>DbSet</code> 对象映射到数据库中的表，
+                                                    如何将属性映射到列，如何将 .NET 数据类型映射到数据库提供程序公开的合适类型以及如何创建和管理键和索引。 有时，这些约定无法满足您的需求，或者 EF Core 无法确定您的意图。
+                                                    在这些情况下，您可以使用<a href="https://www.learnentityframeworkcore.com/configuration">配置</a>告诉 EF Core 您想要什么。
                                                 </p>
-                                                <h3 id="wwwroot-folder">wwwroot 文件夹</h3>
-                                                <p><img src="./assets/img/2020-01-08_07-45-10.png" class="img-fluid" alt="wwwroot folder in Razor Pages"></p>
                                                 <p>
-                                                    <em>wwwroot</em> 文件夹是在 .NET Core Web 应用程序中放置静态文件的位置。
-                                                    这些文件包括站点使用的 CSS 样式表，图像和 JavaScript 文件。 <em>lib</em> 的其他文件夹包含第三方客户端软件包【脚本文件包  译者注】。 这些软件包可以由 LibMan（Razor Pages 和 MVC 应用程序的默认客户端软件包管理器）管理。
+                                                    可以通过两种方式应用配置：通过使用<a href="https://www.learnentityframeworkcore.com/configuration/data-annotation-attributes">注释属性</a>来修饰类和属性，
+                                                    或使用 <a href="https://www.learnentityframeworkcore.com/configuration/fluent-api">Fluent API</a>。属性仅提供配置选项的子集。
+                                                    因此，对于任何相当复杂的模型，您可能都需要依靠流畅的API进行配置。同时，在所有配置中都使用流畅的 API 是有意义的，从而使配置代码保持一致，因此更容易在一个地方进行推理。
                                                 </p>
-                                                <h3 id="lib-folder">lib 文件夹</h3>
-                                                <p><img src="./assets/img/2020-01-08_07-46-57.png" class="img-fluid" alt="lib folder in Razor Pages"></p>
-                                                <p>图例中包含的第三方客户端软件包是：</p>
-                                                <ul>
-                                                    <li>BootStrap：一个由Twitter团队构建的UI框架，它减少了设计网站布局所需的工作，并且还为按钮，表单，表格，输入等组件提供了一系列内置样式。 在Razor Pages 3.x中，Bootstrap的版本为4。</li>
-                                                    <li>jQuery：BootStrap 依赖的 JavaScript 库。</li>
-                                                    <li>jQuery 验证：用于表单客户端验证的jQuery插件</li>
-                                                    <li>jQuery Unobtrusive Validation：另一个由 ASP.NET 团队设计的 jQuery 验证插件，专门用于处理 Razor 帮助程序生成的表单输入。</li>
-                                                </ul>
-                                                <h3 id="root-files">Root 文件</h3>
-                                                <p><img src="./assets/img/2020-01-08_07-50-29.png" class="img-fluid" alt="Razor Pages root files"></p>
-                                                <p>多种文件位于 Root 文件夹中。</p>
-                                                <table class="table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th style="text-align: left;">文件夹</th>
-                                                            <th style="text-align: left;">备注</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td style="text-align: left;"><em>appsettings.json</em></td>
-                                                            <td style="text-align: left;">项目的配置文件，格式为 json，详见<a href="https://www.learnrazorpages.com/configuration">配置设定</a> 【作用等同于之前aspx中的web.config，但并不是 web.config 。web.config 文件会由项目编译后自动生成，与此文件无关  译者注】</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="text-align: left;"><em>appsettings.Development.json</em></td>
-                                                            <td style="text-align: left;">用于应用程序范围的<a href="https://www.learnrazorpages.com/configuration">配置设置</a>，仅在开发期间生效</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="text-align: left;"><em>Program.cs</em></td>
-                                                            <td style="text-align: left;">应用程序的入口点</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="text-align: left;"><em>RazorPages.csproj</em></td>
-                                                            <td style="text-align: left;">包含有关项目的信息，MSBuild系统将其用于编译和发布</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="text-align: left;"><em>Startup.cs</em></td>
-                                                            <td style="text-align: left;"><a href="https://www.learnrazorpages.com/startup">Startup 类</a> 配置处理所有对应用程序的请求的请求管道</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                                <h3 id="bin-folder">Bin 文件夹</h3>
-                                                <p><img src="./assets/img/2020-01-08_07-57-33.png" class="img-fluid" alt="Razor Pages bin folder"></p>
                                                 <p>
-                                                    <em>bin</em> 文件夹是编译应用程序时生成的二进制文件的默认输出位置。 通常，此文件夹包含两个子文件夹，即 <em>Debug</em>和<em>Release</em>。 第一个用于在调试模式下编译应用程序所产生的二进制文件，第二个用于放置在发布模式下通过编译生成的二进制文件。 这两个文件夹都包含一个名为 <em>netcoreapp[version number]</em> 的子文件夹，其中 [version number] 代表用于创建应用程序的.NET Core版本。 例如，如果使用的是 .NET Core 3.1，则文件夹名称将为 <em>netcoreapp3.1</em> 。 您在上图中看到的文件来自 <em>/bin/Debug/netcoreapp3.1/</em>
+                                                    那么，您应该将 Fluent API 配置代码放在哪里？
                                                 </p>
-                                                <h3 id="obj-folder">Obj 文件夹</h3>
-                                                <p><img src="./assets/img/15-08-2017-09-16-50.png" class="img-fluid" alt="obj Folder"></p>
-                                                <p><em>Obj</em> 文件夹用于存储临时对象文件和其他用于在编译过程中创建最终二进制文件的文件。</p>
+                                                <p>
+                                                    您有两种选择：可以将其直接放置在 <code>DbContext</code> 类的 <code>OnModelCreating</code> 方法中；
+                                                    或者您可以将配置代码放在每个实体的不同类上。 此示例将演示后一种方法，因为这是管理此方法的推荐方法。
+                                                </p>
+                                                <p>
+                                                    将新文件夹添加到 <em>Data</em> 文件夹，并将其命名为 <em>Configurations</em>。
+                                                    然后将一个名为 <em>ProductConfiguration.cs</em> 的新 C＃ 类文件添加到 <em>Configurations</em> 文件夹中。 用以下内容替换内容：
+                                                </p>
+<pre class="prettyprint linenums"><code class="language-csharp">using Bakery.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace Bakery.Data.Configurations
+{
+    public class ProductConfiguration : IEntityTypeConfiguration&lt;Product&gt;
+    {
+        public void Configure(EntityTypeBuilder&lt;Product&gt; builder)
+        {
+            builder.Property(p =&gt; p.ImageName).HasColumnName("ImageFileName");
+        }
+    }
+}
+</code></pre>
+                                                <p>
+                                                    该类实现 <code>IEntityTypeConfiguration&lt;TEntity&gt;</code> 接口，
+                                                    该接口具有一种方法：<code>Configure</code>。 配置在此方法中定义。 在这种情况下，
+                                                    <code>ImageName</code> 属性映射到名为“ ImageFileName”的列。 默认行为是映射到与属性命名相同的列。
+                                                </p>
+                                                <p>
+                                                    配置类已在 BakeryContext 的 <code>OnModelCreating</code> 方法中注册，如突出显示的部分所示：
+                                                </p>
+<pre class="prettyprint linenums"><code class="language-csharp" data-lines="10-13">public class BakeryContext : DbContext
+{
+    public DbSet&lt;Product&gt; Products { get; set; }
+    
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlite(@"Data source=Bakery.db");
+    }
+     
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfiguration(new ProductConfiguration());
+    }
+}
+</code></pre>
+                                                <h2 id="create-seed-data">创建种子（实例）数据</h2>
+                                                <p>
+                                                    原始的 Bakery 模板包括一个预先填充了产品数据的数据库。
+                                                    首次创建数据库时，该数据库将为空 - 除非在执行迁移时将其与数据一起“创建”。
+                                                    在本节中，您将使用 EF Core（从2.1版开始）提供的 API 来实现此目的。
+                                                </p>
+                                                <p>
+                                                    在 Data 文件夹中创建一个新的 C＃ 类文件，并将其命名为 <em>ModelBuilderExtensions.cs</em>。 用以下代码替换内容：
+                                                </p>
+<pre class="prettyprint linenums"><code class="language-csharp">using Bakery.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace Bakery.Data
+{
+    public static class ModelBuilderExtensions
+    {
+        public static ModelBuilder Seed(this ModelBuilder modelBuilder){
+
+            modelBuilder.Entity&lt;Product&gt;().HasData(
+                new Product
+                {
+                    Id = 1,
+                    Name = "Carrot Cake",
+                    Description = "A scrumptious mini-carrot cake encrusted with sliced almonds",
+                    Price = 8.99m,
+                    ImageName = "carrot_cake.jpg"
+                },
+                new Product
+                {
+                    Id = 2,
+                    Name = "Lemon Tart",
+                    Description = "A delicious lemon tart with fresh meringue cooked to perfection",
+                    Price = 9.99m,
+                    ImageName = "lemon_tart.jpg"
+                },
+                new Product
+                {
+                    Id = 3,
+                    Name = "Cupcakes",
+                    Description = "Delectable vanilla and chocolate cupcakes",
+                    Price = 5.99m,
+                    ImageName = "cupcakes.jpg"
+                },
+                new Product
+                {
+                    Id = 4,
+                    Name = "Bread",
+                    Description = "Fresh baked French-style bread",
+                    Price = 1.49m,
+                    ImageName = "bread.jpg"
+                },
+                new Product
+                {
+                    Id = 5,
+                    Name = "Pear Tart",
+                    Description = "A glazed pear tart topped with sliced almonds and a dash of cinnamon",
+                    Price = 5.99m,
+                    ImageName = "pear_tart.jpg"
+                },
+                new Product
+                {
+                    Id = 6,
+                    Name = "Chocolate Cake",
+                    Description = "Rich chocolate frosting cover this chocolate lover's dream",
+                    Price = 8.99m,
+                    ImageName = "chocolate_cake.jpg"
+                }
+            );
+            return modelBuilder;
+        }
+    }
+}
+</code></pre>
+                                                <p>
+                                                    <code>Seed</code> 方法是 <code>ModelBuilder</code> 类型的扩展方法，该方法将传递到您之前使用的 <code>OnModelCreating</code> 方法中。
+                                                    该方法的主体使用 EF Core 2.1 中引入的 <code>HasData</code> 方法将指定实体配置为具有种子数据。
+                                                    为每个实体提供的值与原始模板的值相同，并包括键值。
+                                                    如果 SQLite 作为 INSERT 语句的一部分提供，则 SQLite 会较好地接受 <code>autoincrement</code> 列中的值。
+                                                    另一方面，SQL Server 将在目标表上启用 IDENTITY_INSERT ，然后在添加种子数据后再次将其关闭。
+                                                </p>
+                                                <p>
+                                                    种子方法本身在 <code>OnModelCreating</code> 方法中调用。
+                                                    它返回 <code>ModelBuilderType</code> 的实例，因此可以链接到其他也返回 <code>ModelBuilderType</code> 类型的调用。
+                                                    <code>ApplyConfiguration</code> 符合此要求，因此您可以将 <code>Seed</code> 方法链接到该方法：
+                                                </p>
+<pre class="prettyprint linenums"><code class="language-csharp">protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.ApplyConfiguration(new ProductConfiguration()).Seed();
+}
+</code></pre>
+                                                <h2 id="create-the-migration">创建迁移</h2>
+                                                <p>
+                                                    现在，模型配置已完成，并且已经准备好种子数据，您可以创建实际的迁移了。 从终端执行以下命令：
+                                                </p>
+                                                <pre class="prettyprint linenums"><code>dotnet ef migrations add CreateDatabase --output-dir Data/Migrations </code></pre>
+                                                <p>
+                                                    这将创建一个名为 <em>CreateDatabase</em> 的迁移。
+                                                    用于迁移的文件是在 Data 文件夹中新创建的名为 <em>Migrations</em> 的文件夹中生成的（由传递到 <code>output-dir</code> 开关的值指定）：
+                                                </p>
+                                                <p><img src="./assets/img/26-11-2018-11-10-22.png" class="img-fluid" alt="EF Core Migrations"></p>
+                                                <p>
+                                                    第一个文件包含C＃代码，这些代码将转换为要执行的SQL语句，
+                                                    而快照文件则包含当前模型的C＃表示形式。 随后的迁移将使用它来计算更新数据库架构所需的更改。
+                                                </p>
+                                                <h2 id="execute-the-migration">执行迁移</h2>
+                                                <p>
+                                                    配置并创建了迁移之后，就该执行迁移了。 在终端上，键入以下内容，然后按Enter键以执行命令：
+                                                </p>
+                                                <pre class="prettyprint linenums"><code>dotnet ef database update</code></pre>
+                                                <p>
+                                                    确认已应用迁移后，您应该在网站的根目录中看到已创建的 <em>Bakery.db</em> 文件：
+                                                </p>
+                                                <p><img src="./assets/img/26-11-2018-13-44-21.png" class="img-fluid" alt="Image"></p>
+                                                <p>
+                                                    您可以使用合适的实用程序打开它。 我会使用 <a href="https://sqlitebrowser.org/">SQLite</a> 浏览数据库。
+                                                    您能够浏览生成的表。 __<em>EFMigrationsHistory</em> 表包含每个迁移的详细信息。 产品表包含您作为其种子的数据：
+                                                </p>
+                                                <p><img src="./assets/img/26-11-2018-13-49-26.png" class="img-fluid" alt="Image"></p>
+                                                <h2 id="summary">小结</h2>
+                                                <p>
+                                                    您已经了解了如何在迁移之前配置模型，生成实例数据，然后创建迁移并执行它。 现在您有了一个包含数据的数据库，就可以开始使用它了。
+                                                </p>
+                                                <div class="pull-right">
+                                                    <p>下一步: <a href="./working-with-data.html">处理数据</a></p>
+                                                </div>
+                                                <div class="pull-left">
+                                                    <p>上一步: <a href="./create-model.html">创建模型</a></p>
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-3 right-col">
                                         <div class="alert alert-light" role="alert">
-                                            <a href="https://www.learnrazorpages.com/first-look">原文地址</a>
+                                            <a href="https://www.learnrazorpages.com/razor-pages/tutorial/bakery/migration">原文地址</a>
                                         </div>
                                         <div id="doc-outline" class="doc-outline well">
                                             <h3 class="doc-outline">快速导航</h3>
                                             <nav class="doc-outline">
                                                 <ul>
-                                                    <li><a href="#first-look-at-razor-pages" class="page-scroll">初试 Razor Pages</a></li>
-                                                    <li><a href="#try-it-out-creating-your-first-razor-pages-application" class="page-scroll">尝试： 创建您的第一个 Razor Pages 应用程序</a></li>
-                                                    <li><a href="#visual-studio" class="page-scroll">Visual Studio</a></li>
-                                                    <li><a href="#anatomy-of-a-razor-pages-application" class="page-scroll">Razor Pages 应用程序内容解析</a></li>
-                                                    <li><a href="#pages-folder" class="page-scroll">页面文件</a></li>
-                                                    <li><a href="#wwwroot-folder" class="page-scroll">wwwroot 文件夹</a></li>
-                                                    <li><a href="#lib-folder" class="page-scroll">lib 文件夹</a></li>
-                                                    <li><a href="#root-files" class="page-scroll">Root 文件</a></li>
-                                                    <li><a href="#bin-folder" class="page-scroll">Bin 文件夹</a></li>
-                                                    <li><a href="#obj-folder" class="page-scroll">Obj 文件夹</a></li>
+                                                    <li><a href="#creating-a-migration" class="page-scroll">创建迁移</a></li>
+                                                    <li><a href="#configure-the-model" class="page-scroll">配置模型</a></li>
+                                                    <li><a href="#create-seed-data" class="page-scroll">创建种子（实例）数据</a></li>
+                                                    <li><a href="#create-the-migration" class="page-scroll">创建迁移</a></li>
+                                                    <li><a href="#execute-the-migration" class="page-scroll">执行迁移</a></li>
+                                                    <li><a href="#summary" class="page-scroll">小结</a></li>
                                                 </ul>
                                             </nav>
                                         </div>
@@ -383,7 +466,7 @@
         <!-- /footer -->
         <footer style="text-align:center;">
             <p>© 2018 - 2021 - Mike Brind. All rights reserved. Contact me at Outlook.com</p>
-            <p>更新于: 2020-01-08 08:44:36</p>
+            <p>更新于: 2020-12-07 15:59:13</p>
         </footer>
     </div>
 

@@ -12,7 +12,7 @@
         }
     </script>
 </head>
-<body id="top">    
+<body id="top">
     <nav class="navbar navbar-vertical fixed-left navbar-expand-md " id="sidebar">
         <div class="container-fluid">
             <!-- Toggler -->
@@ -236,162 +236,301 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-9">
-                                        <div id="article">
-                                            <h1 id="working-with-a-model">使用模型</h1>
-                                            <div itemprop="articleBody">
-                                                <p>在 .NET 应用程序中调用数据时，您可以选择。 您可以在记录集或数据集结构中在应用程序中移动数据，也可以将应用程序所关注的事物（或<em>实体</em>）表示为<a href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/classes">类</a>，并可以将这些实例用作容器来存储数据库中各行数据。</p>
+                                        <div id="article" style="height: auto !important;">
+                                            <h1 itemprop="headline" id="working-with-forms">使用表单（forms）</h1>
+                                            <div itemprop="articleBody" style="height: auto !important;">
                                                 <p>
-                                                    建议使用第二种方法，因为它使您能够以强类型的方式处理数据-这具有提供编译时检查的双重好处，从而减少了运行时错误，并且（希望）质量更高。 推理和维护代码时，
-                                                    将一条数据表示为 <code>Person.FirstName</code> 而不是 <code>ds.Tables[0].Rows[0]["FirstName"]</code>，
-                                                    这要容易得多，这是您访问代码的方式 <a href="https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/ado-net-datasets">ADO.NET DataSet 对象</a>中的数据项。
+                                                    任何成功的电子商务网站都需要能够履行订单。 如果您没有客户的联系方式和送货地址，则很难做到这一点。 网站收集此类信息的方式采用表单形式。
                                                 </p>
-                                                <p>总的来说，应用程序实体的代码表示形式称为<em>模型</em>。 面包店应用程序当前与第四咖啡店出售的<em><strong>产品</strong></em>有关，因此该模型包括一类：<code>Product</code>。</p>
-                                                <h2 id="creating-the-model">创建模型</h2>
-                                                <p>将一个新文件夹添加到名为 <em>Models</em> 的应用程序的根目录中。 如果已安装“C＃扩展”扩展，请右键单击该文件夹，然后选择 <strong>新建 C＃类</strong>：</p>
-                                                <p><img src="./assets/img/22-11-2018-14-07-40.png" class="img-fluid" alt="Add C# Class"></p>
-                                                <p>出现提示时，在对话框中将该类命名为 <code>Product</code>，然后按 <strong>Enter</strong>。 生成的文件应具有以下内容：</p>
-<pre class="prettyprint linenums"><code class="language-csharp">namespace Bakery.Models
-{
-    public class Product
-    {
-        
-    }
+                                                <p>
+                                                    在本节中，您将向“订单”页面添加一个表单。 您还将在表单中添加验证，以确保您收集的信息有效且完整。
+                                                </p>
+                                                <h2 id="preparation">准备</h2>
+                                                <p>
+                                                    为了配合使用，请将以下样式声明添加到在 <em>wwwroot/css</em> 中找到的 <em>site.css</em> 文件中：
+                                                </p>
+<pre class="prettyprint linenums"><code class="language-css">label[for="OrderQuantity"]{
+  padding-left: 15px;
+}
+
+#OrderQuantity{
+  margin: 0 15px;
+  max-width: 100px;
+}
+
+.order-calc{
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.input-validation-error, .input-validation-error:focus {
+  background: #ffccba;
+  color: #d63301;
+}
+
+.form-control.input-validation-error:focus{
+  border-color: #d63301;
+  box-shadow: 0 0 0 0.2rem rgba(255, 123, 123, 0.5);
+}
+      
+.field-validation-error {
+  color: #be3e16;
+}
+
+.validation-summary-errors {
+  color: #be3e16;
 }
 </code></pre>
-                                                <p>将以下突出显示的行添加到 <code>Product</code> 类：</p>
-<pre class="prettyprint linenums"><code class="language-csharp" data-lines="5-9">namespace Bakery.Models
+                                                <p>
+                                                    前三种样式纯粹是装饰性的。
+                                                    这些样式中的最后四种将有助于轻松识别字段验证错误的位置。
+                                                    现在，将下面突出显示的行添加到 <em>Order.cshtml.cs</em> 中：
+                                                </p>
+<pre class="prettyprint linenums"><code class="language-csharp" data-lines="2,20-25">using System;
+using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
+using Bakery.Data;
+using Bakery.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
+namespace Bakery.Pages
 {
-    public class Product
+    public class OrderModel : PageModel
     {
+        private BakeryContext db;
+
+        public OrderModel(BakeryContext db) =&gt; this.db = db;
+
+        [BindProperty(SupportsGet =true)]
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public decimal Price { get; set; }
-        public string ImageName { get; set; }
+        public Product Product { get; set;}
+        [BindProperty, EmailAddress, Required, Display(Name="Your Email Address")]
+        public string OrderEmail { get; set; }
+        [BindProperty, Required(ErrorMessage="Please supply a shipping address"), Display(Name="Shipping Address")]
+        public string OrderShipping { get; set; } 
+        [BindProperty, Display(Name="Quantity")]
+        public int OrderQuantity { get; set; } = 1;
+
+        public async Task OnGetAsync() =&gt; Product = await db.Products.FindAsync(Id);
     }
 }
 </code></pre>
                                                 <p>
-                                                    <code>Product</code> 类的属性来自原始示例站点随附的数据库的 Products 表中的列名称。
-                                                    大多数现代 Web 应用程序都使用一种数据访问技术，该技术可以自动映射具有应用程序模型类及其属性的数据库中的表和列，从而实现数据库与模型之间的双向数据传输。
-                                                    这些组件称为对象关系映射器 - ORM。 功能齐全的 ORM 还会生成 SQL 命令并针对数据库执行它们，并提供其他服务，例如事务管理和迁移。
-                                                </p>
-                                                <p>与 ASP.NET Core 应用程序一起使用的推荐 ORM 是 <a href="https://www.learnentityframeworkcore.com/">Entity Framework Core</a>（EF Core）。 在下一步中，您将其添加到应用程序中。</p>
-                                                <h2 id="adding-entity-framework-core">添加 Entity Framework Core </h2>
-                                                <p>
-                                                    EF Core 包括许多<em>提供程序</em> - 与特定数据库一起使用的组件。 许多提供商由第三方维护。 EF Core 团队维护 SQL Server 和 SQLite（基于跨平台文件的数据库）的提供程序，本练习中将使用它们。
-                                                </p>
-                                                <p>
-                                                    默认情况下，EF Core 不包括在项目模板中。 它是一个 Nuget 软件包，可以通过 <code>dotnet add package</code> 命令安装。 要将其与 SQLite 提供程序一起安装到 Bakery 站点中，请从终端执行以下命令：
-                                                </p>
-                                                <pre class="prettyprint linenums"><code class="language-cmd">dotnet add package Microsoft.EntityFrameworkCore.Sqlite</code></pre>
-                                                <p>终端将在成功完成操作时通知您。</p>
-                                                <h2 id="adding-and-registering-a-context">添加注册上下文</h2>
-                                                <p>
-                                                    您将用于与数据库通信的主要 EF Core 组件是从 <code>DbContext</code> 派生的类，称为<a href="https://www.learnentityframeworkcore.com/dbcontext">上下文</a>。 上下文代表与数据库的会话，并提供具有以下功能的 API 与之通信：
+                                                    附加的 <code>using</code> 指令使 <code>DataAnnotations</code> 命名空间起作用。
+                                                    该名称空间包括许多属性，其中一些属性用于装饰已添加到 PageModel 的属性。
+                                                    <code>OrderEmail</code> 属性应用了DataAnnotation属性（以及 <code>BindProperty</code> 属性）：
                                                 </p>
                                                 <ul>
-                                                    <li>数据库连接</li>
-                                                    <li>数据操作，例如查询和持久性</li>
-                                                    <li>变更追踪</li>
-                                                    <li>建立模型</li>
-                                                    <li>数据视图</li>
-                                                    <li>对象缓存</li>
-                                                    <li>事务管理</li>
+                                                    <li><code>EmailAddress</code> - 验证字符串是否与电子邮件地址的模式匹配</li>
+                                                    <li><code>Required</code> - 指定必须为一个值</li>
+                                                    <li><code>Display</code> - 使您可以自定义UI在属性中使用的值</li>
                                                 </ul>
                                                 <p>
-                                                    要添加一个，在项目的根目录中创建一个名为 <em>Data</em> 的文件夹。 然后向其添加一个名为 <em>BakeryContext.cs</em> 的C＃类文件。 修改内容如下：
+                                                    这些属性中的两个在验证中起作用，您将在后面看到。 为 <code>OrderQuantity</code> 属性分配了默认值 <code>1</code>。
                                                 </p>
-<pre class="prettyprint linenums"><code class="language-csharp">using Bakery.Models;
-using Microsoft.EntityFrameworkCore;
+                                                <h2 id="adding-the-form">添加表单（forms）</h2>
+                                                <p>将以下行添加到 <em>Order.cshtml</em> 的底部：</p>
+<pre class="prettyprint linenums"><code class="language-html">&lt;form method="post"&gt;
+    &lt;div class="row"&gt;
+        &lt;div class="col-3"&gt;
+            &lt;img src="~/Images/Products/Thumbnails/@Model.Product.ImageName" class="img-fluid img-thumbnail" alt="Image of @Model.Product.Name"/&gt;
+        &lt;/div&gt;
+        &lt;div class="col-9"&gt;
+            &lt;ul class="orderPageList" data-role="listview"&gt;
+                &lt;li&gt;
+                    &lt;div&gt;
+                        &lt;p class="description"&gt;@Model.Product.Description&lt;/p&gt;
+                    &lt;/div&gt;                
+                &lt;/li&gt;
+                &lt;li class="email"&gt;
+                    &lt;div class="form-group"&gt;
+                        &lt;label asp-for="OrderEmail"&gt;&lt;/label&gt;
+                        &lt;input asp-for="OrderEmail" class="form-control form-control-sm" /&gt;                
+                        &lt;span asp-validation-for="OrderEmail"&gt;&lt;/span&gt;
+                    &lt;/div&gt;
+                &lt;/li&gt;
+                &lt;li class="shipping"&gt;
+                    &lt;div class="form-group"&gt;
+                        &lt;label asp-for="OrderShipping"&gt;&lt;/label&gt;
+                        &lt;textarea rows="4" asp-for="OrderShipping" class="form-control form-control-sm"&gt;&lt;/textarea&gt;               
+                        &lt;span asp-validation-for="OrderShipping"&gt;&lt;/span&gt;
+                    &lt;/div&gt;
+                &lt;/li&gt;
+                &lt;li class="quantity"&gt;
+                    &lt;div class="form-group row"&gt;
+                        &lt;label asp-for="OrderQuantity" class="col-1 col-form-label"&gt;&lt;/label&gt;
+                        &lt;input asp-for="OrderQuantity" class="form-control form-control-sm"/&gt;
+                        x
+                        &lt;span class="order-calc" id="orderPrice"&gt;@Model.Product.Price.ToString("f")&lt;/span&gt;
+                        =
+                        &lt;span class="order-calc" id="orderTotal"&gt;@Model.Product.Price.ToString("f")&lt;/span&gt;
+                        &lt;span asp-validation-for="OrderQuantity"&gt;&lt;/span&gt;
+                    &lt;/div&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;p class="actions"&gt;
+                &lt;input type="hidden" asp-for="Product.Id" /&gt;
+                &lt;button class="btn btn-danger order-button"&gt;Place Order&lt;/button&gt;
+            &lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
 
-namespace Bakery.Data
-{
-    public class BakeryContext : DbContext
-    {
-        public DbSet&lt;Product&gt; Products { get; set; }
-        
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlite(@"Data source=Bakery.db");
-        }
-    }
-}
-</code></pre>
-                                                <p>
-                                                    这是用于处理数据的上下文。 上下文具有一个属性 - 名为 <em>Products</em> 的 <a href="https://www.learnentityframeworkcore.com/dbset">DbSet</a>。<code>DbSet</code> 类映射到数据库中的表。
-                                                </p>
-                                                <p>
-                                                    <code>OnConfiguring</code> 方法为您提供了一个配置上下文的地方。 在这种情况下，您已将上下文配置为使用 SQLite 提供程序，并指定了要使用的连接字符串。
-                                                </p>
-                                                <p>使用上下文时，您可以在需要时实例化实例，例如</p>
-<pre class="prettyprint linenums"><code class="language-csharp">using(var context = new BakeryContext())
-{
-    // do something with data
-}
-</code></pre>
-                                                <p>
-                                                    但是，在 ASP.NET Core 应用程序中使用上下文的推荐方法是在依赖项注入系统中注册它，并将其作为“服务”提供。 服务注册在 Startup 类的 <code>ConfigureServices</code> 方法中进行。
-                                                </p>
-                                                <p>
-                                                    要完成此步骤，请打开 <em>Startup.cs</em> 文件并添加 <code>using</code> 指令以将 <code>Bakery.Data</code> 命名空间纳入范围：
-                                                </p>
-<pre class="prettyprint linenums"><code class="language-csharp" data-lines="4">...
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Bakery.Data;  
 
-namespace Bakery
-{
-    public class Startup
-    {
-        ...
-</code></pre>
-                                                <p>
-                                                    然后将突出显示的代码行添加到下面的 <code>ConfigureServices</code> 方法中：
-                                                </p>
-                                                <ul class="nav nav-tabs" role="tablist">
-                                                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#three" aria-controls="three" role="tab" data-toggle="tab">3.x</a></li>
-                                                    <li class="nav-item" role="presentation"><a class="nav-link" href="#two" aria-controls="two" role="tab" data-toggle="tab">2.x</a></li>
-                                                </ul>
-                                                <div class="tab-content">
-                                                    <div role="tabpanel" class="tab-pane show active" id="three">
-<pre class="prettyprint linenums"><code class="language-csharp" data-lines="4">public void ConfigureServices(IServiceCollection services)
-{
-    services.AddRazorPages();
-    services.AddDbContext&lt;BakeryContext&gt;();
-}
-</code></pre>
-                                                    </div>
-                                                    <div role="tabpanel" class="tab-pane" id="two">
-<pre class="prettyprint linenums"><code class="language-csharp" data-lines="10">public void ConfigureServices(IServiceCollection services)
-{
-    services.Configure&lt;CookiePolicyOptions&gt;(options =&gt;
-    {
-        // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-        options.CheckConsentNeeded = context =&gt; true;
-        options.MinimumSameSitePolicy = SameSiteMode.None;
+@section scripts{
+&lt;script type="text/javascript"&gt;
+    $(function () {
+        var price = parseFloat($("#orderPrice").text()).toFixed(2),
+            total = $("#orderTotal"),
+            orderQty = $("#OrderQuantity");
+
+        orderQty.on('change', function () {
+            var quantity = parseInt(orderQty.val());
+            if (!quantity || quantity &lt; 1) {
+                orderQty.val(1);
+                quantity = 1;
+            } else if (quantity.toString() !== orderQty.val()) {
+                orderQty.val(quantity);
+            }
+            total.text("$" + (price * quantity).toFixed(2));
+        });
     });
-
-    services.AddDbContext&lt;BakeryContext&gt;();
-    services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+&lt;/script&gt;
 }
 </code></pre>
-                                                    </div>
+                                                <p>
+                                                    该表单利用标签助手来呈现文本，输入和验证消息
+                                                    以输入元素为<a href="https://www.learnrazorpages.com/razor-pages/tag-helpers/input-tag-helper">目标的标签助手</a>特别强大。
+                                                    PageModel 属性传递到输入标签帮助器上的 <code>asp-for</code> 属性。
+                                                    然后，输入标签助手会根据该属性呈现正确的 <code>name</code> 属性，以便模型绑定可以无缝进行。
+                                                    分配给属性的任何值都分配给输入。
+                                                    输入的 <code>type</code> 属性是根据属性的数据类型生成的。
+                                                </p>
+                                                <p>
+                                                    表单本身也将由标签帮助程序作为目标，该标签帮助程序将确保呈现<a href="https://www.learnrazorpages.com/security/request-verification">请求验证令牌</a>。
+                                                </p>
+                                                <p>
+                                                    该代码以 JavaScript 块结尾，该 JavaScript 块根据订购的商品数量计算总价。
+                                                    <code>&lt;script&gt;</code> 标记放置在名为 <code>scripts</code> 的 <code>@section</code> 块中，
+                                                    该块在布局页面中经过仔细定位，以使其内容在其他站点范围的脚本（包括 jQuery ）下显示，此脚本块依赖于 jQuery。
+                                                </p>
+                                                <p>
+                                                    接下来，您需要一个 handler 方法来处理表单。 将以下内容添加到 <em>Order.cshtml.cs</em> 文件：
+                                                </p>
+<pre class="prettyprint linenums"><code class="language-csharp">public async Task&lt;IActionResult&gt; OnPostAsync()
+{
+    Product = await db.Products.FindAsync(Id);
+    if(ModelState.IsValid){
+        return RedirectToPage("OrderSuccess");
+    }
+    return Page();
+}
+</code></pre>
+                                                <p>
+                                                    目前，该方法所做的只是检查 <code>ModelState.IsValid</code>。
+                                                    这确保了模型绑定功能得到满足，所有提交的值都通过了验证检查，并且存在所有必需的值。
+                                                    如果验证中有任何错误，则将条目添加到 <code>ModelState</code> object 并重新显示当前页面 (<code>return Page()</code>)。
+                                                    如果提交有效，则将用户重定向到 <em>OrderSuccess</em> 页面，您将在下一节添加该页面。
+                                                </p>
+                                                <div class="alert alert-dark">
+                                                    <p>
+                                                        这种模式称为“<a href="https://en.wikipedia.org/wiki/Post/Redirect/Get">重定向后获取</a>”（Post-Redirect-Get : PRG），其目的是最大程度地减少重复发布导致重复提交的机会。
+                                                    </p>
                                                 </div>
                                                 <p>
-                                                    现在，可以通过类构造函数注入上下文，从而在 PageModel 类中使上下文可用。 无需管理上下文的生存期。
-                                                    <code>AddDbContect</code> 方法以Scoped生存期注册上下文，这意味着将为整个请求提供一个新的生存期。 服务容器将负责确保正确处理。
+                                                    如果表单中有错误，将再次显示该页面，并且验证标签助手将显示验证错误的详细信息。
                                                 </p>
+                                                <p>
+                                                    现在，使用以下命令将 <em>OrderSuccess</em> 页面添加到应用程序：
+                                                </p>
+<pre class="prettyprint linenums"><code class="language-cmd">dotnet new page --name OrderSuccess --output Pages --namespace Bakery.Pages
+</code></pre>
+                                                <p>
+                                                    将 <em>OrderSuccess.cshtml</em> 文件的内容替换为以下内容：
+                                                </p>
+<pre class="prettyprint linenums"><code class="language-html">@page
+@model Bakery.Pages.OrderSuccessModel
+@{
+}
+&lt;ol id="orderProcess"&gt;
+    &lt;li&gt;&lt;span class="step-number"&gt;1&lt;/span&gt;Choose Item&lt;/li&gt;
+    &lt;li&gt;&lt;span class="step-number"&gt;2&lt;/span&gt;Details &amp;amp; Submit&lt;/li&gt;
+    &lt;li class="current"&gt;&lt;span class="step-number"&gt;3&lt;/span&gt;Receipt&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1&gt;Order Confirmation&lt;/h1&gt;
+</code></pre>
+                                                <p>
+                                                    现在是时候测试该表单是否可以正常工作并正确处理了。
+                                                    通过键入 <code>dotnet run</code> 启动应用程序，然后导航到 <code>https://localhost:5001</code> 。
+                                                    选择柠檬T产品，并确保表格显示正确：
+                                                </p>
+                                                <p><img src="./assets/img/2018-12-03_21-02-13.png" class="img-fluid" alt="Lemon Tart"></p>
+                                                <p>
+                                                    现在，按“ <strong>下订单</strong>”按钮，而 <em>未输入电子邮件或收货地址</em>，以便您可以测试验证。 两个字段均应变为粉红色，并且错误消息应出现在它们下方：
+                                                </p>
+                                                <p><img src="./assets/img/2018-12-03_21-10-31.png" class="img-fluid" alt="Razor Pages Form Validation"></p>
+                                                <p>
+                                                    您可以执行进一步的测试，例如删除“数量”框中的值，或在电子邮件输入中输入随机字符串。 每次，提交表单后，错误消息都会出现。
+                                                </p>
+                                                <h2 id="adding-client-side-validation">添加客户端验证</h2>
+                                                <p>
+                                                    目前，所有验证均在服务器上执行。
+                                                    表单被发布，整个页面被重新渲染以向用户提供反馈。
+                                                    在开发站点时，往返实际上并不会引起您的注意，因为客户端和服务器在同一台计算机上。
+                                                    但是，在实际应用中，在用户收到任何反馈之前可能会有一些延迟。
+                                                    在客户端上进行验证将为用户提供即时反馈。
+                                                </p>
+                                                <div class="alert alert-danger">
+                                                    <p>
+                                                        在客户端进行验证仅应视为对用户的礼貌。 它绝不能取代服务器端验证。 对于只有少量 HTML/JavaScript 知识的人来说，规避客户端验证非常容易。
+                                                    </p>
+                                                </div>
+                                                <p>
+                                                    <a href="https://www.learnrazorpages.com/razor-pages/validation">客户端验证</a>默认包含在 Razor Pages 中，但是需要启用它。
+                                                    为此，您可以在页面中包含 jQuery 验证和 jQuery 非侵入式验证库。
+                                                    包含在这些脚本中的代码已经在部分 _<em>ValidationScriptsPartial.cshtml</em> 中提供，该部分位于 <em>Pages/Shared</em> 文件夹中。
+                                                    要包含它，只需将部分标记帮助器添加到 <em>Order.cshtml</em> 中的脚本部分，如下面突出显示的代码行所示：
+                                                </p>
+<pre class="prettyprint linenums"><code class="language-html" data-lines="2">@section scripts{
+&lt;partial name="_ValidationScriptsPartial"&gt;&lt;/partial&gt;
+&lt;script type="text/javascript"&gt;
+    $(function () {
+        var price = parseFloat($("#orderPrice").text()).toFixed(2),
+            total = $("#orderTotal"),
+            orderQty = $("#OrderQuantity");
+
+        orderQty.on('change', function () {
+            var quantity = parseInt(orderQty.val());
+            if (!quantity || quantity &lt; 1) {
+                orderQty.val(1);
+                quantity = 1;
+            } else if (quantity.toString() !== orderQty.val()) {
+                orderQty.val(quantity);
+            }
+            total.text("$" + (price * quantity).toFixed(2));
+        });
+    });
+&lt;/script&gt;
+}
+</code></pre>
+                                                <p>
+                                                    现在，如果您尝试提交缺少值的表单，则会出现错误，而实际上不会将表单发布到服务器。
+                                                    并且，如果您提供满足验证的值，则应进入 <em>OrderSuccess</em> 页面：
+                                                </p>
+                                                <p><img src="./assets/img/04-12-2018-08-40-05.png" class="img-fluid" alt="Razor Pages Bakery"></p>
                                                 <h3 id="summary">小结</h3>
                                                 <p>
-                                                    现在，您有了一个模型（很小，但仍然是一个模型）和一个 EF Core 上下文。 您现在只需要一个数据库。 在下一节中，您将看到如何使用 EF Core 迁移来创建一个。
+                                                    在本部分中，您已经使用标签帮助器创建了一个表单，并添加了服务器端和客户端验证。
+                                                    您已经成功测试了表格。
+                                                    到目前为止，您尚未对发布的值做任何有意义的事情。
+                                                    在下一部分中，您将使用发布的值构造电子邮件并将其发送时，将执行此操作。
                                                 </p>
                                                 <div class="pull-right">
-                                                    <p>下一步: <a href="./migration.html">创建迁移</a></p>
+                                                    <p>下一步: <a href="./email.html">添加电子邮件</a></p>
                                                 </div>
                                                 <div class="pull-left">
-                                                    <p>上一步: <a href="./new-page.html">添加你的第一个页面</a></p>
+                                                    <p>上一步: <a href="./working-with-data.html">处理数据</a></p>
                                                 </div>
 
                                             </div>
@@ -399,16 +538,16 @@ namespace Bakery
                                     </div>
                                     <div class="col-md-3 right-col">
                                         <div class="alert alert-light" role="alert">
-                                            <a href="https://www.learnrazorpages.com/razor-pages/tutorial/bakery/create-model">原文地址</a>
+                                            <a href="https://www.learnrazorpages.com/razor-pages/tutorial/bakery/forms">原文地址</a>
                                         </div>
                                         <div id="doc-outline" class="doc-outline well">
                                             <h3 class="doc-outline">快速导航</h3>
                                             <nav class="doc-outline">
                                                 <ul>
-                                                    <li><a href="#working-with-a-model" class="page-scroll">使用模型</a></li>
-                                                    <li><a href="#creating-the-model" class="page-scroll">创建模型</a></li>
-                                                    <li><a href="#adding-entity-framework-core" class="page-scroll">添加 Entity Framework Core </a></li>
-                                                    <li><a href="#adding-and-registering-a-context" class="page-scroll">添加注册上下文</a></li>
+                                                    <li><a href="#working-with-forms" class="page-scroll">使用表单（forms）</a></li>
+                                                    <li><a href="#preparation" class="page-scroll">准备</a></li>
+                                                    <li><a href="#adding-the-form" class="page-scroll">添加表单（forms）</a></li>
+                                                    <li><a href="#adding-client-side-validation" class="page-scroll">添加客户端验证</a></li>
                                                     <li><a href="#summary" class="page-scroll">小结</a></li>
                                                 </ul>
                                             </nav>
@@ -426,7 +565,7 @@ namespace Bakery
         <!-- /footer -->
         <footer style="text-align:center;">
             <p>© 2018 - 2021 - Mike Brind. All rights reserved. Contact me at Outlook.com</p>
-            <p>更新于: 2021-01-24 21:01:15</p>
+            <p>更新于: 2018-12-07 07:40:29</p>
         </footer>
     </div>
 
